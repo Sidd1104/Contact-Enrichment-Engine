@@ -1,0 +1,36 @@
+# --- Core Dependencies ---
+python-dotenv==1.0.1      # Loading environment variables from .env
+pydantic==2.8.2           # Data validation and settings management
+pydantic-settings==2.3.4  # Configuration management via Pydantic
+
+# --- Excel and Data Processing ---
+pandas==2.2.2             # Data manipulation and analysis
+openpyxl==3.1.5           # Reading/writing Excel (.xlsx) files
+
+# --- Database & Storage ---
+SQLAlchemy==2.0.31        # SQL Toolkit and Object-Relational Mapper
+psycopg2-binary==2.9.9    # PostgreSQL database adapter
+redis==5.0.7              # Python client for Redis key-value store
+
+# --- Scraping and Web Interactivity ---
+playwright==1.45.0        # Browser automation (headless crawling)
+beautifulsoup4==4.12.3    # Pulling data out of HTML and XML files
+httpx==0.27.0             # Next-generation HTTP client
+
+# --- Artificial Intelligence & Extraction ---
+openai==1.35.13           # OpenAI API client
+anthropic==0.30.1         # Anthropic API client
+google-generativeai==0.7.2 # Google Gemini API client
+
+# --- Task Queue & Concurrency ---
+celery==5.4.0             # Distributed Task Queue
+
+# --- Testing & Quality Assurance ---
+pytest==8.2.2             # Testing framework
+black==24.4.2             # Code formatter
+flake8==7.1.0             # Linter tool
+
+# --- Monitoring & Utilities ---
+loguru==0.7.2             # Automated and structural logging
+tqdm==4.66.4              # Smart progress meter
+psutil>=5.9.0             # CPU/RAM metrics monitoring
