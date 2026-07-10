@@ -24,6 +24,12 @@ from .providers import GeminiProvider
 from .router import AIRouter, NoProvidersAvailableError
 from .prompts import prompt_manager
 from .models import EnrichedContact, SearchResult, ExtractionResult
+from .enrichment_result import AIEnrichmentResult, AIEnrichmentResponseModel
+from .enrichment_prompts import EnrichmentPrompts
+from .enrichment_router import AIEnrichmentRouter
+from .merge_engine import MergeEngine
+from .ai_metrics import AIMetrics
+from .enrichment_manager import AIEnrichmentManager
 
 __all__ = [
     # Base
@@ -45,4 +51,12 @@ __all__ = [
     "EnrichedContact",
     "SearchResult",
     "ExtractionResult",
+    # Enrichment
+    "AIEnrichmentResult",
+    "AIEnrichmentResponseModel",
+    "EnrichmentPrompts",
+    "AIEnrichmentRouter",
+    "MergeEngine",
+    "AIMetrics",
+    "AIEnrichmentManager",
 ]
