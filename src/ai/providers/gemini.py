@@ -50,26 +50,39 @@ def _pydantic_to_gemini_schema(model_class: Type[BaseModel]) -> Dict[str, Any]:
     Convert a Pydantic model's JSON schema into the format Gemini expects
     for its response_schema parameter.
     
-    Gemini uses a subset of OpenAPI 3.0 schema. We strip unsupported keys
-    and ensure the format is compatible.
+    Gemini uses a subset of OpenAPI 3.0 schema. We recursively inline all $ref
+    references and strip unsupported keys (title, $defs, default, examples, etc.).
     """
-    schema = model_class.model_json_schema()
+    raw_schema = model_class.model_json_schema()
+    defs = raw_schema.get("$defs", raw_schema.get("definitions", {}))
 
-    def _clean(obj: Any) -> Any:
-        """Recursively clean schema for Gemini compatibility."""
+    def _resolve_and_clean(obj: Any) -> Any:
+        """Recursively resolves $ref and cleans keys."""
         if isinstance(obj, dict):
+            # Check if it's a reference to inline
+            if "$ref" in obj:
+                ref_path = obj["$ref"]
+                ref_name = ref_path.split("/")[-1]
+                if ref_name in defs:
+                    resolved = defs[ref_name]
+                    # Merge description or other annotations (excluding $ref)
+                    merged = {k: v for k, v in obj.items() if k != "$ref"}
+                    cleaned_ref = _resolve_and_clean(resolved)
+                    merged.update(cleaned_ref)
+                    return merged
+
             cleaned = {}
             for key, value in obj.items():
                 # Gemini doesn't support these OpenAPI extensions
                 if key in ("title", "$defs", "definitions", "default", "examples"):
                     continue
-                cleaned[key] = _clean(value)
+                cleaned[key] = _resolve_and_clean(value)
             return cleaned
         elif isinstance(obj, list):
-            return [_clean(item) for item in obj]
+            return [_resolve_and_clean(item) for item in obj]
         return obj
 
-    return _clean(schema)
+    return _resolve_and_clean(raw_schema)
 
 
 class GeminiProvider(AIProvider):

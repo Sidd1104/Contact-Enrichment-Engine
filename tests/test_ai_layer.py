@@ -400,6 +400,18 @@ class TestGeminiProvider:
         # Should not contain 'title' (Gemini doesn't support it)
         assert "title" not in schema
 
+    def test_pydantic_to_gemini_schema_with_refs(self):
+        from src.ai.providers.gemini import _pydantic_to_gemini_schema
+        from src.ai.enrichment_result import AIEnrichmentResponseModel
+        
+        schema = _pydantic_to_gemini_schema(AIEnrichmentResponseModel)
+        
+        # Subelement enrichment should be inlined (no $ref should remain)
+        assert "enrichment" in schema["properties"]
+        assert "properties" in schema["properties"]["enrichment"]
+        assert "official_email" in schema["properties"]["enrichment"]["properties"]
+        assert "$ref" not in json.dumps(schema)
+
     def test_build_payload_basic(self):
         from src.ai.providers.gemini import GeminiProvider
         provider = GeminiProvider(api_key="test-key")

@@ -155,7 +155,7 @@ class ExcelReader:
         # Convert df to list of dicts. Clean NaN values to None.
         raw_rows = df.to_dict(orient="records")
         cleaned_rows = []
-        for row in raw_rows:
+        for idx, row in enumerate(raw_rows):
             cleaned_row = {}
             for k, v in row.items():
                 k_clean = str(k).strip()
@@ -164,6 +164,7 @@ class ExcelReader:
                     cleaned_row[k_clean] = None
                 else:
                     cleaned_row[k_clean] = v
+            cleaned_row["_row_number"] = idx + 2
             cleaned_rows.append(cleaned_row)
 
         logger.info(
