@@ -236,9 +236,17 @@ class ExportManager:
                             
                     updated_count += 1
                     
-            # 5. Save workbook back
+            # 5. Save workbook back to both input folder and root directory (if they exist)
             wb.save(file_path)
             logger.info(f"[ExportManager] Successfully updated {updated_count} rows in original Excel file: {file_path}")
+            
+            root_path = "us_investors_enriched.xlsx"
+            if os.path.exists(root_path) and os.path.abspath(root_path) != os.path.abspath(file_path):
+                try:
+                    wb.save(root_path)
+                    logger.info(f"[ExportManager] Successfully mirrored {updated_count} rows to root Excel file: {root_path}")
+                except Exception as e:
+                    logger.warning(f"[ExportManager] Could not mirror updates to root Excel file: {e}")
             
         except Exception as e:
             logger.error(f"[ExportManager] In-place Excel update failed: {e}")
