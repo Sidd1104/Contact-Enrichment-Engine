@@ -12,7 +12,7 @@ from __future__ import annotations
 import logging
 import time
 from pathlib import Path
-from typing import Any, Dict, Generator, List, Optional, Tuple
+from typing import Any, Dict, Generator, List, Optional, Tuple, Set
 
 from .excel_reader import ExcelReader
 from .schema_detector import SchemaDetector
@@ -76,6 +76,7 @@ class ImportEngine:
         self,
         raw_rows: List[Dict[str, Any]],
         mapping: Dict[str, str],
+        processed_npis: Optional[Set[str]] = None,
     ) -> Tuple[List[Dict[str, Any]], int, int, int]:
         """
         Process, normalize, filter and deduplicate raw records.
@@ -83,7 +84,7 @@ class ImportEngine:
         Returns:
             Tuple of (list of mapped eligible records, completed count, skipped empty count, duplicate count).
         """
-        row_filter = ImportFilter()
+        row_filter = ImportFilter(processed_npis)
         row_mapper = RowMapper(mapping)
 
         eligible_records: List[Dict[str, Any]] = []
@@ -124,6 +125,7 @@ class ImportEngine:
         self,
         file_path: Optional[Path] = None,
         reset_checkpoint: bool = False,
+        processed_npis: Optional[Set[str]] = None,
     ) -> Generator[List[Dict[str, Any]], None, None]:
         """
         Core yield generator that processes the Excel dataset in batches.
@@ -137,7 +139,7 @@ class ImportEngine:
         file_name = target_file.name
 
         # 2. Filter, map, and deduplicate rows
-        eligible_records, completed_count, skipped_empty, duplicate_count = self.process_records(raw_rows, mapping)
+        eligible_records, completed_count, skipped_empty, duplicate_count = self.process_records(raw_rows, mapping, processed_npis)
 
         # 3. Load or clear checkpoints
         checkpoint = None

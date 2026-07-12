@@ -84,6 +84,13 @@ class PipelineRunner:
         """
         Runs pre-flight validation and boots the main orchestrator task.
         """
+        if self.reset_checkpoint:
+            logger.warning("[PipelineRunner] Resetting database and checkpoints as requested...")
+            from src.database.database_manager import DatabaseManager
+            db_mgr = DatabaseManager(self.conn_mgr)
+            db_mgr.drop_all_tables()
+            db_mgr.create_tables()
+
         # 1. Startup pre-flight validation
         validator = StartupValidator(self.conn_mgr)
         valid, logs = validator.validate_all()

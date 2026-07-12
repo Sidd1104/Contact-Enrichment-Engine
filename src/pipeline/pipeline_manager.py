@@ -31,10 +31,11 @@ class PipelineManager:
         file_path: Optional[str] = None,
         export_dir: str = "data/export",
         limit: Optional[int] = None,
+        reset_checkpoint: bool = False,
         show_dashboard: bool = True
     ) -> None:
         """Starts a standard ingestion pipeline run."""
-        logger.info(f"[PipelineManager] Launching pipeline with profile={profile}, file={file_path}")
+        logger.info(f"[PipelineManager] Launching pipeline with profile={profile}, file={file_path}, reset_checkpoint={reset_checkpoint}")
         
         # Override settings if limit is present
         custom_settings = {}
@@ -46,6 +47,7 @@ class PipelineManager:
             profile_name=profile,
             file_path=file_path,
             export_dir=export_dir,
+            reset_checkpoint=reset_checkpoint,
             show_dashboard=show_dashboard
         )
         if limit:
@@ -123,6 +125,38 @@ class PipelineManager:
             print("==================================\n")
         except Exception as e:
             logger.error(f"Could not read status from database: {e}")
+        finally:
+            conn.close()
+
+    @staticmethod
+    def export_data(export_dir: str = "data/export", file_path: Optional[str] = None) -> None:
+        """Loads all completed contacts from database and exports them."""
+        conn = ConnectionManager()
+        db_mgr = DatabaseManager(conn)
+        repo = db_mgr.get_repository()
+        
+        # Auto-detect target excel file from input folder if not provided
+        if not file_path:
+            try:
+                from src.importer.importer import ImportEngine
+                importer = ImportEngine()
+                detected_file = importer.reader.detect_primary_file()
+                file_path = str(detected_file)
+            except Exception:
+                pass
+
+        try:
+            from src.exporter.export_manager import ExportManager
+            export_mgr = ExportManager(repo)
+            print(f"\n[PipelineManager] Exporting current database records to directory: {export_dir}...")
+            generated = export_mgr.export_all(export_dir, file_path)
+            print("\nExport completed successfully. Generated files:")
+            for key, path in generated.items():
+                print(f" - {key}: {path}")
+            print()
+        except Exception as e:
+            logger.critical(f"[PipelineManager] Export failed: {e}")
+            sys.exit(1)
         finally:
             conn.close()
 import sys

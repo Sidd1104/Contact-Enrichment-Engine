@@ -46,6 +46,11 @@ def setup_parser() -> argparse.ArgumentParser:
         action="store_true",
         help="Disable the live terminal dashboard updates"
     )
+    run_parser.add_argument(
+        "--reset-checkpoint", "-r",
+        action="store_true",
+        help="Reset and clear all previous database checkpoints and completed contacts"
+    )
 
     # 2. Benchmark Subcommand
     benchmark_parser = subparsers.add_parser("benchmark", help="Run performance benchmarks across worker and batch sizes")
@@ -76,6 +81,21 @@ def setup_parser() -> argparse.ArgumentParser:
     # 5. Status Subcommand
     subparsers.add_parser("status", help="Show current enrichment database stats")
 
+    # 6. Export Subcommand
+    export_parser = subparsers.add_parser("export", help="Export currently completed contacts to CSV and Excel files")
+    export_parser.add_argument(
+        "--dir", "-d",
+        type=str,
+        default="data/export",
+        help="Directory to write exported files"
+    )
+    export_parser.add_argument(
+        "--file", "-f",
+        type=str,
+        default=None,
+        help="Path to the original Excel file to update in-place"
+    )
+
     return parser
 
 
@@ -93,6 +113,7 @@ def main() -> None:
             file_path=args.file,
             export_dir="data/export",
             limit=args.limit,
+            reset_checkpoint=args.reset_checkpoint,
             show_dashboard=not args.no_dashboard
         )
 
@@ -113,6 +134,9 @@ def main() -> None:
 
     elif args.command == "status":
         PipelineManager.show_status()
+
+    elif args.command == "export":
+        PipelineManager.export_data(export_dir=args.dir, file_path=args.file)
 
 
 if __name__ == "__main__":

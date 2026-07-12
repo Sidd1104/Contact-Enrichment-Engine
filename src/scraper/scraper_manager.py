@@ -247,7 +247,9 @@ class ScraperManager:
 
         # 3. Playwright Fallback
         # Triggered if HTTP homepage scrape failed, OR contact details are still missing after subpage crawl
-        needs_browser = (len(parsed_pages) == 0) or (not emails_with_scores and not phones_with_scores)
+        import os
+        disable_browser = os.getenv("DISABLE_BROWSER_FALLBACK", "false").lower() == "true"
+        needs_browser = not disable_browser and ((len(parsed_pages) == 0) or (not emails_with_scores and not phones_with_scores))
         
         if needs_browser:
             method_used = "Browser"
@@ -376,6 +378,9 @@ class ScraperManager:
             self.metrics.increment_failures()
         self.metrics.save()
 
+        # Concatenate visible texts from all successfully parsed pages
+        raw_text = "\n".join(p.visible_text for p in parsed_pages if p.visible_text)
+
         # Build contact output
         return StructuredContact(
             business_name=business_name,
@@ -387,5 +392,6 @@ class ScraperManager:
             extraction_method=method_used,
             confidence=aggregate_confidence,
             processing_time=round(processing_time, 2),
-            errors=errors
+            errors=errors,
+            raw_text=raw_text
         )

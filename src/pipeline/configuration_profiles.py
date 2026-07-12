@@ -61,6 +61,15 @@ PROFILES: Dict[str, PipelineProfile] = {
         retry_limit=5,
         logging_level="WARNING",
         max_concurrency=20
+    ),
+    "turbo": PipelineProfile(
+        profile_name="turbo",
+        worker_count=25,
+        batch_size=100,
+        timeout=30.0,
+        retry_limit=2,
+        logging_level="INFO",
+        max_concurrency=30
     )
 }
 

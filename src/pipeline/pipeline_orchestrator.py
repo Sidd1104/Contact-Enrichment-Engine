@@ -174,7 +174,22 @@ class PipelineOrchestrator:
 
             # Load rows using importer
             target_file, sheet_name, mapping, raw_rows = importer.initialize_import(target_file)
-            eligible_records, completed_count, skipped_empty, duplicate_count = importer.process_records(raw_rows, mapping)
+            
+            # Fetch completed/failed NPIs from DB
+            processed_npis = set()
+            try:
+                from src.database.database_manager import CompletedContactModel, FailedRecordModel
+                session = self.conn_mgr.get_session()
+                comp_rows = session.query(CompletedContactModel.npi).filter(CompletedContactModel.npi.isnot(None)).all()
+                fail_rows = session.query(FailedRecordModel.npi).filter(FailedRecordModel.npi.isnot(None)).all()
+                processed_npis.update(str(r[0]).strip() for r in comp_rows if r[0])
+                processed_npis.update(str(r[0]).strip() for r in fail_rows if r[0])
+                session.close()
+                logger.info(f"[Orchestrator] Pre-loaded {len(processed_npis)} processed NPIs from DB to skip.")
+            except Exception as e:
+                logger.warning(f"[Orchestrator] Failed to pre-load processed NPIs: {e}")
+
+            eligible_records, completed_count, skipped_empty, duplicate_count = importer.process_records(raw_rows, mapping, processed_npis)
             
             # Enforce limits if specified in the context metrics
             limit = self.context.get_value("total_records")
@@ -246,8 +261,8 @@ class PipelineOrchestrator:
                         # AI enrichment
                         if needs_ai:
                             with PerformanceProfiler.profile_stage(self.context, "ai"):
-                                # Extract content text body
-                                text_body = scraper_out.errors[0] if scraper_out.errors else "Clinic web text..."
+                                # Extract content text body from crawler
+                                text_body = scraper_out.raw_text if scraper_out.raw_text else "Clinic web text..."
                                 profile = await self.ai_mgr.enrich_profile(profile, text_body)
                                 self.context.update_metrics(ai_calls=1)
                         else:
@@ -321,6 +336,15 @@ class PipelineOrchestrator:
                 processed_records += len(batch_records)
                 self.context.set_value("processed_records", processed_records)
                 self.repo.save_checkpoint(batch_id, b_idx + 1, total_records, "in_progress")
+                
+                # In-place update original Excel file after each batch to show real-time progress
+                excel_path = self.file_path or (str(target_file) if 'target_file' in locals() else None)
+                if excel_path:
+                    try:
+                        self.export_mgr.update_original_excel(excel_path)
+                    except Exception as e:
+                        logger.warning(f"[Orchestrator] In-place Excel update failed for batch {b_idx+1}: {e}")
+                
                 self.event_bus.publish(PipelineEventType.DATABASE_SAVED, count=len(unique_batch_profiles))
                 self.event_bus.publish(PipelineEventType.BATCH_COMPLETED, batch_index=b_idx+1)
 
@@ -329,7 +353,7 @@ class PipelineOrchestrator:
                 # --- STAGE 4: EXPORT ENGINE ---
                 logger.info("[Orchestrator] Ingestion loop completed. Generating data exports...")
                 with PerformanceProfiler.profile_stage(self.context, "export"):
-                    self.export_mgr.export_all(self.export_dir)
+                    self.export_mgr.export_all(self.export_dir, self.file_path or str(target_file))
                 self.event_bus.publish(PipelineEventType.EXPORT_FINISHED)
                 
                 # Mark checkpoint as completed

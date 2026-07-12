@@ -62,3 +62,7 @@ class StructuredContact(BaseModel):
         default_factory=list,
         description="List of issues or warning messages logged during pipeline run."
     )
+    raw_text: str = Field(
+        default="",
+        description="Accumulated raw visible text from crawled pages."
+    )

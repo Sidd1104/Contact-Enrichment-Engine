@@ -35,7 +35,7 @@ class ExportManager:
         self.csv_exporter = CSVExporter(self.metrics)
         self.excel_exporter = ExcelExporter(self.metrics)
 
-    def export_all(self, export_dir: str = "data/export") -> Dict[str, str]:
+    def export_all(self, export_dir: str = "data/export", original_file_path: Optional[str] = None) -> Dict[str, str]:
         """
         Loads dataset records from the repository and runs the exports/reports.
         
@@ -123,9 +123,124 @@ class ExportManager:
             )
             generated_files["statistics_report"] = str(stats_report_path)
 
+            if original_file_path:
+                self.update_original_excel(original_file_path)
+
             logger.info(f"[ExportManager] Export process finalized successfully. Generated {len(generated_files)} files.")
         except Exception as e:
             logger.error(f"[ExportManager] Export execution failed: {e}")
             raise e
 
         return generated_files
+
+    def update_original_excel(self, file_path: str) -> None:
+        """
+        Updates the original input Excel file in-place with enriched details,
+        preserving all styles and sheets.
+        """
+        import openpyxl
+        import os
+        from datetime import datetime
+        
+        logger.info(f"[ExportManager] Updating original Excel file in-place: {file_path}")
+        if not os.path.exists(file_path):
+            logger.warning(f"Original Excel file not found for in-place update: {file_path}")
+            return
+            
+        try:
+            # 1. Fetch completed rows from DB directly using session
+            session = self.repo.conn_mgr.get_session()
+            try:
+                from src.database.database_manager import CompletedContactModel
+                db_rows = session.query(CompletedContactModel).all()
+                # lookup: {npi_str: row}
+                lookup = {}
+                for r in db_rows:
+                    if r.npi:
+                        lookup[str(r.npi).strip()] = r
+            finally:
+                session.close()
+                
+            if not lookup:
+                logger.info("[ExportManager] No completed profiles with NPI found in DB to update Excel.")
+                return
+
+            # 2. Open Workbook using openpyxl
+            wb = openpyxl.load_workbook(file_path)
+            
+            # Select target sheet: prioritize 'Investor Contacts' or first sheet
+            sheet_name = "Investor Contacts"
+            if sheet_name not in wb.sheetnames:
+                sheet_name = wb.sheetnames[0]
+                
+            ws = wb[sheet_name]
+            
+            # 3. Detect column indices (1-indexed in openpyxl)
+            headers = [cell.value for cell in ws[1]]
+            
+            # Map column name to 1-based index
+            col_map = {}
+            for idx, h in enumerate(headers):
+                if h:
+                    col_map[str(h).strip().lower()] = idx + 1
+                    
+            # Check required columns
+            npi_col = col_map.get("npi")
+            if not npi_col:
+                logger.error("[ExportManager] 'NPI' column not found in Excel sheet headers.")
+                return
+                
+            # Column mappings in the sheet
+            phone_col = col_map.get("phone")
+            email_col = col_map.get("email")
+            website_col = col_map.get("source website")
+            conf_col = col_map.get("confidence")
+            updated_col = col_map.get("updated")
+            status_col = col_map.get("status")
+            
+            # 4. Iterate rows and update cells (starting at row 2)
+            updated_count = 0
+            for r_idx in range(2, ws.max_row + 1):
+                npi_val = ws.cell(row=r_idx, column=npi_col).value
+                if npi_val is None:
+                    continue
+                npi_str = str(npi_val).strip()
+                
+                if npi_str in lookup:
+                    db_row = lookup[npi_str]
+                    
+                    # Update fields
+                    emails_list = db_row.emails or []
+                    phones_list = db_row.phones or []
+                    
+                    emails_str = ", ".join(emails_list) if isinstance(emails_list, list) else str(emails_list)
+                    phones_str = ", ".join(phones_list) if isinstance(phones_list, list) else str(phones_list)
+                    
+                    if email_col:
+                        ws.cell(row=r_idx, column=email_col).value = emails_str or None
+                    if phone_col:
+                        ws.cell(row=r_idx, column=phone_col).value = phones_str or None
+                    if website_col and db_row.official_website:
+                        ws.cell(row=r_idx, column=website_col).value = db_row.official_website
+                    if conf_col and db_row.confidence is not None:
+                        ws.cell(row=r_idx, column=conf_col).value = round(db_row.confidence, 3)
+                    if updated_col:
+                        ws.cell(row=r_idx, column=updated_col).value = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+                    if status_col:
+                        if emails_str and phones_str:
+                            ws.cell(row=r_idx, column=status_col).value = "Completed"
+                        elif emails_str or phones_str:
+                            ws.cell(row=r_idx, column=status_col).value = "Partially Enriched"
+                        else:
+                            ws.cell(row=r_idx, column=status_col).value = "No Contact Found"
+                            
+                    updated_count += 1
+                    
+            # 5. Save workbook back
+            wb.save(file_path)
+            logger.info(f"[ExportManager] Successfully updated {updated_count} rows in original Excel file: {file_path}")
+            
+        except Exception as e:
+            logger.error(f"[ExportManager] In-place Excel update failed: {e}")
+            raise e
+

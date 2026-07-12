@@ -12,7 +12,7 @@ Handles filtering out:
 from __future__ import annotations
 
 import logging
-from typing import Any, Dict, Set
+from typing import Any, Dict, Set, Optional
 
 logger = logging.getLogger(__name__)
 
@@ -33,8 +33,9 @@ class ImportFilter:
     Handles filtering logic for Excel row imports.
     """
 
-    def __init__(self) -> None:
+    def __init__(self, processed_npis: Optional[Set[str]] = None) -> None:
         self.seen_npis: Set[str] = set()
+        self.processed_npis = processed_npis or set()
 
     def is_row_empty(self, row: Dict[str, Any], mapped_cols: Dict[str, str]) -> bool:
         """
@@ -48,9 +49,13 @@ class ImportFilter:
 
     def is_fully_enriched(self, mapped_row: Dict[str, Any]) -> bool:
         """
-        Smart Filtering: Returns True if the row already contains BOTH phone and email.
-        Fully enriched rows skip queue placement because they require no enrichment.
+        Smart Filtering: Returns True if the row already contains BOTH phone and email,
+        or if it is already present in our database processed tables.
         """
+        npi = mapped_row.get("npi", "").strip()
+        if npi and npi in self.processed_npis:
+            return True
+
         email = mapped_row.get("email", "")
         phone = mapped_row.get("phone", "")
 

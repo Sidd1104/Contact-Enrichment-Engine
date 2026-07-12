@@ -1,77 +1,1917 @@
 id,npi,company_name,website,error_message,failed_at
-1,,,,"Database bulk write failure: (sqlite3.IntegrityError) UNIQUE constraint failed: completed_contacts.official_website
-[SQL: INSERT INTO completed_contacts (npi, business_name, official_website, emails, phones, social_links, address, pages_visited, extraction_method, confidence, errors, provenance, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) RETURNING id]
-[parameters: (None, '', '', '[]', '[]', '{""linkedin"": """", ""facebook"": """", ""instagram"": """", ""twitter"": """", ""youtube"": """", ""github"": """"}', '603 East Broadway Street, 603 East Broadway Street, Prosper, US', '[]', 'HTTP', 0.0, '[""Empty or invalid website URL provided.""]', '{""business_name"": ""scraper"", ""emails"": """", ""phones"": """", ""address"": ""importer""}', '2026-07-11 11:39:38.940429', '2026-07-11 11:39:38.940429')]
-(Background on this error at: https://sqlalche.me/e/20/gkpj)",2026-07-11T11:39:38.949706
-2,,Sam Wegenke,https://o2investment.com/team-member/sam-wegenke,"Database bulk write failure: (sqlite3.IntegrityError) UNIQUE constraint failed: completed_contacts.official_website
-[SQL: INSERT INTO completed_contacts (npi, business_name, official_website, emails, phones, social_links, address, pages_visited, extraction_method, confidence, errors, provenance, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) RETURNING id]
-[parameters: (None, '', '', '[]', '[]', '{""linkedin"": """", ""facebook"": """", ""instagram"": """", ""twitter"": """", ""youtube"": """", ""github"": """"}', '603 East Broadway Street, 603 East Broadway Street, Prosper, US', '[]', 'HTTP', 0.0, '[""Empty or invalid website URL provided.""]', '{""business_name"": ""scraper"", ""emails"": """", ""phones"": """", ""address"": ""importer""}', '2026-07-11 11:39:38.940429', '2026-07-11 11:39:38.940429')]
-(Background on this error at: https://sqlalche.me/e/20/gkpj)",2026-07-11T11:39:38.949706
-3,,VirtuAlly,https://solventnetworks.com/endorsed_partners/virtually,"Database bulk write failure: (sqlite3.IntegrityError) UNIQUE constraint failed: completed_contacts.official_website
-[SQL: INSERT INTO completed_contacts (npi, business_name, official_website, emails, phones, social_links, address, pages_visited, extraction_method, confidence, errors, provenance, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) RETURNING id]
-[parameters: (None, '', '', '[]', '[]', '{""linkedin"": """", ""facebook"": """", ""instagram"": """", ""twitter"": """", ""youtube"": """", ""github"": """"}', '603 East Broadway Street, 603 East Broadway Street, Prosper, US', '[]', 'HTTP', 0.0, '[""Empty or invalid website URL provided.""]', '{""business_name"": ""scraper"", ""emails"": """", ""phones"": """", ""address"": ""importer""}', '2026-07-11 11:39:38.940429', '2026-07-11 11:39:38.940429')]
-(Background on this error at: https://sqlalche.me/e/20/gkpj)",2026-07-11T11:39:38.949706
-4,,School Partnership Lead in Swansea at Swansea University,https://talents.studysmarter.co.uk/companies/swansea-university/school-partnership-lead-15039983,"Database bulk write failure: (sqlite3.IntegrityError) UNIQUE constraint failed: completed_contacts.official_website
-[SQL: INSERT INTO completed_contacts (npi, business_name, official_website, emails, phones, social_links, address, pages_visited, extraction_method, confidence, errors, provenance, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) RETURNING id]
-[parameters: (None, '', '', '[]', '[]', '{""linkedin"": """", ""facebook"": """", ""instagram"": """", ""twitter"": """", ""youtube"": """", ""github"": """"}', '603 East Broadway Street, 603 East Broadway Street, Prosper, US', '[]', 'HTTP', 0.0, '[""Empty or invalid website URL provided.""]', '{""business_name"": ""scraper"", ""emails"": """", ""phones"": """", ""address"": ""importer""}', '2026-07-11 11:39:38.940429', '2026-07-11 11:39:38.940429')]
-(Background on this error at: https://sqlalche.me/e/20/gkpj)",2026-07-11T11:39:38.949706
-5,,"Europe Startup News: Revolut, Elvy, APEX",https://www.startupresearcher.com/news/startup-researcher-europe-week-50-2025,"Database bulk write failure: (sqlite3.IntegrityError) UNIQUE constraint failed: completed_contacts.official_website
-[SQL: INSERT INTO completed_contacts (npi, business_name, official_website, emails, phones, social_links, address, pages_visited, extraction_method, confidence, errors, provenance, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) RETURNING id]
-[parameters: (None, '', '', '[]', '[]', '{""linkedin"": """", ""facebook"": """", ""instagram"": """", ""twitter"": """", ""youtube"": """", ""github"": """"}', '603 East Broadway Street, 603 East Broadway Street, Prosper, US', '[]', 'HTTP', 0.0, '[""Empty or invalid website URL provided.""]', '{""business_name"": ""scraper"", ""emails"": """", ""phones"": """", ""address"": ""importer""}', '2026-07-11 11:39:38.940429', '2026-07-11 11:39:38.940429')]
-(Background on this error at: https://sqlalche.me/e/20/gkpj)",2026-07-11T11:39:38.949706
-6,,About Us,https://edibleschoolyard.org/about-us,"Database bulk write failure: (sqlite3.IntegrityError) UNIQUE constraint failed: completed_contacts.official_website
-[SQL: INSERT INTO completed_contacts (npi, business_name, official_website, emails, phones, social_links, address, pages_visited, extraction_method, confidence, errors, provenance, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) RETURNING id]
-[parameters: (None, '', '', '[]', '[]', '{""linkedin"": """", ""facebook"": """", ""instagram"": """", ""twitter"": """", ""youtube"": """", ""github"": """"}', '603 East Broadway Street, 603 East Broadway Street, Prosper, US', '[]', 'HTTP', 0.0, '[""Empty or invalid website URL provided.""]', '{""business_name"": ""scraper"", ""emails"": """", ""phones"": """", ""address"": ""importer""}', '2026-07-11 11:39:38.940429', '2026-07-11 11:39:38.940429')]
-(Background on this error at: https://sqlalche.me/e/20/gkpj)",2026-07-11T11:39:38.949706
-7,,Who We Are,https://pgsa.com/who-we-are,"Database bulk write failure: (sqlite3.IntegrityError) UNIQUE constraint failed: completed_contacts.official_website
-[SQL: INSERT INTO completed_contacts (npi, business_name, official_website, emails, phones, social_links, address, pages_visited, extraction_method, confidence, errors, provenance, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) RETURNING id]
-[parameters: (None, '', '', '[]', '[]', '{""linkedin"": """", ""facebook"": """", ""instagram"": """", ""twitter"": """", ""youtube"": """", ""github"": """"}', '603 East Broadway Street, 603 East Broadway Street, Prosper, US', '[]', 'HTTP', 0.0, '[""Empty or invalid website URL provided.""]', '{""business_name"": ""scraper"", ""emails"": """", ""phones"": """", ""address"": ""importer""}', '2026-07-11 11:39:38.940429', '2026-07-11 11:39:38.940429')]
-(Background on this error at: https://sqlalche.me/e/20/gkpj)",2026-07-11T11:39:38.949706
-8,,Three Rivers Marine,https://www.bbb.org/us/wa/woodinville/profile/boat-dealers/three-rivers-marine-1296-22025154,"Database bulk write failure: (sqlite3.IntegrityError) UNIQUE constraint failed: completed_contacts.official_website
-[SQL: INSERT INTO completed_contacts (npi, business_name, official_website, emails, phones, social_links, address, pages_visited, extraction_method, confidence, errors, provenance, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) RETURNING id]
-[parameters: (None, '', '', '[]', '[]', '{""linkedin"": """", ""facebook"": """", ""instagram"": """", ""twitter"": """", ""youtube"": """", ""github"": """"}', '603 East Broadway Street, 603 East Broadway Street, Prosper, US', '[]', 'HTTP', 0.0, '[""Empty or invalid website URL provided.""]', '{""business_name"": ""scraper"", ""emails"": """", ""phones"": """", ""address"": ""importer""}', '2026-07-11 11:39:38.940429', '2026-07-11 11:39:38.940429')]
-(Background on this error at: https://sqlalche.me/e/20/gkpj)",2026-07-11T11:39:38.949706
-9,,Rui Wei,https://chem.scu.edu.cn/hxen/info/1027/1967.htm,"Database bulk write failure: (sqlite3.IntegrityError) UNIQUE constraint failed: completed_contacts.official_website
-[SQL: INSERT INTO completed_contacts (npi, business_name, official_website, emails, phones, social_links, address, pages_visited, extraction_method, confidence, errors, provenance, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) RETURNING id]
-[parameters: (None, '', '', '[]', '[]', '{""linkedin"": """", ""facebook"": """", ""instagram"": """", ""twitter"": """", ""youtube"": """", ""github"": """"}', '603 East Broadway Street, 603 East Broadway Street, Prosper, US', '[]', 'HTTP', 0.0, '[""Empty or invalid website URL provided.""]', '{""business_name"": ""scraper"", ""emails"": """", ""phones"": """", ""address"": ""importer""}', '2026-07-11 11:39:38.940429', '2026-07-11 11:39:38.940429')]
-(Background on this error at: https://sqlalche.me/e/20/gkpj)",2026-07-11T11:39:38.949706
-10,,Contact — Stonecrest Partners,https://www.stonecrestpartners.com/contact-1,"Database bulk write failure: (sqlite3.IntegrityError) UNIQUE constraint failed: completed_contacts.official_website
-[SQL: INSERT INTO completed_contacts (npi, business_name, official_website, emails, phones, social_links, address, pages_visited, extraction_method, confidence, errors, provenance, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) RETURNING id]
-[parameters: (None, '', '', '[]', '[]', '{""linkedin"": """", ""facebook"": """", ""instagram"": """", ""twitter"": """", ""youtube"": """", ""github"": """"}', '603 East Broadway Street, 603 East Broadway Street, Prosper, US', '[]', 'HTTP', 0.0, '[""Empty or invalid website URL provided.""]', '{""business_name"": ""scraper"", ""emails"": """", ""phones"": """", ""address"": ""importer""}', '2026-07-11 11:39:38.940429', '2026-07-11 11:39:38.940429')]
-(Background on this error at: https://sqlalche.me/e/20/gkpj)",2026-07-11T11:39:38.949706
-11,,Contact,https://m3property.com.au/static/016dbe8b1c7fd41ce4da05be50aa95a2/M3-Property-Insight-SDA-Price-Review-June-2023-1.pdf,"Database bulk write failure: (sqlite3.IntegrityError) UNIQUE constraint failed: completed_contacts.official_website
-[SQL: INSERT INTO completed_contacts (npi, business_name, official_website, emails, phones, social_links, address, pages_visited, extraction_method, confidence, errors, provenance, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) RETURNING id]
-[parameters: (None, '', '', '[]', '[]', '{""linkedin"": """", ""facebook"": """", ""instagram"": """", ""twitter"": """", ""youtube"": """", ""github"": """"}', '603 East Broadway Street, 603 East Broadway Street, Prosper, US', '[]', 'HTTP', 0.0, '[""Empty or invalid website URL provided.""]', '{""business_name"": ""scraper"", ""emails"": """", ""phones"": """", ""address"": ""importer""}', '2026-07-11 11:39:38.940429', '2026-07-11 11:39:38.940429')]
-(Background on this error at: https://sqlalche.me/e/20/gkpj)",2026-07-11T11:39:38.949706
-12,,Client Challenge,https://www.houzz.com/professionals/architects-and-building-designers/rc-wehmeyer-design-build-pfvwus-pf~1704441297,"Database bulk write failure: (sqlite3.IntegrityError) UNIQUE constraint failed: completed_contacts.official_website
-[SQL: INSERT INTO completed_contacts (npi, business_name, official_website, emails, phones, social_links, address, pages_visited, extraction_method, confidence, errors, provenance, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) RETURNING id]
-[parameters: (None, '', '', '[]', '[]', '{""linkedin"": """", ""facebook"": """", ""instagram"": """", ""twitter"": """", ""youtube"": """", ""github"": """"}', '603 East Broadway Street, 603 East Broadway Street, Prosper, US', '[]', 'HTTP', 0.0, '[""Empty or invalid website URL provided.""]', '{""business_name"": ""scraper"", ""emails"": """", ""phones"": """", ""address"": ""importer""}', '2026-07-11 11:39:38.940429', '2026-07-11 11:39:38.940429')]
-(Background on this error at: https://sqlalche.me/e/20/gkpj)",2026-07-11T11:39:38.949706
-13,,,,"Database bulk write failure: (sqlite3.IntegrityError) UNIQUE constraint failed: completed_contacts.official_website
-[SQL: INSERT INTO completed_contacts (npi, business_name, official_website, emails, phones, social_links, address, pages_visited, extraction_method, confidence, errors, provenance, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) RETURNING id]
-[parameters: (None, '', '', '[]', '[]', '{""linkedin"": """", ""facebook"": """", ""instagram"": """", ""twitter"": """", ""youtube"": """", ""github"": """"}', '603 East Broadway Street, 603 East Broadway Street, Prosper, US', '[]', 'HTTP', 0.0, '[""Empty or invalid website URL provided.""]', '{""business_name"": ""scraper"", ""emails"": """", ""phones"": """", ""address"": ""importer""}', '2026-07-11 11:39:38.940429', '2026-07-11 11:39:38.940429')]
-(Background on this error at: https://sqlalche.me/e/20/gkpj)",2026-07-11T11:39:38.949706
-14,,"WEEKEND FUND IV, LP",https://www.formds.com/issuers/weekend-fund-iv-lp,"Database bulk write failure: (sqlite3.IntegrityError) UNIQUE constraint failed: completed_contacts.official_website
-[SQL: INSERT INTO completed_contacts (npi, business_name, official_website, emails, phones, social_links, address, pages_visited, extraction_method, confidence, errors, provenance, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) RETURNING id]
-[parameters: (None, '', '', '[]', '[]', '{""linkedin"": """", ""facebook"": """", ""instagram"": """", ""twitter"": """", ""youtube"": """", ""github"": """"}', '603 East Broadway Street, 603 East Broadway Street, Prosper, US', '[]', 'HTTP', 0.0, '[""Empty or invalid website URL provided.""]', '{""business_name"": ""scraper"", ""emails"": """", ""phones"": """", ""address"": ""importer""}', '2026-07-11 11:39:38.940429', '2026-07-11 11:39:38.940429')]
-(Background on this error at: https://sqlalche.me/e/20/gkpj)",2026-07-11T11:39:38.949706
-15,,"Farallon Capital Management, L.L.C.",https://www.faralloncapital.com/contact-us,"Database bulk write failure: (sqlite3.IntegrityError) UNIQUE constraint failed: completed_contacts.official_website
-[SQL: INSERT INTO completed_contacts (npi, business_name, official_website, emails, phones, social_links, address, pages_visited, extraction_method, confidence, errors, provenance, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) RETURNING id]
-[parameters: (None, '', '', '[]', '[]', '{""linkedin"": """", ""facebook"": """", ""instagram"": """", ""twitter"": """", ""youtube"": """", ""github"": """"}', '603 East Broadway Street, 603 East Broadway Street, Prosper, US', '[]', 'HTTP', 0.0, '[""Empty or invalid website URL provided.""]', '{""business_name"": ""scraper"", ""emails"": """", ""phones"": """", ""address"": ""importer""}', '2026-07-11 11:39:38.940429', '2026-07-11 11:39:38.940429')]
-(Background on this error at: https://sqlalche.me/e/20/gkpj)",2026-07-11T11:39:38.949706
-16,,Billy Webster - Advance America Cash Advance Centers Inc. - Biography,https://www.legistorm.com/person/bio/96131/William_Mendenhall_Webster_IV.html,"Database bulk write failure: (sqlite3.IntegrityError) UNIQUE constraint failed: completed_contacts.official_website
-[SQL: INSERT INTO completed_contacts (npi, business_name, official_website, emails, phones, social_links, address, pages_visited, extraction_method, confidence, errors, provenance, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) RETURNING id]
-[parameters: (None, '', '', '[]', '[]', '{""linkedin"": """", ""facebook"": """", ""instagram"": """", ""twitter"": """", ""youtube"": """", ""github"": """"}', '603 East Broadway Street, 603 East Broadway Street, Prosper, US', '[]', 'HTTP', 0.0, '[""Empty or invalid website URL provided.""]', '{""business_name"": ""scraper"", ""emails"": """", ""phones"": """", ""address"": ""importer""}', '2026-07-11 11:39:38.940429', '2026-07-11 11:39:38.940429')]
-(Background on this error at: https://sqlalche.me/e/20/gkpj)",2026-07-11T11:39:38.949706
-17,,,https://www.sec.gov/Archives/edgar/data/2104310/000109690626000046/xslFormDX01/primary_doc.xml,"Database bulk write failure: (sqlite3.IntegrityError) UNIQUE constraint failed: completed_contacts.official_website
-[SQL: INSERT INTO completed_contacts (npi, business_name, official_website, emails, phones, social_links, address, pages_visited, extraction_method, confidence, errors, provenance, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) RETURNING id]
-[parameters: (None, '', '', '[]', '[]', '{""linkedin"": """", ""facebook"": """", ""instagram"": """", ""twitter"": """", ""youtube"": """", ""github"": """"}', '603 East Broadway Street, 603 East Broadway Street, Prosper, US', '[]', 'HTTP', 0.0, '[""Empty or invalid website URL provided.""]', '{""business_name"": ""scraper"", ""emails"": """", ""phones"": """", ""address"": ""importer""}', '2026-07-11 11:39:38.940429', '2026-07-11 11:39:38.940429')]
-(Background on this error at: https://sqlalche.me/e/20/gkpj)",2026-07-11T11:39:38.949706
-18,,,https://www.tuftsmedicine.org/doctor/harry-webster,"Database bulk write failure: (sqlite3.IntegrityError) UNIQUE constraint failed: completed_contacts.official_website
-[SQL: INSERT INTO completed_contacts (npi, business_name, official_website, emails, phones, social_links, address, pages_visited, extraction_method, confidence, errors, provenance, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) RETURNING id]
-[parameters: (None, '', '', '[]', '[]', '{""linkedin"": """", ""facebook"": """", ""instagram"": """", ""twitter"": """", ""youtube"": """", ""github"": """"}', '603 East Broadway Street, 603 East Broadway Street, Prosper, US', '[]', 'HTTP', 0.0, '[""Empty or invalid website URL provided.""]', '{""business_name"": ""scraper"", ""emails"": """", ""phones"": """", ""address"": ""importer""}', '2026-07-11 11:39:38.940429', '2026-07-11 11:39:38.940429')]
-(Background on this error at: https://sqlalche.me/e/20/gkpj)",2026-07-11T11:39:38.950218
-19,"person:0002119892-26-000001:N/A:Watchfire Ventures GP I, LLC",,https://reports.adviserinfo.sec.gov/reports/ADV/309929/PDF/309929.pdf,"The markup you provided was rejected by the parser. Trying a different parser or a different encoding may help.
+1,"person:0002119892-26-000001:N/A:Watchfire Ventures GP I, LLC",,https://reports.adviserinfo.sec.gov/reports/ADV/309929/PDF/309929.pdf,"The markup you provided was rejected by the parser. Trying a different parser or a different encoding may help.
 
 Original exception(s) from parser:
- AssertionError: expected name token at '<![9v�\x0eAi\n\x13�n�W���y�'",2026-07-11T11:45:26.651998
+ AssertionError: expected name token at '<![9v�\x0eAi\n\x13�n�W���y�'",2026-07-11T14:49:47.391534
+2,"person:0002056384-26-000004:General Partner:Value Vault Capital Management, LLC",,https://www.sec.gov/Archives/edgar/data/2056384/000205638425000001/xslFormDX01/primary_doc.xml,"BrowserType.launch: Executable doesn't exist at C:\Users\asus\AppData\Local\ms-playwright\chromium-1124\chrome-win\chrome.exe
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝",2026-07-12T09:18:44.740663
+3,person:0000861967-26-000001:SOPHIE:VANDEBROEK,,https://www.sec.gov/Archives/edgar/data/874716/000087471623000026/idxx-20230331.htm,"BrowserType.launch: Executable doesn't exist at C:\Users\asus\AppData\Local\ms-playwright\chromium-1124\chrome-win\chrome.exe
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝",2026-07-12T09:18:44.740663
+4,"person:0002108644-26-000001:-:VamosVentures GP I, LLC",,https://www.sec.gov/Archives/edgar/data/1776031/000177603119000001/xslFormDX01/primary_doc.xml,"BrowserType.launch: Executable doesn't exist at C:\Users\asus\AppData\Local\ms-playwright\chromium-1124\chrome-win\chrome.exe
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝",2026-07-12T09:18:44.740663
+5,person:0001231919-26-000289:Gregory:VAN DEN BERGH,,https://www.digfingroup.com/shadow-banking,"BrowserType.launch: Executable doesn't exist at C:\Users\asus\AppData\Local\ms-playwright\chromium-1124\chrome-win\chrome.exe
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝",2026-07-12T09:18:44.740663
+6,person:0002112672-26-000001:N/A:Vanarth Systematic Alpha Fund GP LLC,,https://www.sec.gov/Archives/edgar/data/2112674/000211267426000001/xslFormDX01/primary_doc.xml,"BrowserType.launch: Executable doesn't exist at C:\Users\asus\AppData\Local\ms-playwright\chromium-1124\chrome-win\chrome.exe
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝",2026-07-12T09:18:44.740663
+7,person:0001968326-26-000003:Grant:Vandenbussche,,https://www.highperformr.ai/people/grant-v,"BrowserType.launch: Executable doesn't exist at C:\Users\asus\AppData\Local\ms-playwright\chromium-1124\chrome-win\chrome.exe
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝",2026-07-12T09:18:44.740663
+8,person:0001957845-26-000001:Elizabeth:Van Aken,,https://www.sec.gov/Archives/edgar/data/1957845/000114036123055026/ef20015497_8k.htm,"BrowserType.launch: Executable doesn't exist at C:\Users\asus\AppData\Local\ms-playwright\chromium-1124\chrome-win\chrome.exe
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝",2026-07-12T09:18:44.740663
+9,person:0002051999-26-000001:Brian:VanDelinder,,https://www.sec.gov/Archives/edgar/data/1988280/000089843224000844/xslFormDX01/primary_doc.xml,"BrowserType.launch: Executable doesn't exist at C:\Users\asus\AppData\Local\ms-playwright\chromium-1124\chrome-win\chrome.exe
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝",2026-07-12T09:18:44.740663
+10,person:0001947098-26-000001:Jessica:Van Den Akker,,https://www.otcmarkets.com/filing/html,"BrowserType.launch: Executable doesn't exist at C:\Users\asus\AppData\Local\ms-playwright\chromium-1124\chrome-win\chrome.exe
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝",2026-07-12T09:18:44.740663
+11,person:0001012975-26-000116:N/A:Valor CI Associates L.P.,,https://www.sec.gov/Archives/edgar/data/2086542/000101297525000631/xslFormDX01/primary_doc.xml,"BrowserType.launch: Executable doesn't exist at C:\Users\asus\AppData\Local\ms-playwright\chromium-1124\chrome-win\chrome.exe
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝",2026-07-12T09:18:55.581425
+12,"person:0002121998-26-000001:.:Valley Capital Partners IV GP, LLC",,https://www.sec.gov/Archives/edgar/data/2122000/000212200026000001/xslFormDX01/primary_doc.xml,"BrowserType.launch: Executable doesn't exist at C:\Users\asus\AppData\Local\ms-playwright\chromium-1124\chrome-win\chrome.exe
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝",2026-07-12T09:18:55.581425
+13,person:0002102634-26-000001:Kranthi:Vallabhaneni,,https://www.pincusco.com/property/201-east-broadway,"BrowserType.launch: Executable doesn't exist at C:\Users\asus\AppData\Local\ms-playwright\chromium-1124\chrome-win\chrome.exe
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝",2026-07-12T09:18:55.581425
+14,person:0001907985-26-000001:n/a:Valence8 Diversified (GP) Ltd,,https://www.sec.gov/Archives/edgar/data/1907985/000190798524000001/xslFormDX01/primary_doc.xml,"BrowserType.launch: Executable doesn't exist at C:\Users\asus\AppData\Local\ms-playwright\chromium-1124\chrome-win\chrome.exe
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝",2026-07-12T09:18:55.581425
+15,"person:0000902664-26-001717:-:Value Aligned Research Advisors, LLC.",,https://www.sec.gov/Archives/edgar/data/2058569/000090266426001717/xslFormDX01/primary_doc.xml,"BrowserType.launch: Executable doesn't exist at C:\Users\asus\AppData\Local\ms-playwright\chromium-1124\chrome-win\chrome.exe
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝",2026-07-12T09:18:55.581425
+16,person:0002123507-26-000001:N/A:Valence8 PE 2026 (GP) Ltd,,https://www.sec.gov/Archives/edgar/data/2123508/000212350826000001/xslFormDX08/primary_doc.xml,"BrowserType.launch: Executable doesn't exist at C:\Users\asus\AppData\Local\ms-playwright\chromium-1124\chrome-win\chrome.exe
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝",2026-07-12T09:18:55.581425
+17,person:0002109038-26-000001:Guillaume:Valdant,,https://www.committedadvisors.com/ca/guillaume-valdant,"BrowserType.launch: Executable doesn't exist at C:\Users\asus\AppData\Local\ms-playwright\chromium-1124\chrome-win\chrome.exe
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝",2026-07-12T09:18:55.581425
+18,person:0001998315-26-000003:VINEEL:VALLAPUREDDY,,https://www.sec.gov/Archives/edgar/data/1998315/000199831523000002/xslFormDX01/primary_doc.xml,"BrowserType.launch: Executable doesn't exist at C:\Users\asus\AppData\Local\ms-playwright\chromium-1124\chrome-win\chrome.exe
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝",2026-07-12T09:18:55.581425
+19,person:0001967648-26-000003:Bridge Logistics:Value Fund II GP LLC,,https://www.sec.gov/Archives/edgar/data/1967648/000196764825000001/xslFormDX01/primary_doc.xml,"BrowserType.launch: Executable doesn't exist at C:\Users\asus\AppData\Local\ms-playwright\chromium-1124\chrome-win\chrome.exe
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝",2026-07-12T09:18:55.581425
+20,person:0001499933-26-000001:Michele:Vadala,,https://www.sec.gov/Archives/edgar/data/1499933/000149993326000001/xslFormDX01/primary_doc.xml,"BrowserType.launch: Executable doesn't exist at C:\Users\asus\AppData\Local\ms-playwright\chromium-1124\chrome-win\chrome.exe
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝",2026-07-12T09:19:15.117086
+21,person:0001705684-26-000001:Terry:Vacheron,,https://ecorp.sos.ga.gov/BusinessSearch/BusinessInformation,"BrowserType.launch: Executable doesn't exist at C:\Users\asus\AppData\Local\ms-playwright\chromium-1124\chrome-win\chrome.exe
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝",2026-07-12T09:19:15.117458
+22,person:0002108316-26-000001:Susan:Valcq,,https://projects.propublica.org/nonprofits/organizations/383035978,"BrowserType.launch: Executable doesn't exist at C:\Users\asus\AppData\Local\ms-playwright\chromium-1124\chrome-win\chrome.exe
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝",2026-07-12T09:19:15.117458
+23,person:0002106455-26-000001:Vijay:Vachani,,https://www.justdial.com/Bhilai/Dr-Vijay-Vachani-Near-Treasure-Island-Mall-Smriti-Nagar/9999PX788-X788-240911220752-V9E9_BZDET,"BrowserType.launch: Executable doesn't exist at C:\Users\asus\AppData\Local\ms-playwright\chromium-1124\chrome-win\chrome.exe
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝",2026-07-12T09:19:15.117458
+24,person:0001213900-26-024208:Erwin:Vahlsing,,https://www.otcmarkets.com/filing/html,"BrowserType.launch: Executable doesn't exist at C:\Users\asus\AppData\Local\ms-playwright\chromium-1124\chrome-win\chrome.exe
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝",2026-07-12T09:19:15.117458
+25,person:0000905148-26-001210:n/a:VAAM (Cayman) Ltd.,,https://www.sec.gov/Archives/edgar/data/1511709/000151170921000001/xslFormDX01/primary_doc.xml,"BrowserType.launch: Executable doesn't exist at C:\Users\asus\AppData\Local\ms-playwright\chromium-1124\chrome-win\chrome.exe
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝",2026-07-12T09:19:15.117458
+26,person:0001753926-26-000405:Thierry:Valat De Cordova,,https://www.sec.gov/Archives/edgar/data/1739026/000175392626000405/xslFormDX01/primary_doc.xml,"BrowserType.launch: Executable doesn't exist at C:\Users\asus\AppData\Local\ms-playwright\chromium-1124\chrome-win\chrome.exe
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝",2026-07-12T09:19:15.117458
+27,person:0002110407-26-000001:-:US HMC SERIES GP LLC - GP1,,https://www.sec.gov/Archives/edgar/data/2097679/000209767925000001/xslFormDX01/primary_doc.xml,"BrowserType.launch: Executable doesn't exist at C:\Users\asus\AppData\Local\ms-playwright\chromium-1124\chrome-win\chrome.exe
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝",2026-07-12T09:19:55.981233
+28,"person:0001470831-26-000312:General Partner:US Eagle Real Estate GP, LLC",,https://www.sec.gov/Archives/edgar/data/1565674/000156567424000001/xslFormDX08/primary_doc.xml,"BrowserType.launch: Executable doesn't exist at C:\Users\asus\AppData\Local\ms-playwright\chromium-1124\chrome-win\chrome.exe
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝",2026-07-12T09:19:55.981233
+29,person:0002112747-26-000001:Yu Heng Alpha:Tsang,,https://www.healthgrades.com/physician/dr-yu-heng-alpha-tsang-yn6w8,"BrowserType.launch: Executable doesn't exist at C:\Users\asus\AppData\Local\ms-playwright\chromium-1124\chrome-win\chrome.exe
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝",2026-07-12T09:19:55.981233
+30,"person:0001926508-26-000001:n/a:Toshima Digital, LLC",,https://www.bbb.org/us/ny/new-york/profile/digital-marketing-agency/toshima-digital-llc-1256-90004492,"BrowserType.launch: Executable doesn't exist at C:\Users\asus\AppData\Local\ms-playwright\chromium-1124\chrome-win\chrome.exe
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝",2026-07-12T09:19:55.981233
+31,"person:0002037893-26-000001:-:U.S. Boston Growth Capital QSBS Fund GP, LLC",,https://www.sec.gov/Archives/edgar/data/2037893/000203789324000001/xslFormDX01/primary_doc.xml,"BrowserType.launch: Executable doesn't exist at C:\Users\asus\AppData\Local\ms-playwright\chromium-1124\chrome-win\chrome.exe
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝",2026-07-12T09:19:55.981233
+32,person:0001718474-26-000003:N/A:US Core Farmland Fund GP LLC,,https://altstreet.investments/edgar/0001718430,"BrowserType.launch: Executable doesn't exist at C:\Users\asus\AppData\Local\ms-playwright\chromium-1124\chrome-win\chrome.exe
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝",2026-07-12T09:19:55.981233
+33,person:0001437749-26-002520:Seth:Tjaden,,https://npiregistry.cms.hhs.gov/registry,"BrowserType.launch: Executable doesn't exist at C:\Users\asus\AppData\Local\ms-playwright\chromium-1124\chrome-win\chrome.exe
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝",2026-07-12T09:19:55.981233
+34,person:0001566114-26-000029:LLC:USCA ASSET MANAGEMENT,,https://www.uscallc.com/docs/default-source/default-document-library/usca-asset-management-form-adv-part-2a-and-2b.pdf,"BrowserType.launch: Executable doesn't exist at C:\Users\asus\AppData\Local\ms-playwright\chromium-1124\chrome-win\chrome.exe
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝",2026-07-12T09:19:55.981233
+35,person:0001896491-26-000004:Corp.:The Rebel Alliance,,https://www.npi.gov/NPI/DetailedView.aspx,"BrowserType.launch: Executable doesn't exist at C:\Users\asus\AppData\Local\ms-playwright\chromium-1124\chrome-win\chrome.exe
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝",2026-07-12T09:19:55.981233
+36,"person:0001852161-26-000001:N/A:Sundance Bay Income and Growth Fund GP, LLC",,https://sundancebay.com,"BrowserType.launch: Executable doesn't exist at C:\Users\asus\AppData\Local\ms-playwright\chromium-1124\chrome-win\chrome.exe
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝",2026-07-12T09:20:18.254466
+37,person:0002104541-26-000002:Someswararao:Surapureddi,,https://npiregistry.cms.hhs.gov/provider-view/1215904541,"BrowserType.launch: Executable doesn't exist at C:\Users\asus\AppData\Local\ms-playwright\chromium-1124\chrome-win\chrome.exe
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝",2026-07-12T09:20:18.254466
+38,person:0001757590-26-000001:Yu-Hsi:Sun,,https://npiregistry.cms.hhs.gov/provider-view/1757590260,"BrowserType.launch: Executable doesn't exist at C:\Users\asus\AppData\Local\ms-playwright\chromium-1124\chrome-win\chrome.exe
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝",2026-07-12T09:20:18.254466
+39,person:0001315863-26-000239:Lou:Sultan,,https://npiregistry.cms.hhs.gov/provider-view/1315863260,"BrowserType.launch: Executable doesn't exist at C:\Users\asus\AppData\Local\ms-playwright\chromium-1124\chrome-win\chrome.exe
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝",2026-07-12T09:20:18.254466
+40,"person:0001214047-26-000001:N/A:Surgery Center of Des Moines, LLC",,https://npiregistry.cms.hhs.gov/provider-view/1214047260,"BrowserType.launch: Executable doesn't exist at C:\Users\asus\AppData\Local\ms-playwright\chromium-1124\chrome-win\chrome.exe
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝",2026-07-12T09:20:18.254466
+41,person:0002120621-26-000001:LLC:Sweed Holdings,,https://www.bbb.org/us/ny/new-york/profile/holding-company/llc-sweed-holdings-1236-90004441,"BrowserType.launch: Executable doesn't exist at C:\Users\asus\AppData\Local\ms-playwright\chromium-1124\chrome-win\chrome.exe
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝",2026-07-12T09:20:18.254466
+42,person:0001405778-26-000005:Chuanwen:Sun,,https://npiregistry.cms.hhs.gov/provider-view/1405778260,"BrowserType.launch: Executable doesn't exist at C:\Users\asus\AppData\Local\ms-playwright\chromium-1124\chrome-win\chrome.exe
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝",2026-07-12T09:20:18.254466
+43,"person:0001463508-26-000001:N/A:Surgery Center of Maui, LLC",,https://www.surgerycenterofmaui.com,"BrowserType.launch: Executable doesn't exist at C:\Users\asus\AppData\Local\ms-playwright\chromium-1124\chrome-win\chrome.exe
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝",2026-07-12T09:20:18.254466
+44,person:0002119645-26-000001:Hemdeep:Suri,,https://www.ratemds.com/doctor-ratings/3477386/Dr-Hemdeep-Suri-Brampton-ON,"BrowserType.launch: Executable doesn't exist at C:\Users\asus\AppData\Local\ms-playwright\chromium-1124\chrome-win\chrome.exe
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝",2026-07-12T09:20:18.254466
+45,person:0001765349-26-000004:Lyssa:Surface,,https://npiregistry.cms.hhs.gov/provider-view/1765349260,"BrowserType.launch: Executable doesn't exist at C:\Users\asus\AppData\Local\ms-playwright\chromium-1124\chrome-win\chrome.exe
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝",2026-07-12T09:20:18.254466
+46,"person:0002112120-26-000001:LLC:Sum Venture Partners III GP,",,https://opencorporates.com/companies/us_ca/201226510255,"BrowserType.launch: Executable doesn't exist at C:\Users\asus\AppData\Local\ms-playwright\chromium-1124\chrome-win\chrome.exe
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝",2026-07-12T09:20:18.254466
+47,person:0001892095-26-000001:David:Sunde,,https://npiregistry.cms.hhs.gov/provider-view/1892095260,"BrowserType.launch: Executable doesn't exist at C:\Users\asus\AppData\Local\ms-playwright\chromium-1124\chrome-win\chrome.exe
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝",2026-07-12T09:20:18.254466
+48,"person:0001223895-26-000001:N/A:Surgery Center Holding, LLC",,https://nppes.cms.hhs.gov/NPPESRegistry/NPIRegistrySearch.do,"BrowserType.launch: Executable doesn't exist at C:\Users\asus\AppData\Local\ms-playwright\chromium-1124\chrome-win\chrome.exe
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝",2026-07-12T09:20:18.254466
+49,person:0002044311-26-000004:Collin:Sullivan,,https://npidb.org/doctors/allopathic-osteopathic-physicians/neurological-surgery_207k00000x/1003044311.aspx,"BrowserType.launch: Executable doesn't exist at C:\Users\asus\AppData\Local\ms-playwright\chromium-1124\chrome-win\chrome.exe
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝",2026-07-12T09:21:06.978031
+50,"person:0001012975-26-000226:William:Sturgis, Jr.",,https://npiregistry.cms.hhs.gov/provider-view/1012975260,"BrowserType.launch: Executable doesn't exist at C:\Users\asus\AppData\Local\ms-playwright\chromium-1124\chrome-win\chrome.exe
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝",2026-07-12T09:21:06.978031
+51,person:0002069936-26-000001:Xiaodi:Su,,https://npiregistry.cms.hhs.gov/provider-view/2069936,"BrowserType.launch: Executable doesn't exist at C:\Users\asus\AppData\Local\ms-playwright\chromium-1124\chrome-win\chrome.exe
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝",2026-07-12T09:21:06.978031
+52,person:0002102718-26-000001:Brian:Sullivan,,https://npiregistry.cms.hhs.gov/provider-view/1003828626,"BrowserType.launch: Executable doesn't exist at C:\Users\asus\AppData\Local\ms-playwright\chromium-1124\chrome-win\chrome.exe
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝",2026-07-12T09:21:06.978031
+53,person:0001947728-26-000001:Alison:Sullivan,,https://npiregistry.cms.hhs.gov/provider-view/1947728260,"BrowserType.launch: Executable doesn't exist at C:\Users\asus\AppData\Local\ms-playwright\chromium-1124\chrome-win\chrome.exe
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝",2026-07-12T09:21:06.978031
+54,person:0002064835-26-000017:Marco:Strub,,https://www.zefix.ch,"BrowserType.launch: Executable doesn't exist at C:\Users\asus\AppData\Local\ms-playwright\chromium-1124\chrome-win\chrome.exe
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝",2026-07-12T09:21:06.978031
+55,person:0001459297-26-000001:Craig:Sullivan,,https://www.npi-registry.info/npi/1459297260,"BrowserType.launch: Executable doesn't exist at C:\Users\asus\AppData\Local\ms-playwright\chromium-1124\chrome-win\chrome.exe
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝",2026-07-12T09:21:06.978031
+56,person:0001979709-26-000003:Christopher:Stringer,,https://npiregistry.cms.hhs.gov/provider-view/1979709260,"BrowserType.launch: Executable doesn't exist at C:\Users\asus\AppData\Local\ms-playwright\chromium-1124\chrome-win\chrome.exe
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝",2026-07-12T09:21:06.978031
+57,person:0002101224-26-000001:Timothy:Sturm,,https://npiregistry.cms.hhs.gov/provider-view/1003855624,"BrowserType.launch: Executable doesn't exist at C:\Users\asus\AppData\Local\ms-playwright\chromium-1124\chrome-win\chrome.exe
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝",2026-07-12T09:21:06.978031
+58,person:0001940740-26-000001:Aaron:Sturtevant,,https://providers.mainehealth.org/provider/Aaron+Sturtevant/1538470740,"BrowserType.launch: Executable doesn't exist at C:\Users\asus\AppData\Local\ms-playwright\chromium-1124\chrome-win\chrome.exe
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝",2026-07-12T09:21:06.978031
+59,person:0002111213-26-000001:Chris:Sudgen,,https://www.birmingham.gov.uk,"BrowserType.launch: Executable doesn't exist at C:\Users\asus\AppData\Local\ms-playwright\chromium-1124\chrome-win\chrome.exe
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝",2026-07-12T09:21:06.978031
+60,person:0001751271-26-000001:Taylor:Strickling,,https://providers.emoryhealthcare.org/provider/Taylor+Strickling/1336533,"BrowserType.launch: Executable doesn't exist at C:\Users\asus\AppData\Local\ms-playwright\chromium-1124\chrome-win\chrome.exe
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝",2026-07-12T09:21:06.978031
+61,person:0002109202-26-000002:Paulos:Strike,,https://npiregistry.cms.hhs.gov/provider-view/1003856550,"BrowserType.launch: Executable doesn't exist at C:\Users\asus\AppData\Local\ms-playwright\chromium-1124\chrome-win\chrome.exe
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝",2026-07-12T09:21:06.978031
+62,person:0001903508-26-000001:Neal:Strum,,https://npiregistry.cms.hhs.gov/provider-view/1903508260,"BrowserType.launch: Executable doesn't exist at C:\Users\asus\AppData\Local\ms-playwright\chromium-1124\chrome-win\chrome.exe
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝",2026-07-12T09:21:06.978031
+63,person:0001805645-26-000001:William:Strong,,https://npiregistry.cms.hhs.gov/provider-view/1805645260,"BrowserType.launch: Executable doesn't exist at C:\Users\asus\AppData\Local\ms-playwright\chromium-1124\chrome-win\chrome.exe
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝",2026-07-12T09:21:06.978031
+64,person:0001123292-26-000335:Gregg:Strumberger,,https://npiregistry.cms.hhs.gov/provider-view/1124033526,"BrowserType.launch: Executable doesn't exist at C:\Users\asus\AppData\Local\ms-playwright\chromium-1124\chrome-win\chrome.exe
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝",2026-07-12T09:21:06.978031
+65,person:0002116046-26-000001:Bill:Sullivan,,https://npiregistry.cms.hhs.gov/provider-view/1609804626,"BrowserType.launch: Executable doesn't exist at C:\Users\asus\AppData\Local\ms-playwright\chromium-1124\chrome-win\chrome.exe
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝",2026-07-12T09:21:06.978031
+66,person:0002016349-26-000001:Steven:Stull,,https://npiregistry.cms.hhs.gov/provider-view/1003845065,"BrowserType.launch: Executable doesn't exist at C:\Users\asus\AppData\Local\ms-playwright\chromium-1124\chrome-win\chrome.exe
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝",2026-07-12T09:21:06.978031
+67,person:0001962738-26-000003:Zhenbo:Su,,https://npiregistry.cms.hhs.gov/provider-view/1962738260,"BrowserType.launch: Executable doesn't exist at C:\Users\asus\AppData\Local\ms-playwright\chromium-1124\chrome-win\chrome.exe
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝",2026-07-12T09:21:06.978031
+68,"person:0001663956-26-000001:N/A:Stonehedge Capital GP, LLC",,https://www.sec.gov/edgar/browse,"BrowserType.launch: Executable doesn't exist at C:\Users\asus\AppData\Local\ms-playwright\chromium-1124\chrome-win\chrome.exe
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝",2026-07-12T09:21:53.616918
+69,person:0002107601-26-000001:n/a:Stonelight Capital Partners LLC,,https://www.bloomberg.com/profile/company/1638848D:US,"BrowserType.launch: Executable doesn't exist at C:\Users\asus\AppData\Local\ms-playwright\chromium-1124\chrome-win\chrome.exe
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝",2026-07-12T09:21:53.616918
+70,person:0001815663-26-000001:Richard:Stone,,https://nppes.cms.hhs.gov,"BrowserType.launch: Executable doesn't exist at C:\Users\asus\AppData\Local\ms-playwright\chromium-1124\chrome-win\chrome.exe
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝",2026-07-12T09:21:53.616918
+71,person:0001012975-26-000216:Chelsea:Stoner,,https://npiregistry.cms.hhs.gov/provider-view/1012975260,"BrowserType.launch: Executable doesn't exist at C:\Users\asus\AppData\Local\ms-playwright\chromium-1124\chrome-win\chrome.exe
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝",2026-07-12T09:21:53.616918
+72,person:0001731482-26-000001:STEPHEN:STOKES,,https://npiregistry.cms.hhs.gov/provider-view/1731482260,"BrowserType.launch: Executable doesn't exist at C:\Users\asus\AppData\Local\ms-playwright\chromium-1124\chrome-win\chrome.exe
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝",2026-07-12T09:21:53.616918
+73,person:0001932971-26-000003:n/a:Stonepeak Core Fund Associates (CYM) LP,,https://www.stonepeak.com,"BrowserType.launch: Executable doesn't exist at C:\Users\asus\AppData\Local\ms-playwright\chromium-1124\chrome-win\chrome.exe
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝",2026-07-12T09:21:53.616918
+74,person:0002108731-26-000001:Kenneth:Strickler,,https://npiregistry.cms.hhs.gov/provider-view/1003845891,"BrowserType.launch: Executable doesn't exist at C:\Users\asus\AppData\Local\ms-playwright\chromium-1124\chrome-win\chrome.exe
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝",2026-07-12T09:21:53.616918
+75,person:0002021940-26-000003:Hugh:Stoll,,https://npidb.org/doctors/allopathic-osteopathic-physicians/diagnostic-radiology/106600000x/1003867059.aspx,"BrowserType.launch: Executable doesn't exist at C:\Users\asus\AppData\Local\ms-playwright\chromium-1124\chrome-win\chrome.exe
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝",2026-07-12T09:21:53.616918
+76,"person:0001709409-26-000005:LLC:Stottlemyre International,",,https://npiregistry.cms.hhs.gov/provider-view/1709409260,"BrowserType.launch: Executable doesn't exist at C:\Users\asus\AppData\Local\ms-playwright\chromium-1124\chrome-win\chrome.exe
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝",2026-07-12T09:21:53.616918
+77,person:0001972334-26-000001:Glendon:Strickler,,https://npiregistry.cms.hhs.gov/provider-view/1972334260,"BrowserType.launch: Executable doesn't exist at C:\Users\asus\AppData\Local\ms-playwright\chromium-1124\chrome-win\chrome.exe
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝",2026-07-12T09:21:53.616918
+78,person:0002115801-26-000002:Tom:Stratman,,https://npiregistry.cms.hhs.gov/provider-view/1689668600,"BrowserType.launch: Executable doesn't exist at C:\Users\asus\AppData\Local\ms-playwright\chromium-1124\chrome-win\chrome.exe
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝",2026-07-12T09:21:53.616918
+79,person:0000919574-26-000657:--:Stoka Global Management LLC,,https://npiregistry.cms.hhs.gov/provider-view/1952600657,"BrowserType.launch: Executable doesn't exist at C:\Users\asus\AppData\Local\ms-playwright\chromium-1124\chrome-win\chrome.exe
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝",2026-07-12T09:21:53.616918
+80,"person:0001497279-26-000001:N/A:Stone House Capital Management, LLC",,https://adviserinfo.sec.gov/firm/summary/153664,"BrowserType.launch: Executable doesn't exist at C:\Users\asus\AppData\Local\ms-playwright\chromium-1124\chrome-win\chrome.exe
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝",2026-07-12T09:21:53.616918
+81,"person:0002090368-26-000001:N/A:Strata Investments GP, Inc.",,https://opencorporates.com/companies/us_tx/0801358976,"BrowserType.launch: Executable doesn't exist at C:\Users\asus\AppData\Local\ms-playwright\chromium-1124\chrome-win\chrome.exe
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝",2026-07-12T09:21:53.616918
+82,person:0002106206-26-000001:Christopher:Striano,,https://nppes.cms.hhs.gov,"BrowserType.launch: Executable doesn't exist at C:\Users\asus\AppData\Local\ms-playwright\chromium-1124\chrome-win\chrome.exe
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝",2026-07-12T09:21:53.616918
+83,person:0001959408-26-000001:N/A:STONE RIDGE OPPORTUNITIES FUND (GP) LLC,,https://www.stoneridge.com,"BrowserType.launch: Executable doesn't exist at C:\Users\asus\AppData\Local\ms-playwright\chromium-1124\chrome-win\chrome.exe
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝",2026-07-12T09:21:53.616918
+84,person:0000950142-26-000916:Michael:Stewart,,https://npidb.org/doctors/allopathic-osteopathic-physicians/diagnostic-radiology/1000000000/1000000000/0000950142-26-000916.aspx,"BrowserType.launch: Executable doesn't exist at C:\Users\asus\AppData\Local\ms-playwright\chromium-1124\chrome-win\chrome.exe
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝",2026-07-12T09:22:48.242151
+85,person:0002088228-26-000001:Evan:Stites-Clayton,,https://www.crunchbase.com/person/evan-stites-clayton,"BrowserType.launch: Executable doesn't exist at C:\Users\asus\AppData\Local\ms-playwright\chromium-1124\chrome-win\chrome.exe
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝",2026-07-12T09:22:48.242151
+86,person:0001231919-26-000268:David:St. Jean,,https://npiregistry.cms.hhs.gov/provider-view/1231919260,"BrowserType.launch: Executable doesn't exist at C:\Users\asus\AppData\Local\ms-playwright\chromium-1124\chrome-win\chrome.exe
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝",2026-07-12T09:22:48.242151
+87,person:0001752474-26-000001:Dale:Stohr,,https://npiregistry.cms.hhs.gov/provider-view/1752474260,"BrowserType.launch: Executable doesn't exist at C:\Users\asus\AppData\Local\ms-playwright\chromium-1124\chrome-win\chrome.exe
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝",2026-07-12T09:22:48.242151
+88,person:0001703764-26-000003:Paul:Stewart,,https://npiregistry.cms.hhs.gov/provider-view/1703764260,"BrowserType.launch: Executable doesn't exist at C:\Users\asus\AppData\Local\ms-playwright\chromium-1124\chrome-win\chrome.exe
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝",2026-07-12T09:22:48.242151
+89,person:0000945621-26-000389:John:Stewart,,https://npiregistry.cms.hhs.gov/provider-view/1003893893,"BrowserType.launch: Executable doesn't exist at C:\Users\asus\AppData\Local\ms-playwright\chromium-1124\chrome-win\chrome.exe
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝",2026-07-12T09:22:48.242151
+90,person:0002104166-26-000001:Rachel:Stock,,https://nppes.cms.hhs.gov,"BrowserType.launch: Executable doesn't exist at C:\Users\asus\AppData\Local\ms-playwright\chromium-1124\chrome-win\chrome.exe
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝",2026-07-12T09:22:48.242151
+91,person:0001604524-26-000002:ANIL:STEVENS,,https://npiregistry.cms.hhs.gov/provider-view/1604524260,"BrowserType.launch: Executable doesn't exist at C:\Users\asus\AppData\Local\ms-playwright\chromium-1124\chrome-win\chrome.exe
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝",2026-07-12T09:22:48.242151
+92,person:0000919574-26-000657:--:Stoka Global GP LLC,,https://opencorporates.com/companies/us_de/6576657,"BrowserType.launch: Executable doesn't exist at C:\Users\asus\AppData\Local\ms-playwright\chromium-1124\chrome-win\chrome.exe
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝",2026-07-12T09:22:48.242151
+93,person:0000905148-26-001217:Timothy:Stevens,,https://npiregistry.cms.hhs.gov/provider-view/1003856555,"BrowserType.launch: Executable doesn't exist at C:\Users\asus\AppData\Local\ms-playwright\chromium-1124\chrome-win\chrome.exe
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝",2026-07-12T09:22:48.242151
+94,person:0002107861-26-000001:Todd:Stevens,,https://npiregistry.cms.hhs.gov/provider-view/1003856636,"BrowserType.launch: Executable doesn't exist at C:\Users\asus\AppData\Local\ms-playwright\chromium-1124\chrome-win\chrome.exe
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝",2026-07-12T09:22:48.242151
+95,person:0002037466-26-000001:Clarissa:Stevenson,,https://npiregistry.cms.hhs.gov/provider-view/2037466260,"BrowserType.launch: Executable doesn't exist at C:\Users\asus\AppData\Local\ms-playwright\chromium-1124\chrome-win\chrome.exe
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝",2026-07-12T09:22:48.242151
+96,person:0002123002-26-000001:Thomas:St. John,,https://npiregistry.cms.hhs.gov/provider-view/1215905006,"BrowserType.launch: Executable doesn't exist at C:\Users\asus\AppData\Local\ms-playwright\chromium-1124\chrome-win\chrome.exe
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝",2026-07-12T09:22:48.242151
+97,person:0001012975-26-000013:Liam:Stewart,,https://npidb.org/doctors/allopathic-osteopathic-physicians/family-medicine/1012975260.aspx,"BrowserType.launch: Executable doesn't exist at C:\Users\asus\AppData\Local\ms-playwright\chromium-1124\chrome-win\chrome.exe
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝",2026-07-12T09:22:48.242151
+98,person:0001554144-26-000001:Guthrie:Stewart,,https://nppes.cms.hhs.gov,"BrowserType.launch: Executable doesn't exist at C:\Users\asus\AppData\Local\ms-playwright\chromium-1124\chrome-win\chrome.exe
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝",2026-07-12T09:22:48.242151
+99,person:0001368622-26-000001:Trace:Stevenson,,https://healthcare.utah.edu/find-a-doctor/trace-stevenson,"BrowserType.launch: Executable doesn't exist at C:\Users\asus\AppData\Local\ms-playwright\chromium-1124\chrome-win\chrome.exe
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝",2026-07-12T09:22:48.242151
+100,person:0000919574-26-000062:Jackie:Stirling,,https://npiregistry.cms.hhs.gov/provider-view/1912942600,"BrowserType.launch: Executable doesn't exist at C:\Users\asus\AppData\Local\ms-playwright\chromium-1124\chrome-win\chrome.exe
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝",2026-07-12T09:22:48.242151
+101,person:0000902664-26-000794:Gary:Stern,,https://npidb.org/doctors/internal-medicine/gastroenterology/1639163916.aspx,"BrowserType.launch: Executable doesn't exist at C:\Users\asus\AppData\Local\ms-playwright\chromium-1124\chrome-win\chrome.exe
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝",2026-07-12T09:23:37.096166
+102,person:0002106687-26-000001:James:Stephanou,,https://providers.emoryhealthcare.org/provider/James+Stephanou/768677,"BrowserType.launch: Executable doesn't exist at C:\Users\asus\AppData\Local\ms-playwright\chromium-1124\chrome-win\chrome.exe
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝",2026-07-12T09:23:37.096166
+103,person:0001231919-26-000178:Jacob:Stern,,https://npidb.org/doctors/internal-medicine/general-practice/1231919260.aspx,"BrowserType.launch: Executable doesn't exist at C:\Users\asus\AppData\Local\ms-playwright\chromium-1124\chrome-win\chrome.exe
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝",2026-07-12T09:23:37.096166
+104,person:0002116616-26-000001:n/a:StepStone Group Real Estate Holdings LLC,,https://www.stepstonegroup.com/contact-us,"BrowserType.launch: Executable doesn't exist at C:\Users\asus\AppData\Local\ms-playwright\chromium-1124\chrome-win\chrome.exe
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝",2026-07-12T09:23:37.096166
+105,person:0001808772-26-000001:n/a:StepStone Group Real Assets Holdings LLC,,https://www.stepstonegroup.com,"BrowserType.launch: Executable doesn't exist at C:\Users\asus\AppData\Local\ms-playwright\chromium-1124\chrome-win\chrome.exe
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝",2026-07-12T09:23:37.096166
+106,"person:0001231919-26-000193:N/A:Stellar Ventures Management, LLC",,https://www.bbb.org/us/ny/new-york/profile/management-consultants/stellar-ventures-management-llc-1256-90004355,"BrowserType.launch: Executable doesn't exist at C:\Users\asus\AppData\Local\ms-playwright\chromium-1124\chrome-win\chrome.exe
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝",2026-07-12T09:23:37.096166
+107,person:0002109229-26-000001:Justin:Stephen Palma,,https://npiregistry.cms.hhs.gov/provider-view/1003180638,"BrowserType.launch: Executable doesn't exist at C:\Users\asus\AppData\Local\ms-playwright\chromium-1124\chrome-win\chrome.exe
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝",2026-07-12T09:23:37.096166
+108,person:0001833216-26-000001:Jose:Stella,,https://npiregistry.cms.hhs.gov/provider-view/1833216260,"BrowserType.launch: Executable doesn't exist at C:\Users\asus\AppData\Local\ms-playwright\chromium-1124\chrome-win\chrome.exe
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝",2026-07-12T09:23:37.096166
+109,person:0002081109-26-000001:CHRISTIAN:STEPHEN,,https://npiregistry.cms.hhs.gov/provider-view/1649585641,"BrowserType.launch: Executable doesn't exist at C:\Users\asus\AppData\Local\ms-playwright\chromium-1124\chrome-win\chrome.exe
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝",2026-07-12T09:23:37.096166
+110,person:0000902664-26-000010:-:Stephen Farley LLC,,https://npiregistry.cms.hhs.gov/provider-view/1003866264,"BrowserType.launch: Executable doesn't exist at C:\Users\asus\AppData\Local\ms-playwright\chromium-1124\chrome-win\chrome.exe
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝",2026-07-12T09:23:37.096166
+111,person:0001372702-26-000001:David:Steirman,,https://npiregistry.cms.hhs.gov/provider-view/1372702260,"BrowserType.launch: Executable doesn't exist at C:\Users\asus\AppData\Local\ms-playwright\chromium-1124\chrome-win\chrome.exe
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝",2026-07-12T09:23:37.096166
+112,person:0001808772-26-000001:n/a:StepStone Group Real Assets LP,,https://www.stepstonegroup.com/contact,"BrowserType.launch: Executable doesn't exist at C:\Users\asus\AppData\Local\ms-playwright\chromium-1124\chrome-win\chrome.exe
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝",2026-07-12T09:23:37.096166
+113,person:0000835594-26-000005:Elsie:Stephens,,https://nppes.cms.hhs.gov,"BrowserType.launch: Executable doesn't exist at C:\Users\asus\AppData\Local\ms-playwright\chromium-1124\chrome-win\chrome.exe
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝",2026-07-12T09:23:37.096166
+114,person:0001906204-26-000001:David:Stephans,,https://npidb.org/doctors/internal-medicine/general-practice/1634163416.aspx,"BrowserType.launch: Executable doesn't exist at C:\Users\asus\AppData\Local\ms-playwright\chromium-1124\chrome-win\chrome.exe
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝",2026-07-12T09:23:37.096166
+115,person:0001879128-26-000002:Andrew:Stern,,https://npidb.org/doctors/allopathic-osteopathic-physicians/neurological-surgery/1879128260.aspx,"BrowserType.launch: Executable doesn't exist at C:\Users\asus\AppData\Local\ms-playwright\chromium-1124\chrome-win\chrome.exe
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝",2026-07-12T09:23:37.096166
+116,"person:0001808772-26-000001:n/a:StepStone NLGI (GP), LLC",,https://www.stepstonegroup.com,"BrowserType.launch: Executable doesn't exist at C:\Users\asus\AppData\Local\ms-playwright\chromium-1124\chrome-win\chrome.exe
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝",2026-07-12T09:23:37.096166
+117,person:0001976767-26-000001:Hartley:Stern,,https://www.ottawahospital.on.ca/en/about-us/leadership/dr-hartley-stern,"BrowserType.launch: Executable doesn't exist at C:\Users\asus\AppData\Local\ms-playwright\chromium-1124\chrome-win\chrome.exe
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝",2026-07-12T09:23:37.096166
+118,person:0000904454-26-000137:GREGORY:STENTO,,https://npiregistry.cms.hhs.gov/provider-view/1376594637,"BrowserType.launch: Executable doesn't exist at C:\Users\asus\AppData\Local\ms-playwright\chromium-1124\chrome-win\chrome.exe
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝",2026-07-12T09:23:37.096166
+119,person:0002118377-26-000001:Rebecca:Stehle,,https://npiregistry.cms.hhs.gov/provider-view/1215137597,"BrowserType.launch: Executable doesn't exist at C:\Users\asus\AppData\Local\ms-playwright\chromium-1124\chrome-win\chrome.exe
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝",2026-07-12T09:23:52.197650
+120,person:0002033695-26-000001:Kellie:Steele,,https://npiregistry.cms.hhs.gov/provider-view/1003866295,"BrowserType.launch: Executable doesn't exist at C:\Users\asus\AppData\Local\ms-playwright\chromium-1124\chrome-win\chrome.exe
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝",2026-07-12T09:23:52.197650
+121,person:0001973594-26-000002:MATTHEW:STEINMETZ,,https://npiregistry.cms.hhs.gov/provider-view/1973594260,"BrowserType.launch: Executable doesn't exist at C:\Users\asus\AppData\Local\ms-playwright\chromium-1124\chrome-win\chrome.exe
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝",2026-07-12T09:23:52.197650
+122,person:0001981398-26-000004:JONATHAN:STEINDORFF,,https://npiregistry.cms.hhs.gov/provider-view/1981398260,"BrowserType.launch: Executable doesn't exist at C:\Users\asus\AppData\Local\ms-playwright\chromium-1124\chrome-win\chrome.exe
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝",2026-07-12T09:23:52.197650
+123,person:0002107617-26-000001:ROBERT:STEC,,https://npiregistry.cms.hhs.gov/provider-view/1003856557,"BrowserType.launch: Executable doesn't exist at C:\Users\asus\AppData\Local\ms-playwright\chromium-1124\chrome-win\chrome.exe
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝",2026-07-12T09:23:52.197650
+124,person:0001315863-26-000001:n/a:Steinberg India Asset Management Ltd,,https://www.zaubacorp.com/company/STEINBERG-INDIA-ASSET-MANAGEMENT-PRIVATE-LIMITED/U67190MH2007PTC175373,"BrowserType.launch: Executable doesn't exist at C:\Users\asus\AppData\Local\ms-playwright\chromium-1124\chrome-win\chrome.exe
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝",2026-07-12T09:23:52.197650
+125,person:0001735065-26-000001:Caroline:Steffen,,https://npiregistry.cms.hhs.gov/provider-view/1735065260,"BrowserType.launch: Executable doesn't exist at C:\Users\asus\AppData\Local\ms-playwright\chromium-1124\chrome-win\chrome.exe
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝",2026-07-12T09:23:52.197650
+126,person:0001315863-26-000001:Michael:Steinberg,,https://npiregistry.cms.hhs.gov/provider-view/1315863260,"BrowserType.launch: Executable doesn't exist at C:\Users\asus\AppData\Local\ms-playwright\chromium-1124\chrome-win\chrome.exe
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝",2026-07-12T09:23:52.197650
+127,person:0001955424-26-000001:Brian:Steiner,,https://nppes.cms.hhs.gov,"BrowserType.launch: Executable doesn't exist at C:\Users\asus\AppData\Local\ms-playwright\chromium-1124\chrome-win\chrome.exe
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝",2026-07-12T09:23:52.197650
+128,person:0001703688-26-000001:David:Steinbrink,,https://npiregistry.cms.hhs.gov/provider-view/1700882600,"BrowserType.launch: Executable doesn't exist at C:\Users\asus\AppData\Local\ms-playwright\chromium-1124\chrome-win\chrome.exe
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝",2026-07-12T09:23:52.197650
+129,person:0000906791-26-000047:Joseph:Steele,,https://npidb.org/doctors/allopathic-osteopathic-physicians/family-practice/106400000x/1003855577.aspx,"BrowserType.launch: Executable doesn't exist at C:\Users\asus\AppData\Local\ms-playwright\chromium-1124\chrome-win\chrome.exe
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝",2026-07-12T09:23:52.197650
+130,person:0001957845-26-000001:Peter:Stavros,,https://npiregistry.cms.hhs.gov/provider-view/1957845260,"BrowserType.launch: Executable doesn't exist at C:\Users\asus\AppData\Local\ms-playwright\chromium-1124\chrome-win\chrome.exe
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝",2026-07-12T09:23:52.197650
+131,person:0002118747-26-000001:Max:Steckler,,https://npiregistry.cms.hhs.gov/provider-view/1215963866,"BrowserType.launch: Executable doesn't exist at C:\Users\asus\AppData\Local\ms-playwright\chromium-1124\chrome-win\chrome.exe
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝",2026-07-12T09:23:52.197650
+132,person:0002062357-26-000058:John:Stegeman,,https://npiregistry.cms.hhs.gov/provider-view/1003855658,"BrowserType.launch: Executable doesn't exist at C:\Users\asus\AppData\Local\ms-playwright\chromium-1124\chrome-win\chrome.exe
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝",2026-07-12T09:23:52.197650
+133,person:0001709409-26-000002:Gordon:Steblin,,https://www.ratemds.com/doctor-ratings/3335560/Dr-Gordon-Steblin-Surrey-BC.html,"BrowserType.launch: Executable doesn't exist at C:\Users\asus\AppData\Local\ms-playwright\chromium-1124\chrome-win\chrome.exe
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝",2026-07-12T09:23:52.197650
+134,person:0002059457-26-000001:Ed:Steffelin,,https://www.npi-registry.info/npi/1003844966,"BrowserType.launch: Executable doesn't exist at C:\Users\asus\AppData\Local\ms-playwright\chromium-1124\chrome-win\chrome.exe
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝",2026-07-12T09:23:52.197650
+135,person:0002102331-26-000001:Jeremy:Steinberg,,https://nppes.cms.hhs.gov,"BrowserType.launch: Executable doesn't exist at C:\Users\asus\AppData\Local\ms-playwright\chromium-1124\chrome-win\chrome.exe
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝",2026-07-12T09:23:52.197650
+136,person:0002107851-26-000002:Robert:Stanek,,https://npiregistry.cms.hhs.gov/provider-view/1215905526,"BrowserType.launch: Executable doesn't exist at C:\Users\asus\AppData\Local\ms-playwright\chromium-1124\chrome-win\chrome.exe
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝",2026-07-12T09:24:11.740916
+137,person:0001952207-26-000001:Thomas:Staudt,,https://npiregistry.cms.hhs.gov/provider-view/1952207260,"BrowserType.launch: Executable doesn't exist at C:\Users\asus\AppData\Local\ms-playwright\chromium-1124\chrome-win\chrome.exe
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝",2026-07-12T09:24:11.740916
+138,person:0002105462-26-000001:N/A:Starboard Bradley Depositor LLC,,https://opencorporates.com/companies/us_de/6557224,"BrowserType.launch: Executable doesn't exist at C:\Users\asus\AppData\Local\ms-playwright\chromium-1124\chrome-win\chrome.exe
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝",2026-07-12T09:24:11.740916
+139,"person:0002099561-26-000001:-:StartFast Fund II GP, LLC",,https://opencorporates.com/companies/us_ny/4638706,"BrowserType.launch: Executable doesn't exist at C:\Users\asus\AppData\Local\ms-playwright\chromium-1124\chrome-win\chrome.exe
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝",2026-07-12T09:24:11.740916
+140,person:0001966920-26-000001:Karina:Stahl,,https://nppes.cms.hhs.gov,"BrowserType.launch: Executable doesn't exist at C:\Users\asus\AppData\Local\ms-playwright\chromium-1124\chrome-win\chrome.exe
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝",2026-07-12T09:24:11.740916
+141,person:0000902664-26-000976:Peter:Stamos,,https://providers.nm.org/1679549924,"BrowserType.launch: Executable doesn't exist at C:\Users\asus\AppData\Local\ms-playwright\chromium-1124\chrome-win\chrome.exe
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝",2026-07-12T09:24:11.740916
+142,person:0001835313-26-000001:Breanna:Staggs,,https://providers.louisville.edu/profile/Breanna_Staggs/2366885,"BrowserType.launch: Executable doesn't exist at C:\Users\asus\AppData\Local\ms-playwright\chromium-1124\chrome-win\chrome.exe
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝",2026-07-12T09:24:11.740916
+143,person:0002124633-26-000001:LLC:Starship Ventures GP I,,https://opencorporates.com/companies/us_de/6456020,"BrowserType.launch: Executable doesn't exist at C:\Users\asus\AppData\Local\ms-playwright\chromium-1124\chrome-win\chrome.exe
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝",2026-07-12T09:24:11.740916
+144,person:0000902664-26-000741:Roddy:Stafford,,https://www.bcm.edu/people-search/roddy-stafford-31584,"BrowserType.launch: Executable doesn't exist at C:\Users\asus\AppData\Local\ms-playwright\chromium-1124\chrome-win\chrome.exe
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝",2026-07-12T09:24:11.740916
+145,person:0002027713-26-000001:JOHN:STARACE,,https://npiregistry.cms.hhs.gov/provider-view/1003845065,"BrowserType.launch: Executable doesn't exist at C:\Users\asus\AppData\Local\ms-playwright\chromium-1124\chrome-win\chrome.exe
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝",2026-07-12T09:24:11.740916
+146,person:0000905148-26-001226:Derek:Stapley,,https://healthcare.utah.edu/find-a-doctor/derek-stapley,"BrowserType.launch: Executable doesn't exist at C:\Users\asus\AppData\Local\ms-playwright\chromium-1124\chrome-win\chrome.exe
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝",2026-07-12T09:24:11.740916
+147,person:0002106520-26-000001:Nicole:Stagnaro,,https://npiregistry.cms.hhs.gov/provider-view/1659648526,"BrowserType.launch: Executable doesn't exist at C:\Users\asus\AppData\Local\ms-playwright\chromium-1124\chrome-win\chrome.exe
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝",2026-07-12T09:24:11.740916
+148,person:0002057811-26-000002:Erik:Stamell,,https://nppes.cms.hhs.gov,"BrowserType.launch: Executable doesn't exist at C:\Users\asus\AppData\Local\ms-playwright\chromium-1124\chrome-win\chrome.exe
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝",2026-07-12T09:24:11.740916
+149,person:0002052344-26-000002:Michael:Staub,,https://nppes.cms.hhs.gov,"BrowserType.launch: Executable doesn't exist at C:\Users\asus\AppData\Local\ms-playwright\chromium-1124\chrome-win\chrome.exe
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝",2026-07-12T09:24:11.740916
+150,"person:0002083772-26-000002:GENERAL PARTNER:STACKPOINT VENTURE FUND II GP, LLC",,https://opencorporates.com/companies/us_de/6557999,"BrowserType.launch: Executable doesn't exist at C:\Users\asus\AppData\Local\ms-playwright\chromium-1124\chrome-win\chrome.exe
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝",2026-07-12T09:24:11.740916
+151,person:0000912282-26-000054:John-Mark:Staude,,https://geosciences.arizona.edu/person/john-mark-staude,"BrowserType.launch: Executable doesn't exist at C:\Users\asus\AppData\Local\ms-playwright\chromium-1124\chrome-win\chrome.exe
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝",2026-07-12T09:24:11.740916
+152,"person:0000902664-26-001571:-:SRS Active Extension GP, LLC",,https://www.sec.gov/edgar/browse,"BrowserType.launch: Executable doesn't exist at C:\Users\asus\AppData\Local\ms-playwright\chromium-1124\chrome-win\chrome.exe
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝",2026-07-12T09:24:28.265379
+153,person:0001193125-26-085436:Jeffrey:Sprau,,https://npiregistry.cms.hhs.gov/provider-view/1194783356,"BrowserType.launch: Executable doesn't exist at C:\Users\asus\AppData\Local\ms-playwright\chromium-1124\chrome-win\chrome.exe
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝",2026-07-12T09:24:28.265379
+154,person:0002104674-26-000001:JOHN:SPRADLING,,https://npiregistry.cms.hhs.gov/provider-view/1003855674,"BrowserType.launch: Executable doesn't exist at C:\Users\asus\AppData\Local\ms-playwright\chromium-1124\chrome-win\chrome.exe
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝",2026-07-12T09:24:28.265379
+155,person:0001062993-26-000470:Norman:Stacey,,https://npiregistry.cms.hhs.gov/provider-view/1062993260,"BrowserType.launch: Executable doesn't exist at C:\Users\asus\AppData\Local\ms-playwright\chromium-1124\chrome-win\chrome.exe
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝",2026-07-12T09:24:28.265379
+156,person:0002015871-26-000003:Mark:Srulowitz,,https://npiregistry.cms.hhs.gov/provider-view/1003855566,"BrowserType.launch: Executable doesn't exist at C:\Users\asus\AppData\Local\ms-playwright\chromium-1124\chrome-win\chrome.exe
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝",2026-07-12T09:24:28.265379
+157,person:0002107396-26-000004:Jonathan:Sporn,,https://www.nyp.org/physician/jsporn,"BrowserType.launch: Executable doesn't exist at C:\Users\asus\AppData\Local\ms-playwright\chromium-1124\chrome-win\chrome.exe
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝",2026-07-12T09:24:28.265379
+158,"person:0002014004-26-000001:N/A:SRE Juniversitas (GP), LLC",,https://opencorporates.com/companies/us_tx/803357591,"BrowserType.launch: Executable doesn't exist at C:\Users\asus\AppData\Local\ms-playwright\chromium-1124\chrome-win\chrome.exe
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝",2026-07-12T09:24:28.265379
+159,person:0002014701-26-000001:Martin:Squier,,https://npiregistry.cms.hhs.gov/provider-view/1003856644,"BrowserType.launch: Executable doesn't exist at C:\Users\asus\AppData\Local\ms-playwright\chromium-1124\chrome-win\chrome.exe
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝",2026-07-12T09:24:28.265379
+160,person:0002110433-26-000001:Gopal:Srinivasan,,https://www.tvs-e.in/about-us/leadership,"BrowserType.launch: Executable doesn't exist at C:\Users\asus\AppData\Local\ms-playwright\chromium-1124\chrome-win\chrome.exe
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝",2026-07-12T09:24:28.265379
+161,person:0001849424-26-000001:Kit:Spring,,https://nppes.cms.hhs.gov,"BrowserType.launch: Executable doesn't exist at C:\Users\asus\AppData\Local\ms-playwright\chromium-1124\chrome-win\chrome.exe
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝",2026-07-12T09:24:28.265379
+162,person:0000945621-26-000471:N/A:SSG PD CV GP Ltd,,https://www.nhs.uk/service-search/doctor/find-doctors-in-england,"BrowserType.launch: Executable doesn't exist at C:\Users\asus\AppData\Local\ms-playwright\chromium-1124\chrome-win\chrome.exe
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝",2026-07-12T09:24:28.265379
+163,"person:0000919574-26-001927:-:Stable Seed Fund III GP, Ltd.",,https://opencorporates.com/companies/us_de/6669969,"BrowserType.launch: Executable doesn't exist at C:\Users\asus\AppData\Local\ms-playwright\chromium-1124\chrome-win\chrome.exe
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝",2026-07-12T09:24:28.265379
+164,person:0002116547-26-000001:Frank:Sprole,,https://providers.hopkinsmedicine.org/provider/Frank+Sprole/637385,"BrowserType.launch: Executable doesn't exist at C:\Users\asus\AppData\Local\ms-playwright\chromium-1124\chrome-win\chrome.exe
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝",2026-07-12T09:24:28.265379
+165,person:0000919574-26-000484:--:Sprott US GenPar LLC,,https://www.sec.gov/edgar/browse,"BrowserType.launch: Executable doesn't exist at C:\Users\asus\AppData\Local\ms-playwright\chromium-1124\chrome-win\chrome.exe
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝",2026-07-12T09:24:28.265379
+166,"person:0000919574-26-000638:-:Stable Cavalry GP, Ltd.",,https://opencorporates.com/companies/us_de/6557999,"BrowserType.launch: Executable doesn't exist at C:\Users\asus\AppData\Local\ms-playwright\chromium-1124\chrome-win\chrome.exe
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝",2026-07-12T09:24:28.265379
+167,person:0000905148-26-001246:n/a:SRCP TAF 2025 GP LLC,,https://opencorporates.com/companies/us_de/7665267,"BrowserType.launch: Executable doesn't exist at C:\Users\asus\AppData\Local\ms-playwright\chromium-1124\chrome-win\chrome.exe
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝",2026-07-12T09:24:28.265379
+168,person:0002119188-26-000001:Craig:Sprosts,,https://npiregistry.cms.hhs.gov/provider-view/1215984581,"BrowserType.launch: Executable doesn't exist at C:\Users\asus\AppData\Local\ms-playwright\chromium-1124\chrome-win\chrome.exe
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝",2026-07-12T09:24:28.265379
+169,person:0002062357-26-000066:Jerry:Speyer,,https://www.tishmanspeyer.com,"BrowserType.launch: Executable doesn't exist at C:\Users\asus\AppData\Local\ms-playwright\chromium-1124\chrome-win\chrome.exe
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝",2026-07-12T09:25:17.688994
+170,"person:0001549885-26-000001:-:SPF Fund (GP), L.P.",,https://opencorporates.com/companies/us_de/6561338,"BrowserType.launch: Executable doesn't exist at C:\Users\asus\AppData\Local\ms-playwright\chromium-1124\chrome-win\chrome.exe
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝",2026-07-12T09:25:17.688994
+171,person:0002109371-26-000001:ASHER:SPECTOR,,https://npiregistry.cms.hhs.gov/provider-view/1689698371,"BrowserType.launch: Executable doesn't exist at C:\Users\asus\AppData\Local\ms-playwright\chromium-1124\chrome-win\chrome.exe
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝",2026-07-12T09:25:17.688994
+172,person:0001880438-26-000001:Melvin:Spigelman,,https://nppes.cms.hhs.gov,"BrowserType.launch: Executable doesn't exist at C:\Users\asus\AppData\Local\ms-playwright\chromium-1124\chrome-win\chrome.exe
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝",2026-07-12T09:25:17.688994
+173,person:0002102044-26-000001:n/a:SPFSA RE VIII L.L.C.,,https://opencorporates.com/companies/us_tx/0802755255,"BrowserType.launch: Executable doesn't exist at C:\Users\asus\AppData\Local\ms-playwright\chromium-1124\chrome-win\chrome.exe
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝",2026-07-12T09:25:17.688994
+174,person:0001956358-26-000001:Sara:Speed,,https://npiregistry.cms.hhs.gov/provider-view/1956358260,"BrowserType.launch: Executable doesn't exist at C:\Users\asus\AppData\Local\ms-playwright\chromium-1124\chrome-win\chrome.exe
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝",2026-07-12T09:25:17.688994
+175,person:0002123444-26-000001:Judson:Spooner,,https://www.ohsu.edu/providers/judson-spooner/dr-judson-spooner-md,"BrowserType.launch: Executable doesn't exist at C:\Users\asus\AppData\Local\ms-playwright\chromium-1124\chrome-win\chrome.exe
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝",2026-07-12T09:25:17.688994
+176,person:0002047797-26-000003:Markus:Specks,,https://nppes.cms.hhs.gov,"BrowserType.launch: Executable doesn't exist at C:\Users\asus\AppData\Local\ms-playwright\chromium-1124\chrome-win\chrome.exe
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝",2026-07-12T09:25:17.688994
+177,person:0000898432-26-000218:Gilles:Spenlehauer,,https://www.inserm.fr/en/annuaire/gilles-spenlehauer,"BrowserType.launch: Executable doesn't exist at C:\Users\asus\AppData\Local\ms-playwright\chromium-1124\chrome-win\chrome.exe
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝",2026-07-12T09:25:17.688994
+178,person:0001123292-26-000066:Stephen:Spierto,,https://npiregistry.cms.hhs.gov/provider-view/1123292260,"BrowserType.launch: Executable doesn't exist at C:\Users\asus\AppData\Local\ms-playwright\chromium-1124\chrome-win\chrome.exe
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝",2026-07-12T09:25:17.688994
+179,person:0000879635-26-000004:William:Specht,,https://nppes.cms.hhs.gov,"BrowserType.launch: Executable doesn't exist at C:\Users\asus\AppData\Local\ms-playwright\chromium-1124\chrome-win\chrome.exe
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝",2026-07-12T09:25:17.688994
+180,person:0002109371-26-000001:BENJAMIN:SPECTOR,,https://nppes.cms.hhs.gov/NPPESRegistry/NPIRegistrySearch.do,"BrowserType.launch: Executable doesn't exist at C:\Users\asus\AppData\Local\ms-playwright\chromium-1124\chrome-win\chrome.exe
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝",2026-07-12T09:25:17.688994
+181,person:0001437749-26-000855:Jason:Sperling,,https://npiregistry.cms.hhs.gov/provider-view/1437749260,"BrowserType.launch: Executable doesn't exist at C:\Users\asus\AppData\Local\ms-playwright\chromium-1124\chrome-win\chrome.exe
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝",2026-07-12T09:25:17.688994
+182,person:0002110674-26-000001:Samuel:Spirn,,https://npiregistry.cms.hhs.gov/provider-view/1215905067,"BrowserType.launch: Executable doesn't exist at C:\Users\asus\AppData\Local\ms-playwright\chromium-1124\chrome-win\chrome.exe
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝",2026-07-12T09:25:17.688994
+183,person:0002117205-26-000001:n/a:SPFSA Infrastructure IV L.L.C.,,https://opencorporates.com/companies/us_de/6557059,"BrowserType.launch: Executable doesn't exist at C:\Users\asus\AppData\Local\ms-playwright\chromium-1124\chrome-win\chrome.exe
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝",2026-07-12T09:25:17.688994
+184,person:0002109376-26-000001:Christian:Spilker,,https://providers.wustl.edu/provider/christian-spilker,"BrowserType.launch: Executable doesn't exist at C:\Users\asus\AppData\Local\ms-playwright\chromium-1124\chrome-win\chrome.exe
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝",2026-07-12T09:25:17.688994
+185,"person:0002040035-26-000001:N/A:Sound Point CRE Senior Secured Income Fund GP, LLC",,https://www.sec.gov/edgar/browse,"BrowserType.launch: Executable doesn't exist at C:\Users\asus\AppData\Local\ms-playwright\chromium-1124\chrome-win\chrome.exe
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝",2026-07-12T09:25:31.667008
+186,"person:0002083113-26-000002:N/A:Spacecadet Ventures II GP, LLC",,https://opencorporates.com/companies/us_ca/202224810565,"BrowserType.launch: Executable doesn't exist at C:\Users\asus\AppData\Local\ms-playwright\chromium-1124\chrome-win\chrome.exe
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝",2026-07-12T09:25:31.667008
+187,person:0002056604-26-000001:-:Soundview Equity Partners GP LLC,,https://opencorporates.com/companies/us_ct/0836569,"BrowserType.launch: Executable doesn't exist at C:\Users\asus\AppData\Local\ms-playwright\chromium-1124\chrome-win\chrome.exe
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝",2026-07-12T09:25:31.667008
+188,person:0002116912-26-000003:Anthony:Sonnenberg,,https://npiregistry.cms.hhs.gov/provider-view/1215906660,"BrowserType.launch: Executable doesn't exist at C:\Users\asus\AppData\Local\ms-playwright\chromium-1124\chrome-win\chrome.exe
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝",2026-07-12T09:25:31.667008
+189,person:0002086374-26-000001:JOHNATHAN:SPARKS,,https://npiregistry.cms.hhs.gov/provider-view/1922086374,"BrowserType.launch: Executable doesn't exist at C:\Users\asus\AppData\Local\ms-playwright\chromium-1124\chrome-win\chrome.exe
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝",2026-07-12T09:25:31.667008
+190,"person:0002107840-26-000001:n/a:Sound Growth Management, LP",,https://adviserinfo.sec.gov/firm/summary/316531,"BrowserType.launch: Executable doesn't exist at C:\Users\asus\AppData\Local\ms-playwright\chromium-1124\chrome-win\chrome.exe
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝",2026-07-12T09:25:31.667008
+191,person:0000950103-26-004934:Lawrence:Sorrel,,https://npidb.org/doctors/internal-medicine/general-practice/163w00000x/1003950103.aspx,"BrowserType.launch: Executable doesn't exist at C:\Users\asus\AppData\Local\ms-playwright\chromium-1124\chrome-win\chrome.exe
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝",2026-07-12T09:25:31.667008
+192,person:0001660476-26-000001:Andrew:Sparks,,https://npiregistry.cms.hhs.gov/provider-view/1660476260,"BrowserType.launch: Executable doesn't exist at C:\Users\asus\AppData\Local\ms-playwright\chromium-1124\chrome-win\chrome.exe
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝",2026-07-12T09:25:31.667008
+193,person:0002104403-26-000002:WILLIAM:SONNEBORN,,https://npiregistry.cms.hhs.gov/provider-view/1215905006,"BrowserType.launch: Executable doesn't exist at C:\Users\asus\AppData\Local\ms-playwright\chromium-1124\chrome-win\chrome.exe
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝",2026-07-12T09:25:31.667008
+194,person:0001315863-26-000001:Shafiq - Ur - Rahmaan:Soyfoo,,https://npiregistry.cms.hhs.gov/provider-view/1315863260,"BrowserType.launch: Executable doesn't exist at C:\Users\asus\AppData\Local\ms-playwright\chromium-1124\chrome-win\chrome.exe
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝",2026-07-12T09:25:31.667008
+195,person:0002064835-26-000032:Jeremy:South,,https://npiregistry.cms.hhs.gov/provider-view/1003856641,"BrowserType.launch: Executable doesn't exist at C:\Users\asus\AppData\Local\ms-playwright\chromium-1124\chrome-win\chrome.exe
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝",2026-07-12T09:25:31.667008
+196,person:0000905148-26-000918:n/a:Soroban Capital Partners LP,,https://www.sec.gov/edgar/browse,"BrowserType.launch: Executable doesn't exist at C:\Users\asus\AppData\Local\ms-playwright\chromium-1124\chrome-win\chrome.exe
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝",2026-07-12T09:25:31.667008
+197,person:0002110853-26-000001:Tyler:Spaans,,https://npiregistry.cms.hhs.gov/provider-view/1669866567,"BrowserType.launch: Executable doesn't exist at C:\Users\asus\AppData\Local\ms-playwright\chromium-1124\chrome-win\chrome.exe
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝",2026-07-12T09:25:31.667008
+198,person:0000905148-26-000919:n/a:Soroban Capital LO GP LLC,,https://adviserinfo.sec.gov/firm/summary/153664,"BrowserType.launch: Executable doesn't exist at C:\Users\asus\AppData\Local\ms-playwright\chromium-1124\chrome-win\chrome.exe
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝",2026-07-12T09:25:31.667008
+199,person:0001094891-26-000056:Ronald:Sparks,,https://npiregistry.cms.hhs.gov/provider-view/1094891260,"BrowserType.launch: Executable doesn't exist at C:\Users\asus\AppData\Local\ms-playwright\chromium-1124\chrome-win\chrome.exe
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝",2026-07-12T09:25:31.667008
+200,person:0002124083-26-000001:N/A:SpaceX Holdings Management LLC,,https://www.spacex.com,"BrowserType.launch: Executable doesn't exist at C:\Users\asus\AppData\Local\ms-playwright\chromium-1124\chrome-win\chrome.exe
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝",2026-07-12T09:25:31.667008
+201,person:0002103991-26-000002:Kelly:Sparks,,https://npiregistry.cms.hhs.gov/provider-view/1003855663,"BrowserType.launch: Executable doesn't exist at C:\Users\asus\AppData\Local\ms-playwright\chromium-1124\chrome-win\chrome.exe
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝",2026-07-12T09:25:31.667008
+202,person:0002099172-26-000001:Pooja:Soni,,https://nppes.cms.hhs.gov,"BrowserType.launch: Executable doesn't exist at C:\Users\asus\AppData\Local\ms-playwright\chromium-1124\chrome-win\chrome.exe
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝",2026-07-12T09:25:31.667008
+203,"person:0002105504-26-000001:N/A:Sounion Capital Management, LLC",,https://brokercheck.finra.org/firm/summary/154563,"BrowserType.launch: Executable doesn't exist at C:\Users\asus\AppData\Local\ms-playwright\chromium-1124\chrome-win\chrome.exe
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝",2026-07-12T09:25:31.667008
+204,person:0001886981-26-000003:Joshua:Solway,,https://npidb.org/doctors/other/physician-assistant/1886981-26-000003.aspx,"BrowserType.launch: Executable doesn't exist at C:\Users\asus\AppData\Local\ms-playwright\chromium-1124\chrome-win\chrome.exe
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝",2026-07-12T09:27:04.489302
+205,person:0002107699-26-000001:Phillip:Solomond,,https://nppes.cms.hhs.gov,"BrowserType.launch: Executable doesn't exist at C:\Users\asus\AppData\Local\ms-playwright\chromium-1124\chrome-win\chrome.exe
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝",2026-07-12T09:27:04.489302
+206,person:0001896663-26-000002:E.:SOBEL,,https://npiregistry.cms.hhs.gov/provider-view/1896663260,"BrowserType.launch: Executable doesn't exist at C:\Users\asus\AppData\Local\ms-playwright\chromium-1124\chrome-win\chrome.exe
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝",2026-07-12T09:27:04.489302
+207,person:0002049704-26-000003:Joshua:Sobeck,,https://npiregistry.cms.hhs.gov/provider-view/1649586203,"BrowserType.launch: Executable doesn't exist at C:\Users\asus\AppData\Local\ms-playwright\chromium-1124\chrome-win\chrome.exe
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝",2026-07-12T09:27:04.489302
+208,person:0002032849-26-000001:Carlos:Solorzano,,https://npiregistry.cms.hhs.gov/provider-view/1003856526,"BrowserType.launch: Executable doesn't exist at C:\Users\asus\AppData\Local\ms-playwright\chromium-1124\chrome-win\chrome.exe
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝",2026-07-12T09:27:04.489302
+209,person:0002114321-26-000001:Joseph:Sollee,,https://providers.emoryhealthcare.org/provider/Joseph+Sollee/770934,"BrowserType.launch: Executable doesn't exist at C:\Users\asus\AppData\Local\ms-playwright\chromium-1124\chrome-win\chrome.exe
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝",2026-07-12T09:27:04.489302
+210,person:0000950103-26-003776:Michael:Sobol,,https://nppes.cms.hhs.gov,"BrowserType.launch: Executable doesn't exist at C:\Users\asus\AppData\Local\ms-playwright\chromium-1124\chrome-win\chrome.exe
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝",2026-07-12T09:27:04.489302
+211,person:0001549885-26-000001:Albert:Sohn,,https://npiregistry.cms.hhs.gov/provider-view/1549885260,"BrowserType.launch: Executable doesn't exist at C:\Users\asus\AppData\Local\ms-playwright\chromium-1124\chrome-win\chrome.exe
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝",2026-07-12T09:27:04.489302
+212,person:0001193125-26-054545:Christopher:Sobecki,,https://www.sec.gov/Archives/edgar/data/1193125/000119312526054545/d156739ddef14a.htm,"BrowserType.launch: Executable doesn't exist at C:\Users\asus\AppData\Local\ms-playwright\chromium-1124\chrome-win\chrome.exe
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝",2026-07-12T09:27:04.489302
+213,person:0001964728-26-000001:Jason:Soloff,,https://www.npi-registry.info/npi/1964728260,"BrowserType.launch: Executable doesn't exist at C:\Users\asus\AppData\Local\ms-playwright\chromium-1124\chrome-win\chrome.exe
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝",2026-07-12T09:27:04.489302
+214,"person:0002119892-26-000001:N/A:Watchfire Ventures GP I, LLC",,https://reports.adviserinfo.sec.gov/reports/ADV/309929/PDF/309929.pdf,"The markup you provided was rejected by the parser. Trying a different parser or a different encoding may help.
+
+Original exception(s) from parser:
+ AssertionError: expected name token at '<![9v�\x0eAi\n\x13�n�W���y�'",2026-07-12T09:56:18.891958
