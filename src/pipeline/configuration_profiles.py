@@ -46,30 +46,30 @@ PROFILES: Dict[str, PipelineProfile] = {
     ),
     "production": PipelineProfile(
         profile_name="production",
-        worker_count=5,
-        batch_size=20,
-        timeout=30.0,
-        retry_limit=3,
-        logging_level="INFO",
-        max_concurrency=10
-    ),
-    "high_throughput": PipelineProfile(
-        profile_name="high_throughput",
-        worker_count=10,
-        batch_size=50,
-        timeout=60.0,
-        retry_limit=5,
-        logging_level="WARNING",
-        max_concurrency=20
-    ),
-    "turbo": PipelineProfile(
-        profile_name="turbo",
         worker_count=25,
         batch_size=100,
-        timeout=30.0,
+        timeout=20.0,
         retry_limit=2,
         logging_level="INFO",
         max_concurrency=30
+    ),
+    "high_throughput": PipelineProfile(
+        profile_name="high_throughput",
+        worker_count=35,
+        batch_size=150,
+        timeout=30.0,
+        retry_limit=3,
+        logging_level="WARNING",
+        max_concurrency=40
+    ),
+    "turbo": PipelineProfile(
+        profile_name="turbo",
+        worker_count=50,
+        batch_size=250,
+        timeout=15.0,
+        retry_limit=2,
+        logging_level="INFO",
+        max_concurrency=50
     )
 }
 

@@ -368,6 +368,15 @@ class PipelineOrchestrator:
             raise e
         finally:
             self.context.end_time = time.time()
+            
+            # Finalize and update the original Excel sheet one last time to capture all scraped rows
+            excel_path = self.file_path or (str(target_file) if 'target_file' in locals() else None)
+            if excel_path and self.export_mgr:
+                try:
+                    self.export_mgr.update_original_excel(excel_path)
+                except Exception as e:
+                    logger.warning(f"[Orchestrator] Final Excel update in finally block failed: {e}")
+                    
             await self._cleanup_components()
             
             # Generate final metrics report

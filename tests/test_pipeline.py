@@ -52,8 +52,8 @@ def test_profile_resolution():
     assert dev.batch_size == 5
 
     prod = get_profile("production")
-    assert prod.worker_count == 5
-    assert prod.batch_size == 20
+    assert prod.worker_count == 25
+    assert prod.batch_size == 100
 
     # Fallback
     fallback = get_profile("non_existent_profile")

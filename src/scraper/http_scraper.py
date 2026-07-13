@@ -24,10 +24,10 @@ class HTTPScraper:
 
     def __init__(
         self,
-        timeout: float = 10.0,
-        retries: int = 3,
-        backoff_factor: float = 1.0,
-        max_connections: int = 50,
+        timeout: float = 6.0,
+        retries: int = 1,
+        backoff_factor: float = 0.5,
+        max_connections: int = 100,
         headers: Optional[Dict[str, str]] = None,
     ) -> None:
         self.timeout = timeout

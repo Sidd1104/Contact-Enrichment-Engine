@@ -105,13 +105,21 @@ class PipelineRunner:
             raise RuntimeError("Pipeline pre-flight validation failed.")
 
         # 2. Register Signal handlers for graceful exits
-        async def async_shutdown_hook() -> None:
+        def sync_shutdown_hook() -> None:
+            logger.warning("\n[PipelineRunner] Interruption detected. Initiating graceful database-to-Excel backup...")
             if self.orchestrator:
                 self.orchestrator.stop()
-                # Run small wait to let orchestrator cleanup
-                await asyncio.sleep(1.0)
+                if self.orchestrator.export_mgr:
+                    excel_path = self.orchestrator.file_path
+                    if not excel_path:
+                        excel_path = "us_investors_enriched.xlsx"
+                    try:
+                        self.orchestrator.export_mgr.update_original_excel(excel_path)
+                        logger.info("[PipelineRunner] In-place Excel backup completed successfully.")
+                    except Exception as e:
+                        logger.error(f"[PipelineRunner] Failed to update Excel backup during shutdown: {e}")
 
-        self.shutdown_mgr.register_signal_handlers(async_shutdown_hook)
+        self.shutdown_mgr.register_signal_handlers(sync_shutdown_hook)
 
         # 3. Bind events dashboard
         if self.show_dashboard:

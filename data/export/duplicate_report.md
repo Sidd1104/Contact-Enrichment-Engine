@@ -253,3 +253,4 @@ The following records were identified as duplicates and merged at database or va
 | 247 | N/A | N/A | https://www.centexmagnolia23gpllcste250austintx.com | Identified as duplicate (website/NPI match). Merged details. Confidence: 0.0 |
 | 248 | N/A | N/A | https://www.gallatinpointcapitalllcfirstfloorgreenwichct.com | Identified as duplicate (website/NPI match). Merged details. Confidence: 0.0 |
 | 249 | N/A | N/A | https://www.plainviewmanagementlpsuite700dallastx.com | Identified as duplicate (website/NPI match). Merged details. Confidence: 0.0 |
+| 250 | N/A | N/A | https://www.bbb.org/us/ny/new-york/profile/venture-capital/zelda-ventures-gp-1-llc-1256-900001 | Identified as duplicate (website/NPI match). Merged details. Confidence: 0.95 |
