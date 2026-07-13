@@ -57,8 +57,17 @@ def _pydantic_to_gemini_schema(model_class: Type[BaseModel]) -> Dict[str, Any]:
     defs = raw_schema.get("$defs", raw_schema.get("definitions", {}))
 
     def _resolve_and_clean(obj: Any) -> Any:
-        """Recursively resolves $ref and cleans keys."""
+        """Recursively resolves $ref, flattens allOf, and cleans keys."""
         if isinstance(obj, dict):
+            # If allOf is present, flatten it by merging its contents
+            if "allOf" in obj and isinstance(obj["allOf"], list):
+                merged = {k: v for k, v in obj.items() if k != "allOf"}
+                for item in obj["allOf"]:
+                    cleaned_item = _resolve_and_clean(item)
+                    if isinstance(cleaned_item, dict):
+                        merged.update(cleaned_item)
+                return _resolve_and_clean(merged)
+
             # Check if it's a reference to inline
             if "$ref" in obj:
                 ref_path = obj["$ref"]

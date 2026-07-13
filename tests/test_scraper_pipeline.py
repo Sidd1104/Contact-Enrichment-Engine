@@ -378,7 +378,8 @@ async def test_scraper_manager_browser_fallback_flow():
     manager = ScraperManager(strict_robots=False, headless_browser=True)
     
     # Patch manager's helper components
-    with patch.object(manager.http_scraper, "scrape_page", return_value=mock_http_fail), \
+    with patch.dict(os.environ, {"DISABLE_BROWSER_FALLBACK": "false"}), \
+         patch.object(manager.http_scraper, "scrape_page", return_value=mock_http_fail), \
          patch.object(manager.browser_scraper, "start", return_value=None), \
          patch.object(manager.browser_scraper, "scrape_page", return_value=mock_browser_success):
         
