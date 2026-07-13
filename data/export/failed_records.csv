@@ -2,4 +2,20 @@ id,npi,company_name,website,error_message,failed_at
 1,"person:0002119892-26-000001:N/A:Watchfire Ventures GP I, LLC",,https://reports.adviserinfo.sec.gov/reports/ADV/309929/PDF/309929.pdf,"The markup you provided was rejected by the parser. Trying a different parser or a different encoding may help.
 
 Original exception(s) from parser:
- AssertionError: expected name token at '<![9v�\x0eAi\n\x13�n�W���y�'",2026-07-13T07:01:29.882239
+ AssertionError: expected name token at '<![9v�\x0eAi\n\x13�n�W���y�'",2026-07-13T08:17:13.747374
+2,"person:0002119892-26-000001:N/A:Watchfire Ventures GP I, LLC",,https://reports.adviserinfo.sec.gov/reports/ADV/309929/PDF/309929.pdf,"The markup you provided was rejected by the parser. Trying a different parser or a different encoding may help.
+
+Original exception(s) from parser:
+ AssertionError: expected name token at '<![9v�\x0eAi\n\x13�n�W���y�'",2026-07-13T11:39:52.587484
+3,"person:0002119892-26-000001:N/A:Watchfire Ventures GP I, LLC",,https://reports.adviserinfo.sec.gov/reports/ADV/309929/PDF/309929.pdf,"The markup you provided was rejected by the parser. Trying a different parser or a different encoding may help.
+
+Original exception(s) from parser:
+ AssertionError: expected name token at '<![9v�\x0eAi\n\x13�n�W���y�'",2026-07-13T18:03:47.091010
+4,"person:0002119892-26-000001:N/A:Watchfire Ventures GP I, LLC",,https://reports.adviserinfo.sec.gov/reports/ADV/309929/PDF/309929.pdf,"The markup you provided was rejected by the parser. Trying a different parser or a different encoding may help.
+
+Original exception(s) from parser:
+ AssertionError: expected name token at '<![9v�\x0eAi\n\x13�n�W���y�'",2026-07-13T18:35:11.018786
+5,person:0000912282-26-000478:Jason:Morris,,https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQH7ScYAT-XfABX8CSeCAwpfuxod8qd_Ikj4Jwc74rdSV9s7C7Mt1YayjZ7PsQBb04V95VEMfg01nWifDPTuTO-Z4JHljwnSHmmBvwsTCbr0VJYJYMT4gcGCdo0iKxYCIgZjFN4gSh0btz9SVcALeyHT6ZfUafSW,"The markup you provided was rejected by the parser. Trying a different parser or a different encoding may help.
+
+Original exception(s) from parser:
+ AssertionError: expected name token at '<![��&�\x00H=�\x11Up6\x0c�t�u'",2026-07-13T20:12:09.821879
