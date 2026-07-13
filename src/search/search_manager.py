@@ -76,6 +76,12 @@ class SearchManager:
                 country=country
             )
 
+        if resolution.status == "failed":
+            raise RuntimeError(
+                f"Search API Exhausted: {resolution.error_message}. "
+                f"Please verify your Tavily/Bing API keys or plan limits."
+            )
+
         # Update record dictionary fields
         record["website"] = resolution.resolved_url
         record["search_resolution"] = resolution.model_dump()

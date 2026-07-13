@@ -208,13 +208,7 @@ class BingSearchProvider(BaseSearchProvider):
 
     async def search(self, query: str, limit: int = 5) -> List[Tuple[str, str, str]]:
         if not self.api_key:
-            # Generate mock URL matching query to bypass domain ranking filter
-            query_word = query.replace("website", "").strip()
-            import re
-            clean_word = re.sub(r'[^a-zA-Z0-9]', '', query_word).lower()
-            if not clean_word:
-                clean_word = "mockcompany"
-            return [(f"https://www.{clean_word}.com", f"{query_word} Official Website", f"Welcome to the official website of {query_word}. Find contact and company info.")]
+            raise FatalSearchError("Bing API key not configured. Mock search mode is disabled.")
 
         async with self.rate_limiter:
             @get_retry_decorator(ai_config.search_max_retries)

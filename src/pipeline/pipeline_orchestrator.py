@@ -175,12 +175,18 @@ class PipelineOrchestrator:
             # Load rows using importer
             target_file, sheet_name, mapping, raw_rows = importer.initialize_import(target_file)
             
-            # Fetch completed/failed NPIs from DB
+            # Fetch completed NPIs from DB that actually contain email or phone data.
+            # Rows with empty contact details (e.g. from failed search/mock runs) will be re-processed.
             processed_npis = set()
             try:
                 from src.database.database_manager import CompletedContactModel, FailedRecordModel
                 session = self.conn_mgr.get_session()
-                comp_rows = session.query(CompletedContactModel.npi).filter(CompletedContactModel.npi.isnot(None)).all()
+                comp_rows = session.query(CompletedContactModel.npi).filter(
+                    CompletedContactModel.npi.isnot(None)
+                ).filter(
+                    (CompletedContactModel.emails.isnot(None) & (CompletedContactModel.emails != "") & (CompletedContactModel.emails != "[]")) |
+                    (CompletedContactModel.phones.isnot(None) & (CompletedContactModel.phones != "") & (CompletedContactModel.phones != "[]"))
+                ).all()
                 fail_rows = session.query(FailedRecordModel.npi).filter(FailedRecordModel.npi.isnot(None)).all()
                 processed_npis.update(str(r[0]).strip() for r in comp_rows if r[0])
                 processed_npis.update(str(r[0]).strip() for r in fail_rows if r[0])
