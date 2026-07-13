@@ -145,6 +145,7 @@ class GeminiProvider(AIProvider):
         self,
         prompt: str,
         response_schema: Optional[Dict[str, Any]] = None,
+        use_search_grounding: bool = False,
     ) -> Dict[str, Any]:
         """
         Build the request payload for the Gemini generateContent API.
@@ -152,6 +153,7 @@ class GeminiProvider(AIProvider):
         Args:
             prompt:          The user prompt text.
             response_schema: Optional Gemini-compatible JSON schema for structured output.
+            use_search_grounding: If True, enables Google Search Grounding tool.
         """
         payload: Dict[str, Any] = {
             "contents": [
@@ -170,6 +172,9 @@ class GeminiProvider(AIProvider):
         if response_schema:
             payload["generationConfig"]["responseMimeType"] = "application/json"
             payload["generationConfig"]["responseSchema"] = response_schema
+
+        if use_search_grounding:
+            payload["tools"] = [{"google_search": {}}]
 
         return payload
 
@@ -383,6 +388,83 @@ class GeminiProvider(AIProvider):
                 f"{response_model.__name__}: {e}\n"
                 f"Raw response: {text[:500]}"
             )
+
+    async def query_with_search(
+        self,
+        prompt: str,
+        timeout: float = 30.0,
+    ) -> AIResponse:
+        """
+        Query Gemini with Google Search Grounding enabled.
+        """
+        if not self._api_key:
+            raise FatalAIError(
+                "Gemini API key not configured. Set GEMINI_API_KEY in your .env file."
+            )
+
+        payload = self._build_payload(prompt, use_search_grounding=True)
+        start_time = time.monotonic()
+        retry_count = 0
+
+        @retry(
+            retry=retry_if_exception_type(TransientAIError),
+            stop=stop_after_attempt(self._max_retries),
+            wait=wait_exponential(
+                multiplier=ai_config.ai_retry_base_delay,
+                max=ai_config.ai_retry_max_delay,
+            ),
+            before_sleep=before_sleep_log(logger, logging.WARNING),
+            reraise=True,
+        )
+        async def _execute():
+            nonlocal retry_count
+            retry_count += 1
+            return await self._make_request(payload)
+
+        try:
+            retry_count = 0
+            response_data = await asyncio.wait_for(
+                _execute(), timeout=timeout
+            )
+        except RetryError as e:
+            raise TransientAIError(
+                f"Gemini search query failed after {self._max_retries} retries"
+            )
+
+        latency = time.monotonic() - start_time
+        text = self._extract_text(response_data)
+
+        # Extract grounding metadata (websites) if present
+        grounding_urls = []
+        try:
+            candidates = response_data.get("candidates", [])
+            if candidates:
+                metadata = candidates[0].get("groundingMetadata", {})
+                chunks = metadata.get("groundingChunks", [])
+                for chunk in chunks:
+                    web = chunk.get("web", {})
+                    uri = web.get("uri")
+                    if uri:
+                        grounding_urls.append(uri)
+        except Exception as e:
+            logger.warning(f"Failed to parse grounding metadata: {e}")
+
+        logger.info(
+            f"[Gemini Search] Response received: latency={latency:.2f}s, "
+            f"found {len(grounding_urls)} grounding URLs"
+        )
+
+        return AIResponse(
+            text=text,
+            provider_name=self.name,
+            model=self._model,
+            latency=latency,
+            retry_count=max(0, retry_count - 1),
+            metadata={
+                "usage": response_data.get("usageMetadata", {}),
+                "grounding_urls": grounding_urls,
+            },
+        )
 
     async def health_check(self) -> bool:
         """

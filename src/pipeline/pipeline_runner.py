@@ -91,6 +91,18 @@ class PipelineRunner:
             db_mgr.drop_all_tables()
             db_mgr.create_tables()
 
+            # Purge local JSON cache files to clear mock/fake URLs
+            import os
+            from pathlib import Path
+            for filename in ["search_cache.json", "crawl_cache.json", "contact_cache.json", "worker_queue_state.json"]:
+                cache_path = Path("data/temp") / filename
+                if cache_path.exists():
+                    try:
+                        os.remove(cache_path)
+                        logger.warning(f"[PipelineRunner] Deleted cache file: {filename}")
+                    except Exception as e:
+                        logger.error(f"[PipelineRunner] Failed to delete cache file {filename}: {e}")
+
         # 1. Startup pre-flight validation
         validator = StartupValidator(self.conn_mgr)
         valid, logs = validator.validate_all()

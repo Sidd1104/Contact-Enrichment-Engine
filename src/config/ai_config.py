@@ -97,6 +97,12 @@ class AIConfig(BaseModel):
         description="Bing Search API key."
     )
 
+    # --- Firecrawl Crawler Configuration ---
+    firecrawl_api_key: str = Field(
+        default="",
+        description="Firecrawl Crawler API key."
+    )
+
     # --- Search Engine Configurations ---
     search_provider_order: List[str] = Field(
         default=["tavily", "bing"],
@@ -190,6 +196,7 @@ class AIConfig(BaseModel):
             ai_provider_order=os.getenv("AI_PROVIDER_ORDER", "gemini"),
             tavily_api_key=os.getenv("TAVILY_API_KEY", ""),
             bing_api_key=os.getenv("BING_API_KEY", ""),
+            firecrawl_api_key=os.getenv("FIRECRAWL_API_KEY", ""),
             search_provider_order=os.getenv("SEARCH_PROVIDER_ORDER", "tavily,bing"),
             search_concurrency=int(os.getenv("SEARCH_CONCURRENCY", "5")),
             search_timeout=float(os.getenv("SEARCH_TIMEOUT", "15.0")),
@@ -214,6 +221,7 @@ class AIConfig(BaseModel):
             "groq": self.groq_api_key,
             "tavily": self.tavily_api_key,
             "bing": self.bing_api_key,
+            "firecrawl": self.firecrawl_api_key,
         }
         key = key_map.get(provider_name, "")
         return bool(key and key.strip())

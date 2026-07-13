@@ -121,67 +121,55 @@ class BaseSearchProvider(SearchProvider, ABC):
         self._cooldown_until = 0.0
 
 
-class TavilySearchProvider(BaseSearchProvider):
+class GeminiSearchProvider(BaseSearchProvider):
     """
-    Tavily search provider.
+    Search provider powered by Google Gemini Search Grounding.
     """
 
     def __init__(self, api_key: Optional[str] = None) -> None:
         super().__init__(rpm=60, max_concurrency=5)
-        self.api_key = api_key or ai_config.tavily_api_key
-        self.client: Optional[httpx.AsyncClient] = None
+        from ..ai.providers.gemini import GeminiProvider
+        self.provider = GeminiProvider(api_key=api_key)
 
     @property
     def name(self) -> str:
-        return "tavily"
-
-    def _get_client(self) -> httpx.AsyncClient:
-        if self.client is None or self.client.is_closed:
-            self.client = httpx.AsyncClient(timeout=ai_config.search_timeout)
-        return self.client
+        return "gemini_grounding"
 
     async def search(self, query: str, limit: int = 5) -> List[Tuple[str, str, str]]:
-        if not self.api_key:
-            raise FatalSearchError("Tavily API key not configured.")
-
         # Rate limiting guard
         async with self.rate_limiter:
-            # Build retry-wrapped request
             @get_retry_decorator(ai_config.search_max_retries)
             async def _do_search():
-                client = self._get_client()
-                url = "https://api.tavily.com/search"
-                payload = {
-                    "api_key": self.api_key,
-                    "query": query,
-                    "search_depth": "basic",
-                    "max_results": limit,
-                }
+                prompt = (
+                    f"Find the official website URL of the business/person: '{query}'. "
+                    "Provide ONLY the official root URL (e.g. https://www.company.com). "
+                    "Do not include any conversational filler, markdown formatting, or explanation."
+                )
+                response = await self.provider.query_with_search(prompt)
+                url = response.text.strip()
+                url = url.strip()
+                # Basic URL extraction/sanitization
+                if " " in url or "\n" in url:
+                    url = ""
+                elif "http" not in url and "." in url:
+                    url = f"https://{url}"
                 
-                try:
-                    response = await client.post(url, json=payload)
-                except httpx.RequestError as e:
-                    raise TransientSearchError(f"HTTP request failed: {e}")
-                
-                check_httpx_status(response)
-                return response.json()
+                # If Gemini text response didn't yield a valid URL, fall back to grounding metadata URLs
+                if not url or "http" not in url:
+                    grounding_urls = response.metadata.get("grounding_urls", [])
+                    if grounding_urls:
+                        url = grounding_urls[0]
+
+                if url and "http" in url:
+                    return [(url, f"{query} Official Website", "Discovered via Gemini Search Grounding")]
+                return []
 
             try:
-                data = await _do_search()
+                results = await _do_search()
                 self.record_success()
-                
-                results = []
-                for item in data.get("results", []):
-                    url = item.get("url", "")
-                    title = item.get("title", "")
-                    snippet = item.get("content", "")
-                    if url:
-                        results.append((url, title, snippet))
                 return results
             except Exception as e:
                 self.record_failure()
-                if "429" in str(e):
-                    self.trigger_cooldown(60.0)
                 raise
 
 
