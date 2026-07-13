@@ -202,8 +202,20 @@ class PipelineOrchestrator:
             # we automatically trigger a recheck pass on any rows that have missing contact details.
             if len(eligible_records) == 0:
                 logger.info("[Orchestrator] All records in the Excel file have been processed. Scanning for incomplete/skipped rows to recheck...")
+                from src.importer.row_mapper import RowMapper
+                from src.importer import is_empty_value
+                row_mapper = RowMapper(mapping)
+                
+                # Check for a column with 'status' in its name to retrieve the cell value
+                status_col_name = None
+                if raw_rows:
+                    for header in raw_rows[0].keys():
+                        if "status" in str(header).lower():
+                            status_col_name = header
+                            break
+
                 recheck_npis = set()
-                for row in status_rows_for_metrics:
+                for row in raw_rows:
                     mapped_row = row_mapper.map_row(row)
                     npi = mapped_row.get("npi", "").strip()
                     if not npi:
