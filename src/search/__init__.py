@@ -10,7 +10,7 @@ caching, domain validation, and metrics logging.
 from .search_engine import SearchEngine
 from .search_manager import SearchManager
 from .search_result import SearchResolution
-from .search_provider import SearchProvider, TavilySearchProvider, BingSearchProvider
+from .search_provider import SearchProvider, GeminiSearchProvider, BingSearchProvider
 from .provider_router import ProviderRouter
 from .domain_ranker import DomainRanker
 from .search_validator import SearchValidator
@@ -22,7 +22,7 @@ __all__ = [
     "SearchManager",
     "SearchResolution",
     "SearchProvider",
-    "TavilySearchProvider",
+    "GeminiSearchProvider",
     "BingSearchProvider",
     "ProviderRouter",
     "DomainRanker",

@@ -18,6 +18,8 @@ from .html_parser import HTMLParser, ParsedHTML
 from .robots_handler import RobotsHandler
 from .scraper_metrics import ScraperMetrics
 from .scraper_result import ScrapedPage
+from .firecrawl_client import FirecrawlClient
+from ..search.cache_manager import FileCrawlCache
 
 from ..extractor.structured_contact import StructuredContact
 from ..extractor.email_extractor import EmailExtractor
@@ -46,6 +48,8 @@ class ScraperManager:
         
         self.robots_handler = RobotsHandler()
         self.http_scraper = HTTPScraper()
+        self.firecrawl_client = FirecrawlClient()
+        self.crawl_cache = FileCrawlCache()
         self.browser_scraper = BrowserScraper(headless=headless_browser)
         self.page_discovery = PageDiscovery(max_candidates=max_contact_pages)
         self.metrics = ScraperMetrics(metrics_file)
@@ -55,6 +59,7 @@ class ScraperManager:
     async def close(self) -> None:
         """Closes any underlying scraper clients and browser instances."""
         await self.http_scraper.close()
+        await self.firecrawl_client.close()
         await self.robots_handler._client.aclose()
         if self._browser_started:
             await self.browser_scraper.close()
@@ -150,8 +155,35 @@ class ScraperManager:
                     errors=errors
                 )
 
-        # 2. HTTP Scraping of Homepage
-        homepage_scraped = await self.http_scraper.scrape_page(normalized_url)
+        # 2. Homepage Crawl (Priority: Crawl Cache -> Firecrawl -> HTTPScraper fallback)
+        cached = await self.crawl_cache.get(normalized_url)
+        if cached:
+            logger.info(f"[ScraperManager] Crawl cache HIT for {normalized_url}")
+            cached_data = cached["scraped_data"]
+            homepage_scraped = ScrapedPage(
+                url=normalized_url,
+                status_code=cached_data.get("status_code", 0),
+                html=cached_data.get("html", ""),
+                headers=cached_data.get("headers", {}),
+                error_message=cached_data.get("error_message"),
+                latency=cached_data.get("latency", 0.0),
+                method=cached_data.get("method", "Firecrawl")
+            )
+        else:
+            homepage_scraped = await self.firecrawl_client.scrape_page(normalized_url)
+            if homepage_scraped.status_code == 0 or homepage_scraped.status_code >= 400:
+                logger.warning(f"[ScraperManager] Firecrawl failed on {normalized_url}. Falling back to HTTPScraper.")
+                homepage_scraped = await self.http_scraper.scrape_page(normalized_url)
+            
+            if homepage_scraped.status_code > 0 and homepage_scraped.status_code < 400:
+                await self.crawl_cache.set(normalized_url, {
+                    "status_code": homepage_scraped.status_code,
+                    "html": homepage_scraped.html,
+                    "headers": dict(homepage_scraped.headers) if homepage_scraped.headers else {},
+                    "error_message": homepage_scraped.error_message,
+                    "latency": homepage_scraped.latency,
+                    "method": homepage_scraped.method
+                })
         pages_visited.append(normalized_url)
 
         # Track HTTP success / fail
