@@ -75,8 +75,12 @@ class ValidationManager:
         logger.info(f"[Validation] Starting validation for: {contact.official_website}")
 
         # 1. Validate Emails & Phones
-        validated_emails = EmailValidator.validate(contact.emails)
-        validated_phones = PhoneValidator.validate(contact.phones)
+        validated_emails, rejected_emails = EmailValidator.validate_with_details(contact.emails)
+        validated_phones, rejected_phones = PhoneValidator.validate_with_details(contact.phones)
+
+        if isinstance(raw_record, dict):
+            raw_record["rejected_emails"] = rejected_emails
+            raw_record["rejected_phones"] = rejected_phones
 
         # 2. Assemble address
         address = self._assemble_address(raw_record)

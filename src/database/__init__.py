@@ -8,7 +8,7 @@ transaction isolation, bulk writes, retries, and interruptions handling.
 from __future__ import annotations
 
 from .connection_manager import Base, ConnectionManager
-from .database_manager import DatabaseManager, CompletedContactModel, FailedRecordModel, RetryRecordModel, CheckpointModel
+from .database_manager import DatabaseManager, CompletedContactModel, FailedRecordModel, RetryRecordModel, CheckpointModel, AuditTrailModel
 from .repository import BaseRepository
 from .sqlite_repository import SQLiteRepository
 from .postgres_repository import PostgresRepository
@@ -24,6 +24,7 @@ __all__ = [
     "FailedRecordModel",
     "RetryRecordModel",
     "CheckpointModel",
+    "AuditTrailModel",
     "BaseRepository",
     "SQLiteRepository",
     "PostgresRepository",

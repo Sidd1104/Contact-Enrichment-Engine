@@ -92,6 +92,28 @@ class CheckpointModel(Base):
     updated_at = Column(DateTime, default=utcnow, onupdate=utcnow, nullable=False)
 
 
+class AuditTrailModel(Base):
+    """Stores detailed audit logs for every processed record."""
+    __tablename__ = "audit_trails"
+
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    row_number = Column(Integer, nullable=True)
+    npi = Column(String(50), nullable=True, index=True)
+    entity_name = Column(String(255), nullable=True)
+    search_query = Column(Text, nullable=True)
+    urls_visited = Column(JSON, nullable=True)
+    selected_website = Column(String(500), nullable=True)
+    contact_pages_crawled = Column(JSON, nullable=True)
+    emails_extracted = Column(JSON, nullable=True)
+    phones_extracted = Column(JSON, nullable=True)
+    validation_results = Column(JSON, nullable=True)
+    crawl_telemetry = Column(JSON, nullable=True)
+    outcome = Column(String(50), nullable=True)
+    reason_code = Column(String(100), nullable=True)
+    processing_duration_ms = Column(Float, nullable=True)
+    created_at = Column(DateTime, default=utcnow, nullable=False)
+
+
 # =============================================================================
 # Database Manager Orchestrator
 # =============================================================================

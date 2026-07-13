@@ -3,25 +3,25 @@
 Complete system performance diagnostics across database persistence, validation, and AI enrichment layers.
 
 ## Database Ingestion Diagnostics
-- **Total Inserts**: 15535
-- **Total Updates / Merges**: 340
+- **Total Inserts**: 21701
+- **Total Updates / Merges**: 9112
 - **Database Write Speed**:
-  - Inserts/sec: 1237.92
-  - Updates/sec: 27.09
+  - Inserts/sec: 815.37
+  - Updates/sec: 342.37
 - **Failed Writes Count**: 18
 - **Write Retries Count**: 3
-- **Total DB Session Latency**: 12.549s
+- **Total DB Session Latency**: 26.615s
 
 ## Validation Diagnostics
-- **Validated Emails**: 2292
-- **Validated Phone Numbers**: 3264
-- **Duplicates Removed**: 2998
+- **Validated Emails**: 1911
+- **Validated Phone Numbers**: 4832
+- **Duplicates Removed**: 1909
 - **Average Validation Latency**: 0.0s
-- **Total Validation Latency**: 1.776s
+- **Total Validation Latency**: 1.104s
 
 ## AI Enrichment Diagnostics
-- **AI API Calls**: 4114
-- **AI Calls Avoided (Cache/Scraper hit)**: 302
+- **AI API Calls**: 23451
+- **AI Calls Avoided (Cache/Scraper hit)**: 731
 - **Total Tokens Consumed**: 0
-- **Average AI Latency**: 1.378s
-- **Total AI Latency**: 5670.736s
+- **Average AI Latency**: 1.618s
+- **Total AI Latency**: 37945.843s

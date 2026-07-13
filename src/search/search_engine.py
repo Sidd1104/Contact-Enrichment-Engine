@@ -88,22 +88,25 @@ class SearchEngine:
         """
         start_time = time.monotonic()
         
-        # 1. Skip search if website is already populated in spreadsheet
+        # 1. Skip search if website is already populated in spreadsheet and not blacklisted
         if existing_website and existing_website.strip() and existing_website.lower() not in ("nan", "none", "n/a", "-"):
-            clean_url = self.validator.sanitize_url(existing_website)
-            if self.validator.is_valid_url(clean_url):
-                logger.info(f"[SearchEngine] Skipping search: website already exists for '{business_name}' -> '{clean_url}'")
-                res = SearchResolution(
-                    query="",
-                    resolved_url=clean_url,
-                    confidence_score=1.0,
-                    provider_used="dataset",
-                    latency=0.0,
-                    cache_hit=False,
-                    status="skipped"
-                )
-                await self.metrics.record_search(provider="dataset", success=True, latency=0.0, cache_hit=True)
-                return res
+            if not self.ranker.is_blacklisted(existing_website):
+                clean_url = self.validator.sanitize_url(existing_website)
+                if self.validator.is_valid_url(clean_url):
+                    logger.info(f"[SearchEngine] Skipping search: website already exists for '{business_name}' -> '{clean_url}'")
+                    res = SearchResolution(
+                        query="",
+                        resolved_url=clean_url,
+                        confidence_score=1.0,
+                        provider_used="dataset",
+                        latency=0.0,
+                        cache_hit=False,
+                        status="skipped"
+                    )
+                    await self.metrics.record_search(provider="dataset", success=True, latency=0.0, cache_hit=True)
+                    return res
+            else:
+                logger.info(f"[SearchEngine] Existing website '{existing_website}' is blacklisted (social media/directory). Performing search instead.")
 
         # 2. Formulate query
         query = self.construct_query(business_name, city, state, country)

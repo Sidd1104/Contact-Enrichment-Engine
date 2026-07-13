@@ -22,24 +22,39 @@ class Dashboard:
 
     def __init__(self, disabled: bool = False) -> None:
         self.disabled = disabled
-        # Track whether we should clear screen
         self.is_windows = sys.platform == "win32"
+        self.last_render_time = 0.0
+        
+        # If on Windows, attempt to enable ANSI escape processing support
+        if self.is_windows and not self.disabled:
+            try:
+                import ctypes
+                kernel32 = ctypes.windll.kernel32
+                # Enable virtual terminal processing: console handle = -11, mode = 7
+                kernel32.SetConsoleMode(kernel32.GetStdHandle(-11), 7)
+            except Exception:
+                pass
 
     def clear_screen(self) -> None:
-        """Clears the console screen."""
+        """Clears the console screen using fast ANSI escape sequences."""
         if self.disabled:
             return
-        if self.is_windows:
-            os.system("cls")
-        else:
-            sys.stdout.write("\033[H\033[J")
-            sys.stdout.flush()
+        # Move cursor to top-left (0,0) and clear screen
+        sys.stdout.write("\033[H\033[2J")
+        sys.stdout.flush()
 
-    def render(self, stats: Dict[str, Any], health: Dict[str, Any]) -> None:
+    def render(self, stats: Dict[str, Any], health: Dict[str, Any], force: bool = False) -> None:
         """Renders the dashboard block to terminal stdout."""
         if self.disabled:
             return
 
+        import time
+        now = time.time()
+        # Rate limit dashboard refreshes to at most once per 200ms to prevent terminal lag
+        if not force and (now - self.last_render_time < 0.2):
+            return
+            
+        self.last_render_time = now
         self.clear_screen()
 
         state = stats.get("state", "idle").upper()
@@ -63,21 +78,30 @@ class Dashboard:
         browsers = stats.get("browser_launches", 0)
         active_workers = stats.get("active_workers", 0)
 
+        total_rows = stats.get("total_rows", 0)
+        completed_rows = stats.get("completed_rows", 0)
+        remaining_rows = stats.get("remaining_rows", 0)
+        resume_row = stats.get("resume_row", 0)
+        current_row = stats.get("current_row", 0)
+        session_processed = stats.get("session_processed", 0)
+
+        success_full = stats.get("success_full_count", 0)
+        success_email = stats.get("success_email_count", 0)
+        success_phone = stats.get("success_phone_count", 0)
+        not_found = stats.get("not_found_count", 0)
+
         cpu = health.get("cpu_usage_percent", 0.0)
         ram = health.get("ram_usage_percent", 0.0)
         db_status = "OK" if health.get("database_ok", True) else "ERROR"
         api_status = "OK" if health.get("api_availability", True) else "ERROR"
 
         # Derived metrics
-        throughput = (processed / elapsed) if elapsed > 0 else 0.0
-        success_rate = (success / processed) * 100 if processed > 0 else 0.0
+        throughput = (session_processed / elapsed) if elapsed > 0 else 0.0
         ai_total = ai_calls + ai_avoided
         ai_cache_ratio = (ai_avoided / ai_total) * 100 if ai_total > 0 else 0.0
         
-        percent_complete = (processed / total_records) * 100 if total_records > 0 else 0.0
-        
-        # Calculate ETA
-        remaining = total_records - processed
+        # Calculate ETA based on session throughput
+        remaining = remaining_rows - session_processed
         eta_seconds = (remaining / throughput) if throughput > 0 else 0.0
         
         # Format duration/ETA as HH:MM:SS
@@ -88,7 +112,7 @@ class Dashboard:
             return f"{h:02d}:{m:02d}:{s:02d}"
 
         elapsed_str = format_time(elapsed)
-        eta_str = format_time(eta_seconds) if processed < total_records else "00:00:00"
+        eta_str = format_time(eta_seconds) if session_processed < remaining_rows else "00:00:00"
 
         # Color codes
         green = "\033[92m"
@@ -98,29 +122,32 @@ class Dashboard:
         reset = "\033[0m"
         bold = "\033[1m"
 
+        percent_complete = (completed_rows / total_rows) * 100 if total_rows > 0 else 0.0
         state_color = green if state == "RUNNING" else (yellow if state in ("PAUSED", "STARTING") else (cyan if state == "COMPLETED" else red))
-        db_color = green if db_status == "OK" else red
-        api_color = green if api_status == "OK" else red
 
         output = f"""{bold}========================================================================{reset}
 {bold}  CONTACT ENRICHMENT ENGINE - PIPELINE MONITOR{reset}
 {bold}========================================================================{reset}
-  State: {state_color}{bold}{state}{reset} | Profile: {bold}{profile}{reset} | Duration: {bold}{elapsed_str}{reset}
+  State: {state_color}{bold}{state}{reset} | Duration: {bold}{elapsed_str}{reset} | ETA: {bold}{eta_str}{reset}
 ------------------------------------------------------------------------
-  {bold}Ingestion Progress:{reset}
-    Records:    [{processed}/{total_records}] ({percent_complete:.1f}%) | Batch: [{current_batch}/{total_batches}]
-    Throughput: {bold}{throughput:.2f} rec/sec{reset} | ETA: {bold}{eta_str}{reset}
-    Successes:  {green}{success}{reset} | Failures: {red}{failed}{reset} | Retry Queue: {yellow}{retry}{reset} | Dups: {cyan}{dup}{reset}
-    Success Rate: {bold}{success_rate:.2f}%{reset}
+  {bold}Progress:{reset}
+    Total Rows:             {total_rows:,}
+    Completed Rows:         {completed_rows:,} ({percent_complete:.1f}%)
+    Remaining Rows:         {remaining_rows:,}
+    Resume Row:             Row {resume_row:,} | Current Row: Row {current_row:,}
+    Processed This Session: {session_processed:,} rows
+    Throughput:             {bold}{throughput:.2f} rec/sec{reset} ({bold}{throughput * 60:.1f} rec/min{reset})
 
-  {bold}Intelligence Statistics:{reset}
-    Emails Found:    {bold}{emails}{reset} | Phones Found: {bold}{phones}{reset}
-    AI API Calls:    {yellow}{ai_calls}{reset} | AI Cache Hits: {green}{ai_avoided}{reset} ({ai_cache_ratio:.1f}%)
-    Active Scrapers: {bold}{active_workers}{reset} workers | Browser Launches: {bold}{browsers}{reset}
+  {bold}Outcomes Breakdown:{reset}
+    SUCCESS_FULL (Email+Phone): {green}{success_full:,}{reset}
+    SUCCESS_EMAIL (Only Email):  {cyan}{success_email:,}{reset}
+    SUCCESS_PHONE (Only Phone):  {cyan}{success_phone:,}{reset}
+    NOT_FOUND (No Contacts):     {yellow}{not_found:,}{reset}
+    FAILED:                      {red}{failed:,}{reset}
 
-  {bold}System Diagnostics & Health:{reset}
-    CPU Usage:       {cpu:.1f}% | RAM Usage: {ram:.1f}%
-    Database Health: {db_color}{db_status}{reset} | API Connections: {api_color}{api_status}{reset}
+  {bold}Enrichment Details:{reset}
+    Emails Found:  {bold}{emails:,}{reset} | Phones Found: {bold}{phones:,}{reset}
+    AI API Calls:  {yellow}{ai_calls:,}{reset} | AI Cache Hits: {green}{ai_avoided:,}{reset} ({ai_cache_ratio:.1f}%)
 """
         
         # Print recently processed rows log
@@ -133,7 +160,7 @@ class Dashboard:
                 status_val = log_item.get("status", "SUCCESS")
                 details_val = log_item.get("details", "")
                 
-                status_colored = f"{green}{status_val}{reset}" if status_val == "SUCCESS" else f"{red}{status_val}{reset}"
+                status_colored = f"{green}{status_val}{reset}" if "SUCCESS" in status_val else (f"{yellow}{status_val}{reset}" if status_val == "NOT_FOUND" else f"{red}{status_val}{reset}")
                 output += f"    Row {row_val:4s} | {name_val[:25]:25s} | {status_colored} | {details_val}\n"
         
         # Print recent warnings or errors

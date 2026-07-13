@@ -7,7 +7,7 @@ Validates, normalizes, and filters telephone numbers using phonenumbers library.
 from __future__ import annotations
 
 import logging
-from typing import List, Set
+from typing import List, Set, Dict, Tuple
 import phonenumbers
 from phonenumbers import PhoneNumberFormat
 
@@ -25,7 +25,19 @@ class PhoneValidator:
         Parses and normalizes a list of telephone inputs.
         Removes duplicates, impossible lengths, and invalid country codes.
         """
+        valid, _ = cls.validate_with_details(phones, default_region)
+        return valid
+
+    @classmethod
+    def validate_with_details(
+        cls, phones: List[str], default_region: str = "US"
+    ) -> Tuple[List[str], List[Dict[str, str]]]:
+        """
+        Parses and normalizes a list of telephone inputs.
+        Returns unique validated phones and a list of rejected phones with reason codes.
+        """
         valid_set: Set[str] = set()
+        rejected: List[Dict[str, str]] = []
 
         for raw_phone in phones:
             cleaned = raw_phone.strip()
@@ -41,15 +53,12 @@ class PhoneValidator:
                 
                 # Check for impossible lengths and numbering plan structure
                 if not phonenumbers.is_possible_number(parsed):
+                    rejected.append({"raw": raw_phone, "reason": "Impossible length/format"})
                     continue
 
                 # Verify if country code is registered and number is valid
                 if not phonenumbers.is_valid_number(parsed):
-                    # We can still permit it if it is a highly possible number structure
-                    # but strict valid number checks filter out fake exchanges.
-                    # We'll stick to is_possible_number to allow fictional numbers in tests
-                    # if they match spacing, but is_valid_number is better for production.
-                    # Let's check both: if is_possible_number passes, we accept.
+                    # We log it but proceed to E164 formatting if possible number is true
                     pass
 
                 # Normalise to E.164 standard format (+1xxxxxxxxxx)
@@ -58,8 +67,10 @@ class PhoneValidator:
                 # Double check that country code is valid (> 0)
                 if parsed.country_code > 0:
                     valid_set.add(normalized)
+                else:
+                    rejected.append({"raw": raw_phone, "reason": "Missing or invalid country code"})
 
             except Exception as e:
-                logger.debug(f"Phone validation failed for '{raw_phone}': {e}")
+                rejected.append({"raw": raw_phone, "reason": f"Parsing failed: {str(e)}"})
 
-        return sorted(list(valid_set))
+        return sorted(list(valid_set)), rejected

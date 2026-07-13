@@ -77,10 +77,13 @@ class SearchManager:
             )
 
         if resolution.status == "failed":
-            raise RuntimeError(
-                f"Search API Exhausted: {resolution.error_message}. "
-                f"Please verify your Tavily/Bing API keys or plan limits."
+            logger.warning(
+                f"[SearchManager] Search failed for '{name}': {resolution.error_message}. "
+                "Skipping crawl for this record."
             )
+            record["website"] = ""
+            record["search_resolution"] = resolution.model_dump()
+            return record
 
         # Update record dictionary fields
         record["website"] = resolution.resolved_url

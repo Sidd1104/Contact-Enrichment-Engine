@@ -57,28 +57,30 @@ class PipelineRunner:
         """Hooks dashboard rendering to state-change events."""
         health_checker = HealthMonitor()
 
-        def update_ui(*args: Any, **kwargs: Any) -> None:
-            # Sample health stats
-            health_report = health_checker.perform_health_check(
-                context=self.context,
-                queue_size=self.context.queue_depth,
-                db_alive=True,
-                browser_active=self.context.browser_launches > 0
-            )
-            # Render stats
-            self.dashboard.render(self.context.get_all_stats(), health_report)
+        def make_update_ui(force: bool) -> Callable[..., None]:
+            def update_ui(*args: Any, **kwargs: Any) -> None:
+                # Sample health stats
+                health_report = health_checker.perform_health_check(
+                    context=self.context,
+                    queue_size=self.context.queue_depth,
+                    db_alive=True,
+                    browser_active=self.context.browser_launches > 0
+                )
+                # Render stats
+                self.dashboard.render(self.context.get_all_stats(), health_report, force=force)
+            return update_ui
 
         # Register update callbacks
-        self.event_bus.subscribe(PipelineEventType.PIPELINE_STARTED, update_ui)
-        self.event_bus.subscribe(PipelineEventType.BATCH_STARTED, update_ui)
-        self.event_bus.subscribe(PipelineEventType.BATCH_COMPLETED, update_ui)
-        self.event_bus.subscribe(PipelineEventType.SEARCH_COMPLETED, update_ui)
-        self.event_bus.subscribe(PipelineEventType.SCRAPING_COMPLETED, update_ui)
-        self.event_bus.subscribe(PipelineEventType.VALIDATION_COMPLETED, update_ui)
-        self.event_bus.subscribe(PipelineEventType.DATABASE_SAVED, update_ui)
-        self.event_bus.subscribe(PipelineEventType.EXPORT_FINISHED, update_ui)
-        self.event_bus.subscribe(PipelineEventType.PIPELINE_FINISHED, update_ui)
-        self.event_bus.subscribe(PipelineEventType.PIPELINE_FAILED, update_ui)
+        self.event_bus.subscribe(PipelineEventType.PIPELINE_STARTED, make_update_ui(force=True))
+        self.event_bus.subscribe(PipelineEventType.BATCH_STARTED, make_update_ui(force=False))
+        self.event_bus.subscribe(PipelineEventType.BATCH_COMPLETED, make_update_ui(force=True))
+        self.event_bus.subscribe(PipelineEventType.SEARCH_COMPLETED, make_update_ui(force=False))
+        self.event_bus.subscribe(PipelineEventType.SCRAPING_COMPLETED, make_update_ui(force=False))
+        self.event_bus.subscribe(PipelineEventType.VALIDATION_COMPLETED, make_update_ui(force=False))
+        self.event_bus.subscribe(PipelineEventType.DATABASE_SAVED, make_update_ui(force=False))
+        self.event_bus.subscribe(PipelineEventType.EXPORT_FINISHED, make_update_ui(force=True))
+        self.event_bus.subscribe(PipelineEventType.PIPELINE_FINISHED, make_update_ui(force=True))
+        self.event_bus.subscribe(PipelineEventType.PIPELINE_FAILED, make_update_ui(force=True))
 
     async def run(self) -> Dict[str, Any]:
         """

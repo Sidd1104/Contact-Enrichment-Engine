@@ -57,6 +57,24 @@ class PipelineContext:
         self.ai_calls: int = 0
         self.ai_avoided: int = 0
         self.browser_launches: int = 0
+
+        # Success categories (Redefined outcomes)
+        self.success_full_count: int = 0
+        self.success_email_count: int = 0
+        self.success_phone_count: int = 0
+        self.not_found_count: int = 0
+        self.historical_success_full: int = 0
+        self.historical_success_email: int = 0
+        self.historical_success_phone: int = 0
+        self.historical_not_found: int = 0
+
+        # Row tracking & Excel resume properties
+        self.total_rows: int = 0
+        self.completed_rows: int = 0
+        self.remaining_rows: int = 0
+        self.resume_row: int = 0
+        self.current_row: int = 0
+        self.session_processed: int = 0
         
         # Telemetry durations by stage (accumulated)
         self.search_time: float = 0.0
@@ -65,6 +83,20 @@ class PipelineContext:
         self.ai_time: float = 0.0
         self.db_time: float = 0.0
         self.export_time: float = 0.0
+
+        # Enrichment quality metrics
+        self.total_search_attempts: int = 0
+        self.website_found_count: int = 0
+        self.contact_page_found_count: int = 0
+        self.pages_crawled_count: int = 0
+        self.emails_extracted_count: int = 0
+        self.phones_extracted_count: int = 0
+        self.raw_contacts_found_count: int = 0
+        self.ai_fallback_attempts: int = 0
+        self.ai_fallback_successes: int = 0
+        self.validation_attempts: int = 0
+        self.validation_rejections: int = 0
+        self.validated_contacts_count: int = 0
         
         # Errors log
         self.warnings: List[str] = []
@@ -160,6 +192,20 @@ class PipelineContext:
                 "ai_calls": self.ai_calls,
                 "ai_avoided": self.ai_avoided,
                 "browser_launches": self.browser_launches,
+                "success_full_count": self.success_full_count,
+                "success_email_count": self.success_email_count,
+                "success_phone_count": self.success_phone_count,
+                "not_found_count": self.not_found_count,
+                "historical_success_full": self.historical_success_full,
+                "historical_success_email": self.historical_success_email,
+                "historical_success_phone": self.historical_success_phone,
+                "historical_not_found": self.historical_not_found,
+                "total_rows": self.total_rows,
+                "completed_rows": self.completed_rows,
+                "remaining_rows": self.remaining_rows,
+                "resume_row": self.resume_row,
+                "current_row": self.current_row,
+                "session_processed": self.session_processed,
                 "durations": {
                     "search": round(self.search_time, 2),
                     "scraping": round(self.scraping_time, 2),
@@ -168,6 +214,18 @@ class PipelineContext:
                     "db": round(self.db_time, 2),
                     "export": round(self.export_time, 2)
                 },
+                "total_search_attempts": self.total_search_attempts,
+                "website_found_count": self.website_found_count,
+                "contact_page_found_count": self.contact_page_found_count,
+                "pages_crawled_count": self.pages_crawled_count,
+                "emails_extracted_count": self.emails_extracted_count,
+                "phones_extracted_count": self.phones_extracted_count,
+                "raw_contacts_found_count": self.raw_contacts_found_count,
+                "ai_fallback_attempts": self.ai_fallback_attempts,
+                "ai_fallback_successes": self.ai_fallback_successes,
+                "validation_attempts": self.validation_attempts,
+                "validation_rejections": self.validation_rejections,
+                "validated_contacts_count": self.validated_contacts_count,
                 "warnings_count": len(self.warnings),
                 "errors_count": len(self.errors),
                 "warnings": list(self.warnings),

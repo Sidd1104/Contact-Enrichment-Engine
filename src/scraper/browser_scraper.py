@@ -37,6 +37,7 @@ class BrowserScraper:
         self._playwright = None
         self._browser: Optional[Browser] = None
         self._launches_count = 0
+        self._requests_count = 0
 
     async def start(self) -> None:
         """Start the Playwright browser instance."""
@@ -81,6 +82,14 @@ class BrowserScraper:
         # Ensure browser is started
         if not self._browser:
             await self.start()
+            self._requests_count = 0
+
+        self._requests_count += 1
+        if self._requests_count >= 100:
+            logger.info("[Browser] Recycling browser process after 100 requests to prevent memory leaks...")
+            await self.close()
+            await self.start()
+            self._requests_count = 0
 
         async with self._semaphore:
             start_time = time.perf_counter()

@@ -362,3 +362,19 @@ class SQLiteRepository(BaseRepository):
             ]
         finally:
             session.close()
+
+    def save_audit_trails(self, audit_records: List[Dict[str, Any]]) -> None:
+        """Saves a batch of audit trail records to the database."""
+        session = self.conn_mgr.get_session()
+        try:
+            from .database_manager import AuditTrailModel
+            db_records = [AuditTrailModel(**rec) for rec in audit_records]
+            session.add_all(db_records)
+            session.commit()
+            logger.info(f"[SQLiteRepository] Saved {len(audit_records)} audit trails to DB.")
+        except Exception as e:
+            session.rollback()
+            logger.error(f"[SQLiteRepository] Failed to save audit trails: {e}")
+            raise e
+        finally:
+            session.close()

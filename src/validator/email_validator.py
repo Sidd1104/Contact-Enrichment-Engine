@@ -7,7 +7,7 @@ Validates email addresses checking syntax, duplicates, TLDs, and disposable doma
 from __future__ import annotations
 
 import re
-from typing import List, Set
+from typing import List, Set, Tuple, Dict
 
 
 class EmailValidator:
@@ -61,7 +61,17 @@ class EmailValidator:
         Filters and validates a list of emails.
         Removes duplicates, malformed, disposable, and invalid TLD items.
         """
+        valid, _ = cls.validate_with_details(emails)
+        return valid
+
+    @classmethod
+    def validate_with_details(cls, emails: List[str]) -> Tuple[List[str], List[Dict[str, str]]]:
+        """
+        Filters and validates a list of emails.
+        Returns unique validated emails and a list of rejected emails with reason codes.
+        """
         valid_set: Set[str] = set()
+        rejected: List[Dict[str, str]] = []
 
         for raw_email in emails:
             email = raw_email.strip().lower()
@@ -70,17 +80,20 @@ class EmailValidator:
 
             # Verify syntax, check for malformed formats
             if not cls.is_valid_syntax(email):
+                rejected.append({"raw": raw_email, "reason": "Invalid syntax"})
                 continue
 
             # Verify TLD correctness
             if not cls.is_valid_tld(email):
+                rejected.append({"raw": raw_email, "reason": "Invalid TLD"})
                 continue
 
             # Block disposable email providers
             if cls.is_disposable(email):
+                rejected.append({"raw": raw_email, "reason": "Disposable email domain"})
                 continue
 
             valid_set.add(email)
 
         # Return unique validated emails maintaining stable order if possible
-        return sorted(list(valid_set))
+        return sorted(list(valid_set)), rejected

@@ -134,3 +134,10 @@ class BaseRepository(ABC):
         Retrieves all retry records.
         """
         pass
+
+    @abstractmethod
+    def save_audit_trails(self, audit_records: List[Dict[str, Any]]) -> None:
+        """
+        Saves a batch of audit trail records to the database.
+        """
+        pass

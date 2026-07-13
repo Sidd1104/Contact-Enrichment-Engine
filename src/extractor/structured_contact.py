@@ -6,7 +6,7 @@ Defines the final schema contract for extracted contact results.
 
 from __future__ import annotations
 
-from typing import Dict, List
+from typing import Dict, List, Any
 from pydantic import BaseModel, Field
 
 
@@ -65,4 +65,8 @@ class StructuredContact(BaseModel):
     raw_text: str = Field(
         default="",
         description="Accumulated raw visible text from crawled pages."
+    )
+    crawl_telemetry: Dict[str, Any] = Field(
+        default_factory=dict,
+        description="Detailed crawling and rendering stats/funnel drops."
     )
