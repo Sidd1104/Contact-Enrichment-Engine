@@ -197,6 +197,41 @@ class PipelineOrchestrator:
 
             eligible_records, completed_count, skipped_empty, duplicate_count = importer.process_records(raw_rows, mapping, processed_npis)
             
+            # --- RECHECK / RE-VERIFICATION MODE ---
+            # If the entire file has been completed (i.e., zero eligible new records are found),
+            # we automatically trigger a recheck pass on any rows that have missing contact details.
+            if len(eligible_records) == 0:
+                logger.info("[Orchestrator] All records in the Excel file have been processed. Scanning for incomplete/skipped rows to recheck...")
+                recheck_npis = set()
+                for row in status_rows_for_metrics:
+                    mapped_row = row_mapper.map_row(row)
+                    npi = mapped_row.get("npi", "").strip()
+                    if not npi:
+                        continue
+                    
+                    email_val = mapped_row.get("email", "")
+                    phone_val = mapped_row.get("phone", "")
+                    emails_list = [e.strip() for e in str(email_val).split(",") if e.strip() and not is_empty_value(e.strip())]
+                    phones_list = [p.strip() for p in str(phone_val).split(",") if p.strip() and not is_empty_value(p.strip())]
+                    
+                    # If either email or phone is missing, or status is "not found", we recheck it
+                    row_status = ""
+                    if status_col_name and status_col_name in row:
+                        row_status = str(row[status_col_name]).strip().lower()
+                    
+                    is_complete = len(emails_list) > 0 and len(phones_list) > 0
+                    if not is_complete or row_status in ("no contact found", "not found", "no contacts"):
+                        recheck_npis.add(npi)
+                
+                if recheck_npis:
+                    # Filter processed_npis to exclude the NPIs we want to recheck, making them eligible again
+                    processed_npis = processed_npis - recheck_npis
+                    # Re-run process_records with the adjusted processed_npis
+                    eligible_records, completed_count, skipped_empty, duplicate_count = importer.process_records(raw_rows, mapping, processed_npis)
+                    logger.info(f"[Orchestrator] Entering recheck mode: Found {len(eligible_records)} incomplete records to retry starting from the beginning.")
+                else:
+                    logger.info("[Orchestrator] All records in the Excel file are already fully complete (both email & phone found). Nothing to recheck.")
+
             # Enforce limits if specified in the context metrics
             limit = self.context.get_value("total_records")
             if limit:
