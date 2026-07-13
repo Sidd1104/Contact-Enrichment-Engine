@@ -133,3 +133,121 @@ class FileSearchCache(SearchCache):
             self._cache_data = {}
             await self._save_cache()
             logger.info("[FileSearchCache] Cache wiped successfully.")
+
+
+class FileCrawlCache:
+    """
+    Local JSON-file based persistent crawl cache mapping Website URL -> ScrapedPage data.
+    """
+
+    def __init__(self, cache_dir: Optional[str] = None) -> None:
+        self.cache_dir = Path(cache_dir or ai_config.search_cache_directory)
+        self.cache_dir.mkdir(parents=True, exist_ok=True)
+        self.cache_file = self.cache_dir / "crawl_cache.json"
+        self._lock = asyncio.Lock()
+        self._cache_data: Dict[str, Dict[str, Any]] = {}
+        self._loaded = False
+
+    async def _load_cache(self) -> None:
+        if self._loaded:
+            return
+        if not self.cache_file.exists():
+            self._cache_data = {}
+            self._loaded = True
+            return
+        try:
+            with open(self.cache_file, "r", encoding="utf-8") as f:
+                self._cache_data = json.load(f)
+            self._loaded = True
+            logger.info(f"[FileCrawlCache] Loaded {len(self._cache_data)} crawl cache entries.")
+        except Exception as e:
+            logger.error(f"[FileCrawlCache] Failed to load crawl cache: {e}")
+            self._cache_data = {}
+            self._loaded = True
+
+    async def _save_cache(self) -> None:
+        try:
+            with open(self.cache_file, "w", encoding="utf-8") as f:
+                json.dump(self._cache_data, f, indent=4)
+        except Exception as e:
+            logger.error(f"[FileCrawlCache] Failed to write crawl cache file: {e}")
+
+    async def get(self, url: str) -> Optional[Dict[str, Any]]:
+        if not ai_config.search_cache_enabled:
+            return None
+        async with self._lock:
+            await self._load_cache()
+            clean_url = url.strip().lower()
+            return self._cache_data.get(clean_url)
+
+    async def set(self, url: str, scraped_page_dict: Dict[str, Any]) -> None:
+        if not ai_config.search_cache_enabled:
+            return
+        async with self._lock:
+            await self._load_cache()
+            clean_url = url.strip().lower()
+            self._cache_data[clean_url] = {
+                "url": url,
+                "scraped_data": scraped_page_dict,
+                "timestamp": datetime.now().isoformat(),
+            }
+            await self._save_cache()
+
+
+class FileContactCache:
+    """
+    Local JSON-file based persistent cache mapping Company Name/NPI -> Enriched Contact Details.
+    """
+
+    def __init__(self, cache_dir: Optional[str] = None) -> None:
+        self.cache_dir = Path(cache_dir or ai_config.search_cache_directory)
+        self.cache_dir.mkdir(parents=True, exist_ok=True)
+        self.cache_file = self.cache_dir / "contact_cache.json"
+        self._lock = asyncio.Lock()
+        self._cache_data: Dict[str, Dict[str, Any]] = {}
+        self._loaded = False
+
+    async def _load_cache(self) -> None:
+        if self._loaded:
+            return
+        if not self.cache_file.exists():
+            self._cache_data = {}
+            self._loaded = True
+            return
+        try:
+            with open(self.cache_file, "r", encoding="utf-8") as f:
+                self._cache_data = json.load(f)
+            self._loaded = True
+            logger.info(f"[FileContactCache] Loaded {len(self._cache_data)} contact cache entries.")
+        except Exception as e:
+            logger.error(f"[FileContactCache] Failed to load contact cache: {e}")
+            self._cache_data = {}
+            self._loaded = True
+
+    async def _save_cache(self) -> None:
+        try:
+            with open(self.cache_file, "w", encoding="utf-8") as f:
+                json.dump(self._cache_data, f, indent=4)
+        except Exception as e:
+            logger.error(f"[FileContactCache] Failed to write contact cache file: {e}")
+
+    async def get(self, key: str) -> Optional[Dict[str, Any]]:
+        if not ai_config.search_cache_enabled:
+            return None
+        async with self._lock:
+            await self._load_cache()
+            clean_key = key.strip().lower()
+            return self._cache_data.get(clean_key)
+
+    async def set(self, key: str, contact_dict: Dict[str, Any]) -> None:
+        if not ai_config.search_cache_enabled:
+            return
+        async with self._lock:
+            await self._load_cache()
+            clean_key = key.strip().lower()
+            self._cache_data[clean_key] = {
+                "key": key,
+                "contact": contact_dict,
+                "timestamp": datetime.now().isoformat(),
+            }
+            await self._save_cache()

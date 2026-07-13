@@ -110,16 +110,16 @@ class PipelineOrchestrator:
         # AI fallback
         self.ai_mgr = AIEnrichmentManager()
         
-        # Resolve AI order and Tavily config
-        from src.search.search_provider import TavilySearchProvider, BingSearchProvider
+        # Resolve AI order and Gemini config
+        from src.search.search_provider import GeminiSearchProvider, BingSearchProvider
         from src.search.provider_router import ProviderRouter
         from src.search.cache_manager import FileSearchCache
         from src.search.metrics import SearchMetrics
         from src.search.search_engine import SearchEngine
 
-        tavily_prov = TavilySearchProvider()
+        gemini_prov = GeminiSearchProvider()
         bing_prov = BingSearchProvider()
-        search_router = ProviderRouter([tavily_prov, bing_prov], ["tavily", "bing"])
+        search_router = ProviderRouter([gemini_prov, bing_prov], ["gemini_grounding", "bing"])
         
         search_cache = FileSearchCache()
         search_metrics = SearchMetrics()
