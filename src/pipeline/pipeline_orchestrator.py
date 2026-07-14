@@ -124,7 +124,8 @@ class PipelineOrchestrator:
         search_cache = FileSearchCache()
         search_metrics = SearchMetrics()
         search_engine = SearchEngine(search_router, cache=search_cache, metrics=search_metrics)
-        self.search_mgr = SearchManager(search_engine, max_concurrency=profile.max_concurrency)
+        # Limit search concurrency to a maximum of 4 to prevent API rate limiting (429) on grounding
+        self.search_mgr = SearchManager(search_engine, max_concurrency=min(profile.max_concurrency, 4))
 
     async def _cleanup_components(self) -> None:
         """Safely disposes Playwright browsers and database connections."""

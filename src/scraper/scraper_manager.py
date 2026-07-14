@@ -139,14 +139,13 @@ class ScraperManager:
                 official_website=website_url,
                 errors=["Empty or invalid website URL provided."]
             )
-
-        # 1. Robots.txt check
-        is_allowed = await self.robots_handler.is_allowed(normalized_url)
-        if not is_allowed:
-            warning_msg = f"Robots.txt restricts crawling on {normalized_url}."
-            logger.warning(warning_msg)
-            errors.append(warning_msg)
-            if self.strict_robots:
+        # 1. Robots.txt check (only executed if strict_robots is True to avoid unnecessary network latency)
+        if self.strict_robots:
+            is_allowed = await self.robots_handler.is_allowed(normalized_url)
+            if not is_allowed:
+                warning_msg = f"Robots.txt restricts crawling on {normalized_url}."
+                logger.warning(warning_msg)
+                errors.append(warning_msg)
                 self.metrics.increment_failures()
                 self.metrics.record_session(time.perf_counter() - start_time)
                 self.metrics.save()
@@ -155,7 +154,7 @@ class ScraperManager:
                     errors=errors
                 )
 
-        # 2. Homepage Crawl (Priority: Crawl Cache -> Firecrawl -> HTTPScraper fallback)
+        # 2. Homepage Crawl (Priority: Crawl Cache -> HTTPScraper -> Firecrawl fallback)
         cached = await self.crawl_cache.get(normalized_url)
         if cached:
             logger.info(f"[ScraperManager] Crawl cache HIT for {normalized_url}")
@@ -167,13 +166,16 @@ class ScraperManager:
                 headers=cached_data.get("headers", {}),
                 error_message=cached_data.get("error_message"),
                 latency=cached_data.get("latency", 0.0),
-                method=cached_data.get("method", "Firecrawl")
+                method=cached_data.get("method", "HTTP")
             )
         else:
-            homepage_scraped = await self.firecrawl_client.scrape_page(normalized_url)
-            if homepage_scraped.status_code == 0 or homepage_scraped.status_code >= 400:
-                logger.warning(f"[ScraperManager] Firecrawl failed on {normalized_url}. Falling back to HTTPScraper.")
-                homepage_scraped = await self.http_scraper.scrape_page(normalized_url)
+            # Try HTTPScraper first (extremely fast)
+            homepage_scraped = await self.http_scraper.scrape_page(normalized_url)
+            
+            # If HTTPScraper failed, fall back to Firecrawl (only if API key is present)
+            if (homepage_scraped.status_code == 0 or homepage_scraped.status_code >= 400) and self.firecrawl_client.api_key:
+                logger.warning(f"[ScraperManager] HTTPScraper failed on {normalized_url} (status: {homepage_scraped.status_code}). Falling back to Firecrawl.")
+                homepage_scraped = await self.firecrawl_client.scrape_page(normalized_url)
             
             if homepage_scraped.status_code > 0 and homepage_scraped.status_code < 400:
                 await self.crawl_cache.set(normalized_url, {
@@ -225,53 +227,64 @@ class ScraperManager:
                 # Discover contact pages
                 candidates = self.page_discovery.discover_pages(homepage_parsed, normalized_url)
                 
-                # Fetch candidate pages via HTTP
-                for page_url, score in candidates:
-                    # Check robots.txt for subpage
-                    if not await self.robots_handler.is_allowed(page_url):
-                        logger.warning(f"Robots.txt restricts subpage crawl: {page_url}")
-                        continue
+                # Fetch candidate pages concurrently via HTTPScraper to maximize speed
+                async def fetch_http_subpage(page_url: str) -> tuple[str, Optional[ScrapedPage]]:
+                    if self.strict_robots:
+                        if not await self.robots_handler.is_allowed(page_url):
+                            return page_url, None
+                    try:
+                        res = await self.http_scraper.scrape_page(page_url)
+                        return page_url, res
+                    except Exception as e:
+                        logger.warning(f"HTTP subpage fetch failed for {page_url}: {e}")
+                        return page_url, None
 
-                    subpage_scraped = await self.http_scraper.scrape_page(page_url)
-                    pages_visited.append(page_url)
+                subpage_tasks = [fetch_http_subpage(url_val) for url_val, score in candidates]
+                if subpage_tasks:
+                    subpage_results = await asyncio.gather(*subpage_tasks)
+                    for page_url, subpage_scraped in subpage_results:
+                        if not subpage_scraped:
+                            continue
+                        
+                        pages_visited.append(page_url)
 
-                    if subpage_scraped.status_code > 0 and subpage_scraped.status_code < 400:
-                        self.metrics.increment_http_success()
-                        self.metrics.increment_pages_crawled()
+                        if subpage_scraped.status_code > 0 and subpage_scraped.status_code < 400:
+                            self.metrics.increment_http_success()
+                            self.metrics.increment_pages_crawled()
 
-                        sub_parsed = HTMLParser.parse(subpage_scraped.html, page_url)
-                        parsed_pages.append(sub_parsed)
+                            sub_parsed = HTMLParser.parse(subpage_scraped.html, page_url)
+                            parsed_pages.append(sub_parsed)
 
-                        # Extract subpage contacts
-                        sub_emails = EmailExtractor.extract(sub_parsed.visible_text, sub_parsed.mailto_links)
-                        sub_phones = PhoneExtractor.extract(sub_parsed.visible_text, sub_parsed.tel_links)
-                        sub_socials = SocialExtractor.extract(sub_parsed.all_links)
+                            # Extract subpage contacts
+                            sub_emails = EmailExtractor.extract(sub_parsed.visible_text, sub_parsed.mailto_links)
+                            sub_phones = PhoneExtractor.extract(sub_parsed.visible_text, sub_parsed.tel_links)
+                            sub_socials = SocialExtractor.extract(sub_parsed.all_links)
 
-                        for email, _ in sub_emails.items():
-                            is_mailto = email in sub_parsed.mailto_links
-                            is_footer = email in sub_parsed.footer_text.lower()
-                            score_val = ConfidenceEngine.compute_email_confidence(
-                                email, page_url, is_mailto, is_footer, normalized_url
-                            )
-                            if email not in emails_with_scores or score_val > emails_with_scores[email]:
-                                emails_with_scores[email] = score_val
+                            for email, _ in sub_emails.items():
+                                is_mailto = email in sub_parsed.mailto_links
+                                is_footer = email in sub_parsed.footer_text.lower()
+                                score_val = ConfidenceEngine.compute_email_confidence(
+                                    email, page_url, is_mailto, is_footer, normalized_url
+                                )
+                                if email not in emails_with_scores or score_val > emails_with_scores[email]:
+                                    emails_with_scores[email] = score_val
 
-                        for phone, _ in sub_phones.items():
-                            is_tel = any(phone in t for t in sub_parsed.tel_links)
-                            is_footer = phone in sub_parsed.footer_text
-                            score_val = ConfidenceEngine.compute_phone_confidence(
-                                phone, page_url, is_tel, is_footer, normalized_url
-                            )
-                            if phone not in phones_with_scores or score_val > phones_with_scores[phone]:
-                                phones_with_scores[phone] = score_val
+                            for phone, _ in sub_phones.items():
+                                is_tel = any(phone in t for t in sub_parsed.tel_links)
+                                is_footer = phone in sub_parsed.footer_text
+                                score_val = ConfidenceEngine.compute_phone_confidence(
+                                    phone, page_url, is_tel, is_footer, normalized_url
+                                )
+                                if phone not in phones_with_scores or score_val > phones_with_scores[phone]:
+                                    phones_with_scores[phone] = score_val
 
-                        for platform, url in sub_socials.items():
-                            if url and not social_links[platform]:
-                                social_links[platform] = url
-                    else:
-                        self.metrics.increment_http_fail()
-                        if subpage_scraped.error_message:
-                            errors.append(f"HTTP subpage failed: {page_url} - {subpage_scraped.error_message}")
+                            for platform, url in sub_socials.items():
+                                if url and not social_links[platform]:
+                                    social_links[platform] = url
+                        else:
+                            self.metrics.increment_http_fail()
+                            if subpage_scraped.error_message:
+                                errors.append(f"HTTP subpage failed: {page_url} - {subpage_scraped.error_message}")
         else:
             self.metrics.increment_http_fail()
             if homepage_scraped.error_message:
@@ -330,56 +343,72 @@ class ScraperManager:
                     if url and not social_links[platform]:
                         social_links[platform] = url
 
-                # Discover and crawl contact pages if still empty
+                # Discover and crawl contact pages concurrently using Playwright browser contexts
                 if not emails_with_scores and not phones_with_scores:
                     candidates = self.page_discovery.discover_pages(homepage_parsed, normalized_url)
+                    
+                    async def fetch_browser_subpage(page_url: str) -> tuple[str, Optional[ScrapedPage]]:
+                        if self.strict_robots:
+                            if not await self.robots_handler.is_allowed(page_url):
+                                return page_url, None
+                        try:
+                            res = await self.browser_scraper.scrape_page(page_url)
+                            return page_url, res
+                        except Exception as e:
+                            logger.warning(f"Browser subpage fetch failed for {page_url}: {e}")
+                            return page_url, None
+
+                    browser_tasks = []
                     for page_url, score in candidates:
                         if page_url in pages_visited:
                             continue
+                        browser_tasks.append(fetch_browser_subpage(page_url))
 
-                        if not await self.robots_handler.is_allowed(page_url):
-                            continue
+                    if browser_tasks:
+                        browser_results = await asyncio.gather(*browser_tasks)
+                        for page_url, browser_subpage in browser_results:
+                            if not browser_subpage:
+                                continue
+                            
+                            pages_visited.append(page_url)
 
-                        browser_subpage = await self.browser_scraper.scrape_page(page_url)
-                        pages_visited.append(page_url)
+                            if browser_subpage.status_code > 0 and browser_subpage.status_code < 400:
+                                self.metrics.increment_browser_success()
+                                self.metrics.increment_pages_crawled()
 
-                        if browser_subpage.status_code > 0 and browser_subpage.status_code < 400:
-                            self.metrics.increment_browser_success()
-                            self.metrics.increment_pages_crawled()
+                                sub_parsed = HTMLParser.parse(browser_subpage.html, page_url)
+                                parsed_pages.append(sub_parsed)
 
-                            sub_parsed = HTMLParser.parse(browser_subpage.html, page_url)
-                            parsed_pages.append(sub_parsed)
+                                # Extract subpage contacts
+                                sub_emails = EmailExtractor.extract(sub_parsed.visible_text, sub_parsed.mailto_links)
+                                sub_phones = PhoneExtractor.extract(sub_parsed.visible_text, sub_parsed.tel_links)
+                                sub_socials = SocialExtractor.extract(sub_parsed.all_links)
 
-                            # Extract subpage contacts
-                            sub_emails = EmailExtractor.extract(sub_parsed.visible_text, sub_parsed.mailto_links)
-                            sub_phones = PhoneExtractor.extract(sub_parsed.visible_text, sub_parsed.tel_links)
-                            sub_socials = SocialExtractor.extract(sub_parsed.all_links)
+                                for email, _ in sub_emails.items():
+                                    is_mailto = email in sub_parsed.mailto_links
+                                    is_footer = email in sub_parsed.footer_text.lower()
+                                    score_val = ConfidenceEngine.compute_email_confidence(
+                                        email, page_url, is_mailto, is_footer, normalized_url
+                                    )
+                                    if email not in emails_with_scores or score_val > emails_with_scores[email]:
+                                        emails_with_scores[email] = score_val
 
-                            for email, _ in sub_emails.items():
-                                is_mailto = email in sub_parsed.mailto_links
-                                is_footer = email in sub_parsed.footer_text.lower()
-                                score_val = ConfidenceEngine.compute_email_confidence(
-                                    email, page_url, is_mailto, is_footer, normalized_url
-                                )
-                                if email not in emails_with_scores or score_val > emails_with_scores[email]:
-                                    emails_with_scores[email] = score_val
+                                for phone, _ in sub_phones.items():
+                                    is_tel = any(phone in t for t in sub_parsed.tel_links)
+                                    is_footer = phone in sub_parsed.footer_text
+                                    score_val = ConfidenceEngine.compute_phone_confidence(
+                                        phone, page_url, is_tel, is_footer, normalized_url
+                                    )
+                                    if phone not in phones_with_scores or score_val > phones_with_scores[phone]:
+                                        phones_with_scores[phone] = score_val
 
-                            for phone, _ in sub_phones.items():
-                                is_tel = any(phone in t for t in sub_parsed.tel_links)
-                                is_footer = phone in sub_parsed.footer_text
-                                score_val = ConfidenceEngine.compute_phone_confidence(
-                                    phone, page_url, is_tel, is_footer, normalized_url
-                                )
-                                if phone not in phones_with_scores or score_val > phones_with_scores[phone]:
-                                    phones_with_scores[phone] = score_val
-
-                            for platform, url in sub_socials.items():
-                                if url and not social_links[platform]:
-                                    social_links[platform] = url
-                        else:
-                            self.metrics.increment_browser_fail()
-                            if browser_subpage.error_message:
-                                errors.append(f"Browser subpage failed: {page_url} - {browser_subpage.error_message}")
+                                for platform, url in sub_socials.items():
+                                    if url and not social_links[platform]:
+                                        social_links[platform] = url
+                            else:
+                                self.metrics.increment_browser_fail()
+                                if browser_subpage.error_message:
+                                    errors.append(f"Browser subpage failed: {page_url} - {browser_subpage.error_message}")
             else:
                 self.metrics.increment_browser_fail()
                 if browser_homepage.error_message:

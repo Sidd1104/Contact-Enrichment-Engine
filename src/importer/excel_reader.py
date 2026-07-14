@@ -50,27 +50,15 @@ class ExcelReader:
         """
         Auto-detect the primary dataset Excel file.
         
-        If multiple exist, prioritizes files containing 'investor' or 'contact'
-        in their name, otherwise picks the largest file.
+        Prioritizes the most recently modified or created Excel file.
         """
         files = self.find_excel_files()
         if not files:
             raise FileNotFoundError(f"No Excel files found in {self.input_dir}")
 
-        if len(files) == 1:
-            return files[0]
-
-        # Prioritize based on keywords
-        keywords = ("enriched", "investor", "contact", "customer", "lead")
-        for file in files:
-            name_lower = file.name.lower()
-            if any(k in name_lower for k in keywords):
-                logger.info(f"[ExcelReader] Auto-selected file by keyword: {file.name}")
-                return file
-
-        # Default fallback: pick largest file size
-        files.sort(key=lambda f: f.stat().st_size, reverse=True)
-        logger.info(f"[ExcelReader] Auto-selected largest file: {files[0].name}")
+        # Sort files by modification time descending (newest/most recently changed first)
+        files.sort(key=lambda f: f.stat().st_mtime, reverse=True)
+        logger.info(f"[ExcelReader] Auto-selected most recently modified file: {files[0].name}")
         return files[0]
 
     def detect_primary_sheet(self, file_path: Path) -> str:

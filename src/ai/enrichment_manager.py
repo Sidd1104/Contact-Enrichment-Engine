@@ -60,9 +60,15 @@ class AIEnrichmentManager:
             crawled_text=website_text
         )
 
+        use_search = False
+        cleaned_text = website_text.strip().lower()
+        if not cleaned_text or cleaned_text in ("clinic web text...", "[no text successfully crawled from website]"):
+            use_search = True
+            logger.info(f"[Enrichment] Empty or placeholder website text detected. Enabling Google Search Grounding fallback for '{profile.business_name}'.")
+
         try:
             # 2. Query Gemini structured output
-            ai_result = await self.router.query_enrichment(prompt)
+            ai_result = await self.router.query_enrichment(prompt, use_search_grounding=use_search)
             latency = time.perf_counter() - start_time
             
             # Simple mock token tracker (Gemini doesn't always expose token usage in response metadata)

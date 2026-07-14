@@ -228,6 +228,7 @@ class AIRouter:
         prompt: str,
         response_model: Type[BaseModel],
         timeout: float = 0.0,
+        **kwargs: Any,
     ) -> BaseModel:
         """
         Route a structured query to the best available provider.
@@ -256,7 +257,7 @@ class AIRouter:
                     f"[Router] Structured query routed to '{provider.name}'"
                 )
                 result = await provider.query_structured(
-                    prompt, response_model, timeout=timeout
+                    prompt, response_model, timeout=timeout, **kwargs
                 )
 
                 latency = time.monotonic() - start

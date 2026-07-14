@@ -328,6 +328,8 @@ class GeminiProvider(AIProvider):
         prompt: str,
         response_model: Type[BaseModel],
         timeout: float = 30.0,
+        use_search_grounding: bool = False,
+        **kwargs: Any,
     ) -> BaseModel:
         """
         Send a prompt to Gemini with a JSON schema constraint,
@@ -342,7 +344,7 @@ class GeminiProvider(AIProvider):
             )
 
         gemini_schema = _pydantic_to_gemini_schema(response_model)
-        payload = self._build_payload(prompt, response_schema=gemini_schema)
+        payload = self._build_payload(prompt, response_schema=gemini_schema, use_search_grounding=use_search_grounding)
         start_time = time.monotonic()
         retry_count = 0
 

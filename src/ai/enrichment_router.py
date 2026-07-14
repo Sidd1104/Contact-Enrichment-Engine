@@ -34,7 +34,7 @@ class AIEnrichmentRouter:
         """Closes router provider connections."""
         await self.router.stop()
 
-    async def query_enrichment(self, prompt: str) -> AIEnrichmentResult:
+    async def query_enrichment(self, prompt: str, use_search_grounding: bool = False) -> AIEnrichmentResult:
         """
         Executes a structured query against Gemini to return verified contact details.
         """
@@ -42,7 +42,8 @@ class AIEnrichmentRouter:
             # Reuses the underlying router structured routing queries
             response: AIEnrichmentResponseModel = await self.router.query_structured(
                 prompt=prompt,
-                response_model=AIEnrichmentResponseModel
+                response_model=AIEnrichmentResponseModel,
+                use_search_grounding=use_search_grounding
             )
             return response.enrichment
         except Exception as e:

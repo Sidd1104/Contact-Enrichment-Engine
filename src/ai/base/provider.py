@@ -196,6 +196,7 @@ class AIProvider(ABC):
         prompt: str,
         response_model: Type[BaseModel],
         timeout: float = 30.0,
+        **kwargs: Any,
     ) -> BaseModel:
         """
         Send a prompt and parse the response into a Pydantic model.
