@@ -10,6 +10,7 @@ Coordinates caches, provider routers, ranking heuristics, validation, and metric
 from __future__ import annotations
 
 import logging
+import asyncio
 import time
 from typing import Any, Dict, List, Optional
 
@@ -42,6 +43,7 @@ class SearchEngine:
         self.metrics = metrics or SearchMetrics()
         self.ranker = ranker or DomainRanker()
         self.validator = SearchValidator()
+        self._search_lock = asyncio.Lock()
 
     def construct_query(
         self,
@@ -126,94 +128,98 @@ class SearchEngine:
                 return res
 
         # 4. Route query to available search providers in priority fallback loop
-        last_error = None
-        providers_tried = 0
-        max_providers_to_try = len(self.router.get_providers())
-        
-        while providers_tried < max_providers_to_try:
-            provider = self.router.select_provider()
-            if not provider:
-                break
-                
-            providers_tried += 1
-            logger.info(f"[SearchEngine] Discovering website for '{business_name}' via provider '{provider.name}'")
+        async with self._search_lock:
+            # Enforce 4 seconds rate-limiting delay between API calls to stay under 15 RPM
+            await asyncio.sleep(4.0)
+
+            last_error = None
+            providers_tried = 0
+            max_providers_to_try = len(self.router.get_providers())
             
-            try:
-                candidates = await provider.search(query, limit=5)
+            while providers_tried < max_providers_to_try:
+                provider = self.router.select_provider()
+                if not provider:
+                    break
+                    
+                providers_tried += 1
+                logger.info(f"[SearchEngine] Discovering website for '{business_name}' via provider '{provider.name}'")
                 
-                # Rank candidates
-                ranked = self.ranker.rank_candidates(candidates, business_name, city, state)
-                
-                resolved_url = ""
-                confidence = 0.0
-                
-                if ranked:
-                    top_url, confidence = ranked[0]
-                    resolved_url = self.validator.sanitize_url(top_url)
-                    if not self.validator.is_valid_url(resolved_url):
-                        resolved_url = ""
-                        confidence = 0.0
+                try:
+                    candidates = await provider.search(query, limit=5)
+                    
+                    # Rank candidates
+                    ranked = self.ranker.rank_candidates(candidates, business_name, city, state)
+                    
+                    resolved_url = ""
+                    confidence = 0.0
+                    
+                    if ranked:
+                        top_url, confidence = ranked[0]
+                        resolved_url = self.validator.sanitize_url(top_url)
+                        if not self.validator.is_valid_url(resolved_url):
+                            resolved_url = ""
+                            confidence = 0.0
 
-                latency = time.monotonic() - start_time
+                    latency = time.monotonic() - start_time
 
-                # 5. Save result to cache
-                if self.cache and resolved_url:
-                    await self.cache.set(query, resolved_url, confidence, provider.name)
+                    # 5. Save result to cache
+                    if self.cache and resolved_url:
+                        await self.cache.set(query, resolved_url, confidence, provider.name)
 
-                # Record success metrics
-                await self.metrics.record_search(
-                    provider=provider.name,
-                    success=True,
-                    latency=latency,
-                    cache_hit=False
-                )
+                    # Record success metrics
+                    await self.metrics.record_search(
+                        provider=provider.name,
+                        success=True,
+                        latency=latency,
+                        cache_hit=False
+                    )
 
-                return SearchResolution(
-                    query=query,
-                    resolved_url=resolved_url,
-                    confidence_score=confidence,
-                    provider_used=provider.name,
-                    latency=latency,
-                    cache_hit=False,
-                    status="success"
-                )
+                    return SearchResolution(
+                        query=query,
+                        resolved_url=resolved_url,
+                        confidence_score=confidence,
+                        provider_used=provider.name,
+                        latency=latency,
+                        cache_hit=False,
+                        status="success"
+                    )
 
-            except (FatalSearchError, TransientSearchError, Exception) as e:
-                latency = time.monotonic() - start_time
-                err_name = type(e).__name__
-                logger.error(
-                    f"[SearchEngine] Provider '{provider.name}' failed with {err_name}: {e}. "
-                    f"Trying fallback..."
-                )
-                
-                # Penalize/cool down provider so it won't be immediately reselected in this process run
-                provider.record_failure()
-                if "429" in str(e) or "432" in str(e):
-                    provider.trigger_cooldown(300.0)
-                
-                # Record failure metrics for this provider
-                rate_limit = "RateLimit" in err_name or "429" in str(e) or "432" in str(e)
-                await self.metrics.record_search(
-                    provider=provider.name,
-                    success=False,
-                    latency=latency,
-                    cache_hit=False,
-                    rate_limit_event=rate_limit
-                )
-                last_error = e
-                continue
+                except (FatalSearchError, TransientSearchError, Exception) as e:
+                    latency = time.monotonic() - start_time
+                    err_name = type(e).__name__
+                    logger.error(
+                        f"[SearchEngine] Provider '{provider.name}' failed with {err_name}: {e}. "
+                        f"Trying fallback..."
+                    )
+                    
+                    # Penalize/cool down provider so it won't be immediately reselected in this process run
+                    provider.record_failure()
+                    if "429" in str(e) or "432" in str(e):
+                        provider.trigger_cooldown(300.0)
+                    
+                    # Record failure metrics for this provider
+                    rate_limit = "RateLimit" in err_name or "429" in str(e) or "432" in str(e)
+                    await self.metrics.record_search(
+                        provider=provider.name,
+                        success=False,
+                        latency=latency,
+                        cache_hit=False,
+                        rate_limit_event=rate_limit
+                    )
+                    last_error = e
+                    continue
 
-        # If all providers in fallback chain failed
-        latency = time.monotonic() - start_time
-        err_msg = f"All providers failed. Last error: {last_error}" if last_error else "No search providers available."
-        
-        return SearchResolution(
-            query=query,
-            resolved_url="",
-            confidence_score=0.0,
-            provider_used="",
-            latency=latency,
-            cache_hit=False,
-            status="failed",
-            error_message=err_msg
-        )
+            # If all providers in fallback chain failed
+            latency = time.monotonic() - start_time
+            err_msg = f"All providers failed. Last error: {last_error}" if last_error else "No search providers available."
+            
+            return SearchResolution(
+                query=query,
+                resolved_url="",
+                confidence_score=0.0,
+                provider_used="",
+                latency=latency,
+                cache_hit=False,
+                status="failed",
+                error_message=err_msg
+            )

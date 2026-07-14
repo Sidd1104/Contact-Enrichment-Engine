@@ -22,18 +22,21 @@ class Dashboard:
 
     def __init__(self, disabled: bool = False) -> None:
         self.disabled = disabled
-        # Track whether we should clear screen
-        self.is_windows = sys.platform == "win32"
+        if sys.platform == "win32":
+            try:
+                import ctypes
+                kernel32 = ctypes.windll.kernel32
+                stdout_handle = kernel32.GetStdHandle(-11)
+                kernel32.SetConsoleMode(stdout_handle, 7)
+            except Exception:
+                pass
 
     def clear_screen(self) -> None:
         """Clears the console screen."""
         if self.disabled:
             return
-        if self.is_windows:
-            os.system("cls")
-        else:
-            sys.stdout.write("\033[H\033[J")
-            sys.stdout.flush()
+        sys.stdout.write("\033[H\033[J")
+        sys.stdout.flush()
 
     def render(self, stats: Dict[str, Any], health: Dict[str, Any]) -> None:
         """Renders the dashboard block to terminal stdout."""

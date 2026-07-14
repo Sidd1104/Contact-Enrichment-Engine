@@ -193,8 +193,25 @@ class ExportManager:
             # Column mappings in the sheet
             phone_col = col_map.get("phone")
             email_col = col_map.get("email")
+            
+            # If "source website" is missing, dynamically add it to the Excel headers
             website_col = col_map.get("source website")
-            conf_col = col_map.get("confidence")
+            if not website_col:
+                next_col = max(col_map.values()) + 1 if col_map else len(headers) + 1
+                ws.cell(row=1, column=next_col).value = "Source Website"
+                col_map["source website"] = next_col
+                website_col = next_col
+                logger.info(f"[ExportManager] Dynamically added 'Source Website' column at index {next_col}")
+
+            # Check for confidence or quality score column
+            conf_col = col_map.get("quality score") or col_map.get("confidence")
+            if not conf_col:
+                next_col = max(col_map.values()) + 1 if col_map else len(headers) + 1
+                ws.cell(row=1, column=next_col).value = "Confidence"
+                col_map["confidence"] = next_col
+                conf_col = next_col
+                logger.info(f"[ExportManager] Dynamically added 'Confidence' column at index {next_col}")
+
             updated_col = col_map.get("updated")
             status_col = col_map.get("status")
             

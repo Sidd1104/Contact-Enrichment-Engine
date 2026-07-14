@@ -165,8 +165,8 @@ class PipelineOrchestrator:
             
             if db_checkpoint and db_checkpoint.get("status") == "in_progress":
                 start_batch_index = db_checkpoint.get("last_processed_index", 0)
-                processed_records = start_batch_index
-                logger.info(f"[Orchestrator] Found active database checkpoint for {batch_id}. Resuming at batch index: {start_batch_index}")
+                processed_records = start_batch_index * self.context.profile.batch_size
+                logger.info(f"[Orchestrator] Found active database checkpoint for {batch_id}. Resuming at batch index: {start_batch_index} ({processed_records} records already processed)")
                 self.context.update_metrics(retry_count=1)
             else:
                 logger.info(f"[Orchestrator] Starting fresh run for {batch_id}.")
@@ -184,9 +184,6 @@ class PipelineOrchestrator:
                 session = self.conn_mgr.get_session()
                 comp_rows = session.query(CompletedContactModel.npi).filter(
                     CompletedContactModel.npi.isnot(None)
-                ).filter(
-                    (CompletedContactModel.emails.isnot(None) & (CompletedContactModel.emails != "") & (CompletedContactModel.emails != "[]")) |
-                    (CompletedContactModel.phones.isnot(None) & (CompletedContactModel.phones != "") & (CompletedContactModel.phones != "[]"))
                 ).all()
                 fail_rows = session.query(FailedRecordModel.npi).filter(FailedRecordModel.npi.isnot(None)).all()
                 processed_npis.update(str(r[0]).strip() for r in comp_rows if r[0])

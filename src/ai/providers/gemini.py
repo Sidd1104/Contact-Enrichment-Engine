@@ -120,6 +120,7 @@ class GeminiProvider(AIProvider):
         self._timeout = timeout or ai_config.ai_timeout
         self._max_retries = max_retries or ai_config.ai_max_retries
         self._client: Optional[httpx.AsyncClient] = None
+        self._grounding_semaphore = asyncio.Semaphore(1)
 
     @property
     def name(self) -> str:
@@ -330,6 +331,22 @@ class GeminiProvider(AIProvider):
         timeout: float = 30.0,
         use_search_grounding: bool = False,
         **kwargs: Any,
+    ) -> BaseModel:
+        if use_search_grounding:
+            async with self._grounding_semaphore:
+                res = await self._query_structured_execute(prompt, response_model, timeout, use_search_grounding)
+                # Enforce 4 seconds rate-limiting delay between grounding calls to stay under 15 RPM
+                await asyncio.sleep(4.0)
+                return res
+        else:
+            return await self._query_structured_execute(prompt, response_model, timeout, use_search_grounding)
+
+    async def _query_structured_execute(
+        self,
+        prompt: str,
+        response_model: Type[BaseModel],
+        timeout: float = 30.0,
+        use_search_grounding: bool = False,
     ) -> BaseModel:
         """
         Send a prompt to Gemini with a JSON schema constraint,

@@ -1,92 +1,98 @@
 # Contact Enrichment Engine
 
-A scalable, professional Python-based data engineering pipeline designed to ingest company and investor records from an Excel dataset, perform automated web searching, scrape relevant sites, extract key contacts and email/phone details using LLMs, and export the enriched dataset.
+A high-performance, professional Python-based data engineering pipeline designed to ingest company and investor records from Excel sheets, resolve official website URLs using Google Search, scrape contact pages, extract emails/phones using LLMs (Gemini), and save enriched data directly back to the spreadsheet.
 
-## Project Structure
+---
 
-```text
-├── data/                    # Data storage
-│   ├── input/               # Raw Excel and CSV files to import
-│   ├── output/              # Final enriched datasets
-│   └── temp/                # Temp storage for parsing/scraping caches
-├── src/                     # Source Code
-│   ├── config/              # Configuration loaders and schemas
-│   ├── database/            # DB models, sessions, and migrations
-│   ├── importer/            # Ingestion handlers for Excel datasets
-│   ├── queue/               # Task scheduler and message broker setup
-│   ├── workers/             # Celery background workers for scraping/extraction
-│   ├── search/              # Search engine query wrappers (Google CSE, SerpAPI)
-│   ├── scraper/             # Headless browser scrapers (Playwright)
-│   ├── extractor/           # Text parsers and scraper cleanup
-│   ├── validator/           # Validation rules for emails, phones, and links
-│   ├── ai/                  # LLM integrations (Structured JSON outputs)
-│   ├── exporter/            # Formatter and export modules for xlsx/csv
-│   ├── cache/               # Redis key-value cache layer
-│   ├── utils/               # Shared utilities (logging, decorators, rate limits)
-│   └── monitoring/          # Logging, metrics, dashboard tracking
-├── logs/                    # Runtime logs
-├── tests/                   # Test suite
-├── docs/                    # Architecture reports and specifications
-├── scripts/                 # Utility scripts (analysis, setup, migrations)
-├── .env.example             # Configuration variables template
-├── .gitignore               # Ignored files for version control
-├── requirements.txt         # Project dependencies
-└── run.py                   # Main CLI entrypoint
-```
-
-## Getting Started
+## 🚀 Quick Start Guide
 
 ### 1. Prerequisites
-- Python 3.12+
-- PostgreSQL
-- Redis
+* **Python 3.12+**
+* An active **Google Gemini API Key** (for search grounding and structured data extraction)
 
-### 2. Environment Setup
-Clone the repository, create a virtual environment, and install dependencies:
+### 2. Installation & Environment Setup
+Clone the repository and set up a virtual environment:
 
 ```bash
 # Create virtual environment
 python -m venv .venv
 
-# Activate virtual environment (Windows)
+# Activate the virtual environment
+# Windows:
 .venv\Scripts\activate
+# macOS/Linux:
+source .venv/bin/activate
 
-# Install dependencies (Phase 1 requirements)
+# Install all required dependencies
 pip install -r requirements.txt
 ```
 
-Copy the environment file and configure variables:
+### 3. Configure Environment Variables (`.env`)
+Create a `.env` file in the root directory and add your API keys:
+
 ```bash
+# Copy template
 cp .env.example .env
 ```
 
-### 3. Usage
-Run the command-line entrypoint to see helper prompts:
-```bash
-python run.py --help
+Open `.env` and fill in your keys:
+```env
+# Google Gemini API Configuration (Mandatory)
+GEMINI_API_KEY="your-gemini-api-key-here"
+
+# Playwright Browser Configuration
+DISABLE_BROWSER_FALLBACK=false
 ```
 
-Subcommands:
-* **`import`**: Import raw data from Excel.
-  ```bash
-  python run.py import --file data/input/us_investors_enriched.xlsx
-  ```
-* **`run`**: Run the background scraping and AI enrichment pipeline.
-  ```bash
-  python run.py run --stage all
-  ```
-* **`export`**: Write final database records back to an Excel file.
-  ```bash
-  python run.py export --output data/output/final_output.xlsx
-  ```
-* **`status`**: Check enrichment statistics in the database.
-  ```bash
-  python run.py status
-  ```
+### 4. Input Dataset
+Place your raw Excel dataset (e.g. `us_investors_export 2.xlsx`) inside the input directory:
+`data/input/`
 
-## Development Roadmap
-- **Phase 1: Project Initialization & Excel Schema Analysis (Completed)**: Folder structures, baseline config files, and detailed data analysis.
-- **Phase 2: Database Design & Importer Ingestion**: DB migrations, Pydantic schemas, and Excel import script.
-- **Phase 3: Queue & Scraping Setup**: Celery integration, Playwright headless scrapers, Google Custom Search engine APIs.
-- **Phase 4: LLM Contact Extraction**: Prompt engineering, JSON schemas, extraction & verification.
-- **Phase 5: Validation, Export & Dashboard**: Integrity checking, export, and telemetry.
+The engine will **automatically detect the most recently modified Excel file** inside that directory.
+
+---
+
+## 💻 CLI Usage
+
+All operations are run through the `run.py` CLI script.
+
+### Start the Pipeline
+Runs website discovery, scraping, AI extraction, and updates the Excel sheet:
+```bash
+python run.py run -p turbo
+```
+* Use `-p development` or `-p testing` for smaller batch sizes during local development.
+* Use `-p turbo` for high-throughput execution with 50 parallel workers.
+
+### Custom Profile Execution
+Run the pipeline with a custom profile and target a specific file:
+```bash
+python run.py profile turbo -f data/input/us_investors_export.xlsx
+```
+
+### Perform Health Check
+Run system pre-flight checks and diagnose resource health:
+```bash
+python run.py health
+```
+
+### Check Database Status
+Display the count of completed and pending records in the database:
+```bash
+python run.py status
+```
+
+### Export Results manually
+Export completed contacts manually to CSV/Excel formats:
+```bash
+python run.py export -d data/export
+```
+
+---
+
+## 🛠️ Key Architectural Optimizations
+
+1. **429 Rate Limit Mitigation**: All Gemini Search Grounding calls and search-grounded AI queries are strictly serialized (concurrency of 1) with an automatic 4-second cooldown to stay under the 15 RPM free-tier threshold.
+2. **Dynamic Excel Writing**: The pipeline writes results back in-place to the raw input Excel sheet. If `Source Website` or `Confidence` columns do not exist in the raw sheet, the engine dynamically appends them to prevent any data loss.
+3. **Smooth Console telemetry**: CPU-heavy subprocess-based screen clears (`cls` / `clear`) have been replaced with direct ctypes virtual terminal ANSI clears, eliminating console lag and flickering.
+4. **Concurrent Subpage Crawling**: Candidates subpages are scraped concurrently via `asyncio.gather`, improving extraction speed per domain.

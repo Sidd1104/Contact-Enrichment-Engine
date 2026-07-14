@@ -146,6 +146,38 @@ class PipelineRunner:
             export_dir=self.export_dir
         )
 
-        # Run E2E pipeline
-        report = await self.orchestrator.run()
+        # Background task for periodic dashboard updates (every 1 second)
+        dashboard_task = None
+        if self.show_dashboard:
+            health_checker = HealthMonitor()
+            async def periodic_refresh():
+                try:
+                    while True:
+                        from src.pipeline.pipeline_context import PipelineState
+                        if self.context.state == PipelineState.RUNNING:
+                            health_report = health_checker.perform_health_check(
+                                context=self.context,
+                                queue_size=self.context.queue_depth,
+                                db_alive=True,
+                                browser_active=self.context.browser_launches > 0
+                            )
+                            self.dashboard.render(self.context.get_all_stats(), health_report)
+                        await asyncio.sleep(1.0)
+                except asyncio.CancelledError:
+                    pass
+                except Exception as e:
+                    logger.error(f"[PipelineRunner] Error in dashboard refresh loop: {e}")
+
+            dashboard_task = asyncio.create_task(periodic_refresh())
+
+        try:
+            # Run E2E pipeline
+            report = await self.orchestrator.run()
+        finally:
+            if dashboard_task:
+                dashboard_task.cancel()
+                try:
+                    await dashboard_task
+                except asyncio.CancelledError:
+                    pass
         return report
